@@ -70,7 +70,9 @@ const Header = (props: any) => {
                         <Portal>
                             <Menu.Positioner>
                                 <Menu.Content>
-                                    <Menu.Item value={Math.random().toString()}>Project Overview</Menu.Item>
+                                    <Menu.Item value={Math.random().toString()}>
+                                        <a href="/home_overview">Project Overview</a>
+                                    </Menu.Item>
                                     <Menu.Item value={Math.random().toString()}>News</Menu.Item>
                                     <Menu.Item value="new-win">FAQ</Menu.Item>
                                     <Menu.Item value="open-file">Contact Us</Menu.Item>

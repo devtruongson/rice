@@ -4,6 +4,8 @@ import './App.css';
 import Header from './components/group/Header';
 import RiceGenomeProject from './components/group/RiceGenomeProject';
 import { useColorMode } from './components/ui/color-mode';
+import { Route, Routes } from 'react-router-dom';
+import HomeOverview from './components/group/HomeOverview';
 
 function App() {
     const { setColorMode } = useColorMode();
@@ -24,7 +26,11 @@ function App() {
         >
             <Image w={'100%'} objectFit={'cover'} src="https://rice.uga.edu/images/TestLogo2.png" alt="" />
             <Header />
-            <RiceGenomeProject />
+
+            <Routes>
+                <Route path="/" element={<RiceGenomeProject />} />
+                <Route path="/home_overview" element={<HomeOverview />}></Route>
+            </Routes>
         </Container>
     );
 }
