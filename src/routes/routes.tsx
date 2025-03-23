@@ -3,7 +3,7 @@ import { OverView } from './index';
 export const routes = [
     {
         name: 'OverView',
-        path: '/over_view',
+        path: '/home_overview',
         element: <OverView />,
         requiresAuth: false,
     },
