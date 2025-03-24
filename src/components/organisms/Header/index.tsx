@@ -4,23 +4,28 @@ import {
     Button,
     Flex,
     Heading,
-    List,
-    ListItem,
+    HStack,
+    Icon,
     Menu,
     MenuButton,
     MenuItem,
     MenuList,
     Portal,
     Stack,
+    Text,
     useDisclosure,
 } from '@chakra-ui/react';
 import { routesMap } from '../../../routes/routes';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import icons from '../../../constants/icons';
 
 type Props = {} & BoxProps;
 const Header = ({ ...props }: Props) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const handleToggle = () => (isOpen ? onClose() : onOpen());
+    const [isSubMenu, setIsSubMenu] = useState(false);
+    const [isSubMenuSeach, setIsSubMenuSeach] = useState(false);
 
     return (
         <Flex as="nav" wrap="wrap" padding={6} bg="teal.500" color="white" {...props}>
@@ -111,20 +116,38 @@ const Header = ({ ...props }: Props) => {
                             </MenuButton>
                             <Portal>
                                 <MenuList>
-                                    <MenuItem value={Math.random().toString()}>
-                                        <Box>
-                                            <Box>Pseudomolecules</Box>
-                                            <Box ps={50}>
-                                                <List>
-                                                    <ListItem py={1}>Current Pseudomolecules</ListItem>
-                                                    <ListItem py={1}>Pseudomolecule Version Converter</ListItem>
-                                                    <ListItem py={1}>Centromeres in the Pseudomolecules</ListItem>
-                                                    <ListItem py={1}>Putative SSRs in the Pseudomolecules</ListItem>
-                                                    <ListItem py={1}>Organellar Insertions</ListItem>
-                                                </List>
-                                            </Box>
+                                    <Box
+                                        position="relative"
+                                        onMouseEnter={() => setIsSubMenu(true)}
+                                        onMouseLeave={() => setIsSubMenu(false)}
+                                    >
+                                        <MenuItem>
+                                            <HStack justifyContent="space-between" w={'100%'}>
+                                                <Text>Pseudomolecules</Text>
+                                                <Icon as={icons.caretRight} textAlign="end" />
+                                            </HStack>
+                                        </MenuItem>
+
+                                        <Box
+                                            position="absolute"
+                                            left="100%"
+                                            top="0"
+                                            boxShadow="md"
+                                            borderRadius="md"
+                                            minW="220px"
+                                            zIndex="10"
+                                            transition="opacity 0.2s ease-in-out"
+                                            display={isSubMenu ? 'block' : 'none'}
+                                        >
+                                            <MenuList>
+                                                <MenuItem>Current Pseudomolecules</MenuItem>
+                                                <MenuItem>Pseudomolecule Version Converter</MenuItem>
+                                                <MenuItem>Centromeres in the Pseudomolecules</MenuItem>
+                                                <MenuItem>Putative SSRs in the Pseudomolecules</MenuItem>
+                                                <MenuItem>Organellar Insertions</MenuItem>
+                                            </MenuList>
                                         </Box>
-                                    </MenuItem>
+                                    </Box>
 
                                     <Link to={routesMap.AnnotationOryza}>
                                         <MenuItem>Oryza Repeat Database</MenuItem>
@@ -150,22 +173,40 @@ const Header = ({ ...props }: Props) => {
                             </MenuButton>
                             <Portal>
                                 <MenuList>
-                                    <MenuItem value={Math.random().toString()}>
-                                        <Box>
-                                            <Box>Search Functions</Box>
-                                            <Box ps={50}>
-                                                <List>
-                                                    <ListItem py={1}>Sequence (BLAST) Search</ListItem>
-                                                    <ListItem py={1}>Putative Function Search</ListItem>
-                                                    <ListItem py={1}>Locus Search</ListItem>
-                                                    <ListItem py={1}>Domain Search</ListItem>
-                                                    <ListItem py={1}>Motif Search</ListItem>
-                                                    <ListItem py={1}>tRNA Search</ListItem>
-                                                    <ListItem py={1}>GO Retrieval</ListItem>
-                                                </List>
-                                            </Box>
+                                    <Box
+                                        position="relative"
+                                        onMouseEnter={() => setIsSubMenuSeach(true)}
+                                        onMouseLeave={() => setIsSubMenuSeach(false)}
+                                    >
+                                        <MenuItem>
+                                            <HStack justifyContent="space-between" w={'100%'}>
+                                                <Text>Search Functions</Text>
+                                                <Icon as={icons.caretRight} textAlign="end" />
+                                            </HStack>
+                                        </MenuItem>
+
+                                        <Box
+                                            position="absolute"
+                                            left="100%"
+                                            top="0"
+                                            boxShadow="md"
+                                            borderRadius="md"
+                                            minW="220px"
+                                            zIndex="10"
+                                            transition="opacity 0.2s ease-in-out"
+                                            display={isSubMenuSeach ? 'block' : 'none'}
+                                        >
+                                            <MenuList>
+                                                <MenuItem>Sequence (BLAST) Search</MenuItem>
+                                                <MenuItem>Putative Function Search</MenuItem>
+                                                <MenuItem>Locus Search</MenuItem>
+                                                <MenuItem>Domain Search</MenuItem>
+                                                <MenuItem>Motif Search</MenuItem>
+                                                <MenuItem>tRNA Search</MenuItem>
+                                                <MenuItem>GO Retrieval</MenuItem>
+                                            </MenuList>
                                         </Box>
-                                    </MenuItem>
+                                    </Box>
                                     <MenuItem value={Math.random().toString()}>Gene Expression</MenuItem>
                                     <MenuItem value={Math.random().toString()}>Gene Coexpression</MenuItem>
                                     <MenuItem value={Math.random().toString()}>Syntelogs</MenuItem>
