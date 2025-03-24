@@ -6,7 +6,7 @@ import { Image } from '@chakra-ui/react';
 type Props = { children: React.ReactNode };
 const MainTemPlate = ({ children }: Props) => {
     return (
-        <Wrapper pt={4}>
+        <Wrapper pt={4} pb={10}>
             <Image w={'100%'} objectFit={'cover'} src="https://rice.uga.edu/images/TestLogo2.png" alt="" />
             <Header />
             {children}

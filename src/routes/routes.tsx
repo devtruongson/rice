@@ -1,6 +1,12 @@
-import { OverView } from './index';
+import { Home, OverView } from './index';
 
 export const routes = [
+    {
+        name: 'Home',
+        path: '/',
+        element: <Home />,
+        requiresAuth: false,
+    },
     {
         name: 'OverView',
         path: '/home_overview',
