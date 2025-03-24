@@ -77,6 +77,7 @@ const Header = ({ ...props }: Props) => {
                                     _hover={{
                                         color: '#ee4d2d',
                                     }}
+                                    rightIcon={<Icon as={icons.caretDown} />}
                                 >
                                     Home
                                 </Button>
@@ -105,11 +106,12 @@ const Header = ({ ...props }: Props) => {
                                 <Button
                                     variant="plain"
                                     size="sm"
+                                    fontWeight={600}
+                                    color={'#fff'}
                                     _hover={{
                                         color: '#ee4d2d',
                                     }}
-                                    fontWeight={600}
-                                    color={'#fff'}
+                                    rightIcon={<Icon as={icons.caretDown} />}
                                 >
                                     Rice Gene Annotation
                                 </Button>
@@ -167,6 +169,7 @@ const Header = ({ ...props }: Props) => {
                                     }}
                                     fontWeight={600}
                                     color={'#fff'}
+                                    rightIcon={<Icon as={icons.caretDown} />}
                                 >
                                     Analyses/Tools
                                 </Button>
@@ -243,6 +246,7 @@ const Header = ({ ...props }: Props) => {
                                     }}
                                     fontWeight={600}
                                     color={'#fff'}
+                                    rightIcon={<Icon as={icons.caretDown} />}
                                 >
                                     Downloads
                                 </Button>

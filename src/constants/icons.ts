@@ -1,7 +1,8 @@
-import { FaCaretRight } from 'react-icons/fa';
+import { FaCaretRight, FaCaretDown } from 'react-icons/fa';
 
 const icons = {
     caretRight: FaCaretRight,
+    caretDown: FaCaretDown,
 };
 
 export default icons;
