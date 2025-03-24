@@ -1,4 +1,4 @@
-import { Contatcts, Home, OverView } from './index';
+import { AnnotationOryza, Contatcts, FAQ, Home, News, OverView } from './index';
 
 export const routes = [
     {
@@ -17,6 +17,24 @@ export const routes = [
         name: 'Contatcts',
         path: '/home_contacts',
         element: <Contatcts />,
+        requiresAuth: false,
+    },
+    {
+        name: 'News',
+        path: '/home_news',
+        element: <News />,
+        requiresAuth: false,
+    },
+    {
+        name: 'FAQ',
+        path: '/home_faq',
+        element: <FAQ />,
+        requiresAuth: false,
+    },
+    {
+        name: 'AnnotationOryza',
+        path: '/annotation_oryza',
+        element: <AnnotationOryza />,
         requiresAuth: false,
     },
 ] as const;

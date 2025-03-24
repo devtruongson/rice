@@ -67,25 +67,29 @@ const Header = ({ ...props }: Props) => {
                                 <Button
                                     variant="plain"
                                     size="sm"
+                                    fontWeight={600}
+                                    color={'#fff'}
                                     _hover={{
                                         color: '#ee4d2d',
                                     }}
-                                    fontWeight={600}
-                                    color={'#fff'}
                                 >
                                     Home
                                 </Button>
                             </MenuButton>
                             <Portal>
                                 <MenuList>
-                                    <MenuItem value={Math.random().toString()}>
-                                        <Link to={routesMap.OverView}>Project Overview</Link>
-                                    </MenuItem>
-                                    <MenuItem value={Math.random().toString()}>News</MenuItem>
-                                    <MenuItem value="new-win">FAQ</MenuItem>
-                                    <MenuItem value="open-file">
-                                        <Link to={routesMap.Contatcts}>Contacts Us</Link>
-                                    </MenuItem>
+                                    <Link to={routesMap.OverView}>
+                                        <MenuItem>Project Overview</MenuItem>
+                                    </Link>
+                                    <Link to={routesMap.News}>
+                                        <MenuItem>News</MenuItem>
+                                    </Link>
+                                    <Link to={routesMap.FAQ}>
+                                        <MenuItem>FAQ</MenuItem>
+                                    </Link>
+                                    <Link to={routesMap.Contatcts}>
+                                        <MenuItem>Contacts Us</MenuItem>
+                                    </Link>
                                 </MenuList>
                             </Portal>
                         </Menu>
@@ -121,7 +125,10 @@ const Header = ({ ...props }: Props) => {
                                             </Box>
                                         </Box>
                                     </MenuItem>
-                                    <MenuItem value={Math.random().toString()}>Oryza Repeat Database</MenuItem>
+
+                                    <Link to={routesMap.AnnotationOryza}>
+                                        <MenuItem>Oryza Repeat Database</MenuItem>
+                                    </Link>
                                 </MenuList>
                             </Portal>
                         </Menu>
@@ -172,11 +179,14 @@ const Header = ({ ...props }: Props) => {
                         <Button
                             variant="plain"
                             size="sm"
+                            fontWeight={600}
+                            color={'#fff'}
                             _hover={{
                                 color: '#ee4d2d',
                             }}
-                            fontWeight={600}
-                            color={'#fff'}
+                            onClick={() =>
+                                window.open('https://rice.uga.edu/jb2/?session=local-FCWky9JwdGzmRw33L332K', '_blank')
+                            }
                         >
                             Genome Browser
                         </Button>

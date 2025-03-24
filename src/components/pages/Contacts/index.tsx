@@ -1,15 +1,13 @@
 import { Box, Divider, ListItem, Text, UnorderedList } from '@chakra-ui/react';
 import MainTemPlate from '../../templates/MainTemPlate';
 import colors from '../../../constants/colors';
+import Label from '../../atoms/Label';
 
 const Contacts = () => {
     return (
         <MainTemPlate>
             <Box py={4} px={4}>
-                <Text textAlign="center" fontSize={20} fontWeight={500}>
-                    Contact the Rice Genome Annotation Project Team
-                </Text>
-
+                <Label label="Contact the Rice Genome Annotation Project Team" />
                 <Text fontWeight={500} fontSize={14}>
                     Comments
                 </Text>
