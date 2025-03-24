@@ -14,6 +14,8 @@ import {
     Stack,
     useDisclosure,
 } from '@chakra-ui/react';
+import { routesMap } from '../../../routes/routes';
+import { Link } from 'react-router-dom';
 
 type Props = {} & BoxProps;
 const Header = ({ ...props }: Props) => {
@@ -24,9 +26,11 @@ const Header = ({ ...props }: Props) => {
         <Flex as="nav" wrap="wrap" padding={6} bg="teal.500" color="white" {...props}>
             <Flex align="center" justify="space-between">
                 <Flex align="center" mr={5}>
-                    <Heading as="h1" size="lg" letterSpacing={'tighter'}>
-                        Rice Genome
-                    </Heading>
+                    <Link to={routesMap.Home}>
+                        <Heading as="h1" size="lg" letterSpacing={'tighter'}>
+                            Rice Genome
+                        </Heading>
+                    </Link>
                 </Flex>
 
                 <Box display={{ base: 'block', md: 'none' }} onClick={handleToggle}>
@@ -75,11 +79,13 @@ const Header = ({ ...props }: Props) => {
                             <Portal>
                                 <MenuList>
                                     <MenuItem value={Math.random().toString()}>
-                                        <a href="/home_overview">Project Overview</a>
+                                        <Link to={routesMap.OverView}>Project Overview</Link>
                                     </MenuItem>
                                     <MenuItem value={Math.random().toString()}>News</MenuItem>
                                     <MenuItem value="new-win">FAQ</MenuItem>
-                                    <MenuItem value="open-file">Contact Us</MenuItem>
+                                    <MenuItem value="open-file">
+                                        <Link to={routesMap.Contatcts}>Contacts Us</Link>
+                                    </MenuItem>
                                 </MenuList>
                             </Portal>
                         </Menu>

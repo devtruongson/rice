@@ -1,4 +1,4 @@
-import { Home, OverView } from './index';
+import { Contatcts, Home, OverView } from './index';
 
 export const routes = [
     {
@@ -11,6 +11,12 @@ export const routes = [
         name: 'OverView',
         path: '/home_overview',
         element: <OverView />,
+        requiresAuth: false,
+    },
+    {
+        name: 'Contatcts',
+        path: '/home_contacts',
+        element: <Contatcts />,
         requiresAuth: false,
     },
 ] as const;
