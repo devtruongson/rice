@@ -1,4 +1,4 @@
-import { AnnotationOryza, Contatcts, FAQ, Home, News, OverView } from './index';
+import { AnnotationOryza, Contatcts, FAQ, Home, News, OverView, PseudoCurrent } from './index';
 
 export const routes = [
     {
@@ -35,6 +35,12 @@ export const routes = [
         name: 'AnnotationOryza',
         path: '/annotation_oryza',
         element: <AnnotationOryza />,
+        requiresAuth: false,
+    },
+    {
+        name: 'PseudoCurrent',
+        path: '/annotation_pseudo_current',
+        element: <PseudoCurrent />,
         requiresAuth: false,
     },
 ] as const;

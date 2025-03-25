@@ -142,7 +142,9 @@ const Header = ({ ...props }: Props) => {
                                             display={isSubMenu ? 'block' : 'none'}
                                         >
                                             <MenuList>
-                                                <MenuItem>Current Pseudomolecules</MenuItem>
+                                                <Link to={routesMap.PseudoCurrent}>
+                                                    <MenuItem>Current Pseudomolecules</MenuItem>
+                                                </Link>
                                                 <MenuItem>Pseudomolecule Version Converter</MenuItem>
                                                 <MenuItem>Centromeres in the Pseudomolecules</MenuItem>
                                                 <MenuItem>Putative SSRs in the Pseudomolecules</MenuItem>

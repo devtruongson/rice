@@ -6,3 +6,4 @@ export const Contatcts = lazy(() => import('../components/pages/Contacts'));
 export const News = lazy(() => import('../components/pages/News'));
 export const FAQ = lazy(() => import('../components/pages/FAQ'));
 export const AnnotationOryza = lazy(() => import('../components/pages/AnnotationOryza'));
+export const PseudoCurrent = lazy(() => import('../components/pages/PseudoCurrent'));
