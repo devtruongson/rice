@@ -5,7 +5,7 @@ type Props = {
 } & BoxProps;
 const Label = ({ label, ...props }: Props) => {
     return (
-        <Text textAlign="center" fontSize={20} fontWeight={500} {...props}>
+        <Text textAlign="center" fontSize={20} fontWeight={500} mb={2} {...props}>
             {label}
         </Text>
     );
