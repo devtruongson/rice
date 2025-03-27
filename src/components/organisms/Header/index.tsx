@@ -20,8 +20,6 @@ const Header = ({ ...props }: Props) => {
             top={0}
             right={0}
             left={0}
-            overflow="hidden"
-            zIndex={1000}
         >
             <HStack color="white">
                 <Image src={logo} w={12} h={12} />
@@ -34,7 +32,7 @@ const Header = ({ ...props }: Props) => {
             </HStack>
 
             <HStack>
-                <HStack gap={8}>
+                <HStack gap={6}>
                     {listCatesHeader.map((item, index) => {
                         return (
                             <Menu key={index}>

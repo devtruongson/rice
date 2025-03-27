@@ -10,3 +10,21 @@ export const listTransitFirst = [
     { label: 'Germplasm GISs', path: '/' },
     { label: 'Other legumes', path: '/' },
 ];
+
+export const listTransitSecond = [
+    { label: 'Annotate sequences', path: '/' },
+    { label: 'Trait association search', path: '/' },
+    { label: 'Genome browsers', path: '/' },
+    { label: 'QTL viewer', path: '/' },
+    { label: 'Metabolic pathways', path: '/' },
+    { label: 'Expression resources', path: '/' },
+];
+
+export const listTranstLast = [
+    { label: 'Pangenes / gene translator', path: '/' },
+    { label: 'GO enrichment', path: '/' },
+    { label: 'Genotype comparisons', path: '/' },
+    { label: 'cross-species QTL/GWASs', path: '/' },
+    { label: 'Parentage & pedigrees', path: '/' },
+    { label: 'Help & Tutorials', path: '/' },
+];

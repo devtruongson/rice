@@ -1,13 +1,14 @@
 import { Box, Button, Divider, Flex, HStack, Image, Input, Text, VStack } from '@chakra-ui/react';
 import MainTemPlate from '../../templates/MainTemPlate';
-import { listTransitFirst, personalBrand } from '../../../constants';
+import { listTransitFirst, listTransitSecond, personalBrand, listTranstLast } from '../../../constants';
 import LinkCustom from '../../atoms/Link';
 import { useState } from 'react';
+import colors from '../../../constants/colors';
 
 const listStransit = [
     { label: 'Keyword Search', list: listTransitFirst },
-    { label: 'Keyword Search', list: listTransitFirst },
-    { label: 'Keyword Search', list: listTransitFirst },
+    { label: 'Keyword Search', list: listTransitSecond },
+    { label: 'Keyword Search', list: listTranstLast },
 ];
 const Home = () => {
     const [textSearch, setTextSearch] = useState('');
@@ -37,17 +38,29 @@ const Home = () => {
                                     <HStack w="full" justifyContent="center" mb={4}>
                                         <Input
                                             w="40%"
+                                            h={8}
                                             value={textSearch}
                                             onChange={(e) => setTextSearch(e.target.value)}
+                                            borderRadius={0}
+                                            py={0}
+                                            px={2}
                                         />
-                                        <Button onClick={handleSearch}>GO</Button>
+                                        <Button
+                                            onClick={handleSearch}
+                                            h={8}
+                                            bg={colors.brand}
+                                            color="white"
+                                            variant="variants"
+                                        >
+                                            GO
+                                        </Button>
                                     </HStack>
                                     <Divider borderColor="#ccc" mb={4} />
                                     <VStack w="full" gap={2}>
                                         {item?.list?.length
                                             ? item?.list?.map((itemChild, indexChild) => {
                                                   return (
-                                                      <Box key={indexChild} w="full" py={2} bg="yellow.300">
+                                                      <Box key={indexChild} w="full" py={1} bg="yellow.200">
                                                           <LinkCustom
                                                               content={itemChild.label}
                                                               path={itemChild.path}
