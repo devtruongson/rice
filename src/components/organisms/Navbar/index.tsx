@@ -5,7 +5,16 @@ import colors from '../../../constants/colors';
 
 const Navbar = () => {
     return (
-        <Box width={NAVBAR_WIDTH} h={`calc(100vh - ${HEADER_HEIGHT}px)`} overflowY="auto" p={45}>
+        <Box
+            width={NAVBAR_WIDTH}
+            h={`calc(100vh - ${HEADER_HEIGHT}px)`}
+            overflowY="auto"
+            p={45}
+            position="fixed"
+            left={0}
+            bottom={0}
+            top={HEADER_HEIGHT}
+        >
             <Text mb={4} fontSize={20}>
                 Tools
             </Text>

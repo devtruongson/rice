@@ -9,7 +9,20 @@ import { Link } from 'react-router-dom';
 type Props = {} & BoxProps;
 const Header = ({ ...props }: Props) => {
     return (
-        <HStack {...props} w="full" height={HEADER_HEIGHT} bg={colors.brand} px={2} justifyContent="space-between">
+        <HStack
+            {...props}
+            w="full"
+            height={HEADER_HEIGHT}
+            bg={colors.brand}
+            px={2}
+            justifyContent="space-between"
+            position="fixed"
+            top={0}
+            right={0}
+            left={0}
+            overflow="hidden"
+            zIndex={1000}
+        >
             <HStack color="white">
                 <Image src={logo} w={12} h={12} />
                 <Box>
