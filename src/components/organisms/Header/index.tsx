@@ -14,7 +14,7 @@ const Header = ({ ...props }: Props) => {
             w="full"
             height={HEADER_HEIGHT}
             bg={colors.brand}
-            px={2}
+            px={4}
             justifyContent="space-between"
             position="fixed"
             top={0}

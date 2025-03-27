@@ -5,7 +5,7 @@ const styles = {
     global: {
         body: {
             color: 'text',
-            fontSize: 14,
+            fontSize: 16,
             paddingTop: HEADER_HEIGHT + COMMITMENT_HEIGHT,
             bg: 'background',
             minH: '100vh',
