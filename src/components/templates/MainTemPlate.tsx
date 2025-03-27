@@ -1,16 +1,14 @@
 import React from 'react';
 import Header from '../organisms/Header';
-import Wrapper from './Wrapper';
-import { Image } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 type Props = { children: React.ReactNode };
 const MainTemPlate = ({ children }: Props) => {
     return (
-        <Wrapper pt={4} pb={10}>
-            <Image w={'100%'} objectFit={'cover'} src="https://rice.uga.edu/images/TestLogo2.png" alt="" />
+        <Box pb={10}>
             <Header />
             {children}
-        </Wrapper>
+        </Box>
     );
 };
 
