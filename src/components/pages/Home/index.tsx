@@ -7,8 +7,8 @@ import colors from '../../../constants/colors';
 
 const listStransit = [
     { label: 'Keyword Search', list: listTransitFirst },
-    { label: 'Keyword Search', list: listTransitSecond },
-    { label: 'Keyword Search', list: listTranstLast },
+    { label: 'Gene identifier search', list: listTransitSecond },
+    { label: 'Synteny viewer', list: listTranstLast },
 ];
 const Home = () => {
     const [textSearch, setTextSearch] = useState('');
@@ -63,6 +63,7 @@ const Home = () => {
                                                       <Box key={indexChild} w="full" py={1} bg="yellow.200">
                                                           <LinkCustom
                                                               content={itemChild.label}
+                                                              fontWeight={500}
                                                               path={itemChild.path}
                                                               textAlign="center"
                                                           />
