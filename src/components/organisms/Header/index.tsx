@@ -45,7 +45,11 @@ const Header = ({ ...props }: Props) => {
                                     <MenuList>
                                         {item?.children?.map((itemChild, indexChild) => {
                                             return (
-                                                <Link to={itemChild.path} key={indexChild}>
+                                                <Link
+                                                    to={itemChild.path}
+                                                    key={indexChild}
+                                                    target={itemChild?.isBlank ? '_blank' : ''}
+                                                >
                                                     <MenuItem>{itemChild.label}</MenuItem>
                                                 </Link>
                                             );

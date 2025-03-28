@@ -1,7 +1,8 @@
 import { Box, Divider, Text } from '@chakra-ui/react';
 import { HEADER_HEIGHT, NAVBAR_WIDTH } from '../../../constants';
-import { Link } from 'react-router-dom';
 import colors from '../../../constants/colors';
+import { routesMap } from '../../../routes/routes';
+import LinkCustom from '../../atoms/Link';
 
 const Navbar = () => {
     return (
@@ -19,14 +20,18 @@ const Navbar = () => {
                 Tools
             </Text>
             <LabelCommon label="Analysis" />
-            <ItemCustom label="GO Enrichment Analysis" path="/" />
+            <ItemCustom label="GO Enrichment Analysis" path={routesMap.Go} isBlank />
             <ItemCustom label="Northern Uniform Soybean Trials (NUST)" path="/" />
 
             {/*  */}
             <LabelCommon label="Download / Query" />
             <ItemCustom label="Datastore" path="/" />
-            <ItemCustom label="GlycineMine" path="/" />
-            <ItemCustom label="Data Overviews for soy genomic data" path="/" />
+            <ItemCustom label="GlycineMine" path="https://mines.legumeinfo.org/glycinemine/begin.do" isBlank />
+            <ItemCustom
+                label="Data Overviews for soy genomic data"
+                path="https://dscensor.legumeinfo.org/multiqc-demo/genome_main:Glycine"
+                isBlank
+            />
             <ItemCustom label="USDA Germplasm SoySNP50K" path="/" />
 
             {/*  */}
@@ -80,13 +85,8 @@ const LabelCommon = ({ label }: LabelCommonProps) => {
 type ItemCustomProps = {
     label: string;
     path: string;
+    isBlank?: boolean;
 };
-const ItemCustom = ({ label, path }: ItemCustomProps) => {
-    return (
-        <Link to={path}>
-            <Text color={colors.green} fontWeight={400} mb={2}>
-                {label}
-            </Text>
-        </Link>
-    );
+const ItemCustom = ({ label, path, isBlank = false }: ItemCustomProps) => {
+    return <LinkCustom content={label} path={path} color={colors.green} fontWeight={400} mb={2} isBlank={isBlank} />;
 };

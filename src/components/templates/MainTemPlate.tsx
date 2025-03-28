@@ -11,7 +11,9 @@ const MainTemPlate = ({ children }: Props) => {
             <Header />
             <Flex>
                 <Navbar />
-                <Box ml={NAVBAR_WIDTH}>{children}</Box>
+                <Box ml={NAVBAR_WIDTH} p={20}>
+                    {children}
+                </Box>
             </Flex>
         </Box>
     );

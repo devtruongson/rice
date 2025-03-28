@@ -16,7 +16,7 @@ const Home = () => {
     const handleSearch = () => {};
     return (
         <MainTemPlate>
-            <Flex p={20}>
+            <Flex>
                 <Box w="70%">
                     <Text fontSize={36} fontWeight={300} mb={2}>
                         {personalBrand}
