@@ -21,23 +21,23 @@ const Navbar = () => {
             </Text>
             <LabelCommon label="Analysis" />
             <ItemCustom label="GO Enrichment Analysis" path={routesMap.Go} isBlank />
-            <ItemCustom label="Northern Uniform Soybean Trials (NUST)" path="/" />
+            <ItemCustom label="Northern Uniform Soybean Trials (NUST)" path={routesMap.Nust} />
 
             {/*  */}
             <LabelCommon label="Download / Query" />
-            <ItemCustom label="Datastore" path="/" />
+            <ItemCustom label="Datastore" path={routesMap.DataStore} />
             <ItemCustom label="GlycineMine" path="https://mines.legumeinfo.org/glycinemine/begin.do" isBlank />
             <ItemCustom
                 label="Data Overviews for soy genomic data"
                 path="https://dscensor.legumeinfo.org/multiqc-demo/genome_main:Glycine"
                 isBlank
             />
-            <ItemCustom label="USDA Germplasm SoySNP50K" path="/" />
+            <ItemCustom label="USDA Germplasm SoySNP50K" path={routesMap.GermplasmSoy} />
 
             {/*  */}
             <LabelCommon label="Legacy tools" />
-            <ItemCustom label="GRIN Data Explorer" path="/" />
-            <ItemCustom label="Gene Expression Explorer" path="/" />
+            <ItemCustom label="GRIN Data Explorer" path="https://legacy.soybase.org/grindata/" isBlank />
+            <ItemCustom label="Gene Expression Explorer" path="https://legacy.soybase.org/experiments/" isBlank />
 
             {/*  */}
             <LabelCommon label="Search" />

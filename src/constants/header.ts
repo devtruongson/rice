@@ -18,12 +18,12 @@ export const listCatesHeader = [
             {
                 label: 'Northern Uniform Soybean Trials (NUST)',
                 isBlank: false,
-                path: routesMap.Home,
+                path: routesMap.Nust,
             },
             {
                 label: 'Datastore',
                 isBlank: false,
-                path: routesMap.Home,
+                path: routesMap.DataStore,
             },
             {
                 label: 'GlycineMine',
@@ -32,23 +32,23 @@ export const listCatesHeader = [
             },
             {
                 label: 'Data Overviews for soy genomic data',
-                isBlank: false,
+                isBlank: true,
                 path: 'https://dscensor.legumeinfo.org/multiqc-demo/genome_main:Glycine',
             },
             {
                 label: 'USDA Germplasm SoySNP50K',
                 isBlank: false,
-                path: routesMap.Home,
+                path: routesMap.GermplasmSoy,
             },
             {
                 label: 'GRIN Data Explorer',
-                isBlank: false,
-                path: routesMap.Home,
+                isBlank: true,
+                path: 'https://legacy.soybase.org/grindata/',
             },
             {
                 label: 'Gene Expression Explorer',
-                isBlank: false,
-                path: routesMap.Home,
+                isBlank: true,
+                path: 'https://legacy.soybase.org/experiments/',
             },
             {
                 label: 'Gene-name translator',

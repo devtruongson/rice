@@ -1,13 +1,27 @@
-import { Box, BoxProps, HStack, Icon, Image, Menu, MenuButton, MenuItem, MenuList, Text } from '@chakra-ui/react';
+import {
+    Box,
+    BoxProps,
+    HStack,
+    Icon,
+    Image,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    Portal,
+    Text,
+} from '@chakra-ui/react';
 import { HEADER_HEIGHT, personalBrand } from '../../../constants';
 import colors from '../../../constants/colors';
 import logo from '../../../assets/sb_logo.png';
 import icons from '../../../constants/icons';
 import { listCatesHeader } from '../../../constants/header';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { routesMap } from '../../../routes/routes';
 
 type Props = {} & BoxProps;
 const Header = ({ ...props }: Props) => {
+    const navigate = useNavigate();
     return (
         <HStack
             {...props}
@@ -21,7 +35,7 @@ const Header = ({ ...props }: Props) => {
             right={0}
             left={0}
         >
-            <HStack color="white">
+            <HStack color="white" onClick={() => navigate(routesMap.Home)}>
                 <Image src={logo} w={12} h={12} />
                 <Box>
                     <Text fontSize={24} fontWeight={500}>
@@ -41,21 +55,23 @@ const Header = ({ ...props }: Props) => {
                                         {item.label}
                                     </MenuButton>
                                 </Link>
-                                {item?.children?.length ? (
-                                    <MenuList>
-                                        {item?.children?.map((itemChild, indexChild) => {
-                                            return (
-                                                <Link
-                                                    to={itemChild.path}
-                                                    key={indexChild}
-                                                    target={itemChild?.isBlank ? '_blank' : ''}
-                                                >
-                                                    <MenuItem>{itemChild.label}</MenuItem>
-                                                </Link>
-                                            );
-                                        })}
-                                    </MenuList>
-                                ) : null}
+                                <Portal>
+                                    {item?.children?.length ? (
+                                        <MenuList zIndex={999999}>
+                                            {item?.children?.map((itemChild, indexChild) => {
+                                                return (
+                                                    <Link
+                                                        to={itemChild.path}
+                                                        key={indexChild}
+                                                        target={itemChild?.isBlank ? '_blank' : ''}
+                                                    >
+                                                        <MenuItem>{itemChild.label}</MenuItem>
+                                                    </Link>
+                                                );
+                                            })}
+                                        </MenuList>
+                                    ) : null}
+                                </Portal>
                             </Menu>
                         );
                     })}

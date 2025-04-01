@@ -30,3 +30,68 @@ export const listTranstLast = [
     { label: 'Parentage & pedigrees', path: '/' },
     { label: 'Help & Tutorials', path: '/' },
 ];
+
+export const blogs = [
+    {
+        title: 'GO Enrichments',
+        date: '01 July 2024',
+        path: routesMap.GoEnrichmentBlog,
+        author: 'Steven Cannon',
+        description: 'SoyBase offers two methods for calculating GO enrichment. This post explains these approaches.',
+    },
+    {
+        title: 'SoyBase Update',
+        date: '01 February 2024',
+        path: routesMap.SBWBlog,
+        author: 'Jacqueline Campbell',
+        description: 'SoyBase curators are requesting your input.',
+    },
+];
+
+export const news = [
+    {
+        title: 'SBW2026 Theme Announced',
+        date: '25 March 2025',
+        author: 'Steven Cannon',
+        description: 'SoyBase offers two methods for calculating GO enrichment. This post explains these approaches.',
+        path: routesMap.GoEnrichmentBlog,
+    },
+    {
+        title: 'Career Award Nominations due June 1st',
+        date: '14 March 2025',
+        path: routesMap.SBWBlog,
+        author: 'Steven Cannon',
+        description: 'SoyBase offers two methods for calculating GO enrichment. This post explains these approaches.',
+    },
+    {
+        title: '2025 Soybean Breeders Tour',
+        date: '07 March 2025',
+        path: routesMap.SBWBlog,
+        author: 'Steven Cannon',
+        description: 'SoyBase offers two methods for calculating GO enrichment. This post explains these approaches.',
+    },
+];
+
+export const events = [
+    {
+        title: 'SBW2026 Theme Announced',
+        date: '25 March 2025',
+        path: routesMap.GoEnrichmentBlog,
+        author: 'Steven Cannon',
+        description: 'SoyBase offers two methods for calculating GO enrichment. This post explains these approaches.',
+    },
+    {
+        title: 'Career Award Nominations due June 1st',
+        date: '14 March 2025',
+        path: routesMap.SBWBlog,
+        author: 'Steven Cannon',
+        description: 'SoyBase offers two methods for calculating GO enrichment. This post explains these approaches.',
+    },
+    {
+        title: '2025 Soybean Breeders Tour',
+        date: '07 March 2025',
+        path: routesMap.SBWBlog,
+        author: 'Steven Cannon',
+        description: 'SoyBase offers two methods for calculating GO enrichment. This post explains these approaches.',
+    },
+];

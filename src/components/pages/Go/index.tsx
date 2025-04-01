@@ -1,7 +1,7 @@
-import { Box, Button, FormControl, Text, Textarea, VStack } from '@chakra-ui/react';
+import { Box, FormControl, Text, Textarea, VStack } from '@chakra-ui/react';
 import MainTemPlate from '../../templates/MainTemPlate';
 import LinkCustom from '../../atoms/Link';
-import colors from '../../../constants/colors';
+import ButtonCustom from '../../atoms/Button';
 
 const Go = () => {
     return (
@@ -64,12 +64,8 @@ const Go = () => {
                         <Textarea placeholder="Glyma.09G044100..." mt={3} minHeight={80} />
 
                         <VStack spacing={2} mt={4}>
-                            <Button bg={colors.brand} color="white" width="100%">
-                                GO ANNOTATION
-                            </Button>
-                            <Button bg={colors.brand} color="white" width="100%">
-                                GO TERM ENRICHMENT ANALYSIS
-                            </Button>
+                            <ButtonCustom text="GO ANNOTATION" action={() => {}} width="100%" />
+                            <ButtonCustom text="GO TERM ENRICHMENT ANALYSIS" action={() => {}} width="100%" />
                         </VStack>
                     </FormControl>
                 </Box>
