@@ -8,6 +8,7 @@ export const searchGeneFormSchema = yup.object().shape({
     description: yup.string().optional(),
     gene_family_id: yup.string().optional(),
 });
+
 export const defaultsearchGeneFormSchema = {
     genus: '',
     species: '',

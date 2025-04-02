@@ -33,18 +33,13 @@ const SearchForm = ({ onSubmit, ...props }: Props) => {
                             <SelectCustom field="strain" label="Strain" options={[]} placeholder="any" />
                         </GridItem>
                         <GridItem w="100%">
-                            <InputCustom field="identifier" label="Identifier" value="" eg="e.g. Glyma.16G044100" />
+                            <InputCustom field="identifier" label="Identifier" eg="e.g. Glyma.16G044100" />
                         </GridItem>
                         <GridItem w="100%">
-                            <InputCustom
-                                field="description"
-                                label="Description"
-                                value=""
-                                eg="e.g. proteasome subunit alpha"
-                            />
+                            <InputCustom field="description" label="Description" eg="e.g. proteasome subunit alpha" />
                         </GridItem>
                         <GridItem w="100%">
-                            <InputCustom field="gene_family_id" label="Gene Family ID" value="" eg="e.g. L_6BFHQX" />
+                            <InputCustom field="gene_family_id" label="Gene Family ID" eg="e.g. L_6BFHQX" />
                         </GridItem>
                     </Grid>
 
