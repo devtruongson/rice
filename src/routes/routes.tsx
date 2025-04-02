@@ -1,4 +1,4 @@
-import { DataStore, GermplasmSoy, Go, GoEnrichmentBlog, Home, Nust, Post, Search } from './index';
+import { DataStore, GeneTranslation, GermplasmSoy, Go, GoEnrichmentBlog, Home, Nust, Post, Search } from './index';
 
 export const routes = [
     {
@@ -35,6 +35,12 @@ export const routes = [
         name: 'Search',
         path: '/tools/search/gene',
         element: <Search />,
+        requiresAuth: false,
+    },
+    {
+        name: 'GeneTranslation',
+        path: '/tools/translate',
+        element: <GeneTranslation />,
         requiresAuth: false,
     },
     //TODO

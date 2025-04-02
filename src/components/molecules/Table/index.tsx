@@ -2,7 +2,7 @@ import { Table, TableProps, Tbody, Th, Thead, Tr } from '@chakra-ui/react';
 import get from 'lodash.get';
 
 type Props = {
-    columns: { key: string; label: string; w: string }[];
+    columns: { key: string; label: string; w?: string }[];
     data: Array<Record<string, string | number>>;
 } & TableProps;
 

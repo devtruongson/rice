@@ -41,8 +41,8 @@ const Navbar = () => {
 
             {/*  */}
             <LabelCommon label="Search" />
-            <ItemCustom label="Gene-name translator" path="/" />
-            <ItemCustom label="Gene Search Tool" path="/" />
+            <ItemCustom label="Gene-name translator" path={routesMap.GeneTranslation} />
+            <ItemCustom label="Gene Search Tool" path={routesMap.Search} />
             <ItemCustom label="Trait Search Tool" path="/" />
             <ItemCustom label="SoyCyc" path="/" />
 

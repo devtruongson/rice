@@ -53,12 +53,12 @@ export const listCatesHeader = [
             {
                 label: 'Gene-name translator',
                 isBlank: false,
-                path: routesMap.Home,
+                path: routesMap.GeneTranslation,
             },
             {
                 label: 'Gene Search Tool',
                 isBlank: false,
-                path: routesMap.Home,
+                path: routesMap.Search,
             },
             {
                 label: 'Trait Search Tool',

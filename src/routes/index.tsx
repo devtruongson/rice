@@ -10,3 +10,4 @@ export const Event = lazy(() => import('../components/pages/Event'));
 export const GoEnrichmentBlog = lazy(() => import('../components/pages/Post/GoEnrichmentBlog'));
 export const Search = lazy(() => import('../components/pages/Search'));
 export const Post = lazy(() => import('../components/pages/Post'));
+export const GeneTranslation = lazy(() => import('../components/pages/GeneTranslation'));
