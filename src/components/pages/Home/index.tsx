@@ -1,19 +1,11 @@
 import { Box, Divider, Flex, HStack, Image, Input, ListItem, Text, UnorderedList, VStack } from '@chakra-ui/react';
 import MainTemPlate from '../../templates/MainTemPlate';
-import {
-    listTransitFirst,
-    listTransitSecond,
-    personalBrand,
-    listTranstLast,
-    blogs,
-    news,
-    events,
-} from '../../../constants';
+import { listTransitFirst, listTransitSecond, personalBrand, listTranstLast, blogsDefault } from '../../../constants';
 import LinkCustom from '../../atoms/Link';
 import { useState } from 'react';
 import ButtonCustom from '../../atoms/Button';
 import { PostType } from '../../../type/post';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { routesMap } from '../../../routes/routes';
 
 const listStransit = [
@@ -21,10 +13,16 @@ const listStransit = [
     { label: 'Gene identifier search', list: listTransitSecond },
     { label: 'Synteny viewer', list: listTranstLast },
 ];
+const blogs = [blogsDefault];
+const news = [] as PostType[];
+const events = [] as PostType[];
 const Home = () => {
     const [textSearch, setTextSearch] = useState('');
+    const navigate = useNavigate();
 
-    const handleSearch = () => {};
+    const handleSearch = () => {
+        navigate(routesMap.Search);
+    };
     return (
         <MainTemPlate>
             <Flex justifyContent="space-between">

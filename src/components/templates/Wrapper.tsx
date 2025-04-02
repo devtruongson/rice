@@ -1,9 +1,9 @@
 import { BoxProps, Container } from '@chakra-ui/react';
 
-type Props = { children: React.ReactNode; isPost?: boolean } & BoxProps;
-const Wrapper = ({ children, isPost = false, ...props }: Props) => {
+type Props = { children: React.ReactNode; size?: 'big' | 'medium' | 'small' } & BoxProps;
+const Wrapper = ({ children, size = 'medium', ...props }: Props) => {
     return (
-        <Container maxW={isPost ? '50%' : '80%'} {...props}>
+        <Container maxW={size === 'big' ? '90%' : size === 'medium' ? '80%' : '50%'} {...props}>
             {children}
         </Container>
     );

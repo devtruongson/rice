@@ -1,4 +1,4 @@
-import { Blog, DataStore, Event, GermplasmSoy, Go, GoEnrichmentBlog, Home, New, Nust, SBWBlog } from './index';
+import { DataStore, GermplasmSoy, Go, GoEnrichmentBlog, Home, Nust, Post, Search } from './index';
 
 export const routes = [
     {
@@ -32,33 +32,34 @@ export const routes = [
         requiresAuth: false,
     },
     {
+        name: 'Search',
+        path: '/tools/search/gene',
+        element: <Search />,
+        requiresAuth: false,
+    },
+    //TODO
+    {
         name: 'Blog',
         path: '/blog',
-        element: <Blog />,
+        element: <Post />,
         requiresAuth: false,
     },
     {
         name: 'New',
         path: '/news',
-        element: <New />,
+        element: <Post />,
         requiresAuth: false,
     },
     {
         name: 'Event',
         path: '/events',
-        element: <Event />,
+        element: <Post />,
         requiresAuth: false,
     },
     {
         name: 'GoEnrichmentBlog',
         path: '/blog/2024/07/01/go-enrichment',
         element: <GoEnrichmentBlog />,
-        requiresAuth: false,
-    },
-    {
-        name: 'SBWBlog',
-        path: '/blog/2024/02/01/SBW',
-        element: <SBWBlog />,
         requiresAuth: false,
     },
 ] as const;
