@@ -1,4 +1,4 @@
-import { Table, TableProps, Tbody, Th, Thead, Tr } from '@chakra-ui/react';
+import { Table, TableProps, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 import get from 'lodash.get';
 
 type Props = {
@@ -28,7 +28,7 @@ const TableCusTom = ({ columns, data, ...props }: Props) => {
                           return (
                               <Tr key={index}>
                                   {columns?.map((itemColumn, indexColumn) => {
-                                      return <Th key={indexColumn}>{get(item, itemColumn.key)}</Th>;
+                                      return <Td key={indexColumn}>{get(item, itemColumn.key)}</Td>;
                                   })}
                               </Tr>
                           );

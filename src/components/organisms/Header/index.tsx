@@ -19,8 +19,10 @@ import { listCatesHeader } from '../../../constants/header';
 import { Link, useNavigate } from 'react-router-dom';
 import { routesMap } from '../../../routes/routes';
 
-type Props = {} & BoxProps;
-const Header = ({ ...props }: Props) => {
+type Props = {
+    type?: 'admin' | 'user';
+} & BoxProps;
+const Header = ({ type = 'user', ...props }: Props) => {
     const navigate = useNavigate();
     return (
         <HStack
@@ -45,41 +47,50 @@ const Header = ({ ...props }: Props) => {
                 </Box>
             </HStack>
 
-            <HStack>
-                <HStack gap={6}>
-                    {listCatesHeader.map((item, index) => {
-                        return (
-                            <Menu key={index}>
-                                <Link to={item.path}>
-                                    <MenuButton as={Text} color="white" _hover={{ textDecoration: 'underline' }}>
-                                        {item.label}
-                                    </MenuButton>
-                                </Link>
-                                <Portal>
-                                    {item?.children?.length ? (
-                                        <MenuList zIndex={999999}>
-                                            {item?.children?.map((itemChild, indexChild) => {
-                                                return (
-                                                    <Link
-                                                        to={itemChild.path}
-                                                        key={indexChild}
-                                                        target={itemChild?.isBlank ? '_blank' : ''}
-                                                    >
-                                                        <MenuItem>{itemChild.label}</MenuItem>
-                                                    </Link>
-                                                );
-                                            })}
-                                        </MenuList>
-                                    ) : null}
-                                </Portal>
-                            </Menu>
-                        );
-                    })}
-                    {[icons.xTwitter, icons.mail, icons.github, icons.bell].map((item, index) => {
-                        return <Icon as={item} key={index} fontSize={20} color="white" />;
-                    })}
+            {type === 'user' ? (
+                <HStack>
+                    <HStack gap={6}>
+                        {listCatesHeader.map((item, index) => {
+                            return (
+                                <Menu key={index}>
+                                    <Link to={item.path}>
+                                        <MenuButton as={Text} color="white" _hover={{ textDecoration: 'underline' }}>
+                                            {item.label}
+                                        </MenuButton>
+                                    </Link>
+                                    <Portal>
+                                        {item?.children?.length ? (
+                                            <MenuList zIndex={999999}>
+                                                {item?.children?.map((itemChild, indexChild) => {
+                                                    return (
+                                                        <Link
+                                                            to={itemChild.path}
+                                                            key={indexChild}
+                                                            target={itemChild?.isBlank ? '_blank' : ''}
+                                                        >
+                                                            <MenuItem>{itemChild.label}</MenuItem>
+                                                        </Link>
+                                                    );
+                                                })}
+                                            </MenuList>
+                                        ) : null}
+                                    </Portal>
+                                </Menu>
+                            );
+                        })}
+                        {[icons.xTwitter, icons.mail, icons.github, icons.bell].map((item, index) => {
+                            return <Icon as={item} key={index} fontSize={20} color="white" />;
+                        })}
+                        <Icon
+                            as={icons.user}
+                            fontSize={20}
+                            color="white"
+                            cursor="pointer"
+                            onClick={() => navigate(routesMap.PostAdmin)}
+                        />
+                    </HStack>
                 </HStack>
-            </HStack>
+            ) : null}
         </HStack>
     );
 };

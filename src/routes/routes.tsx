@@ -1,4 +1,16 @@
-import { DataStore, GeneTranslation, GermplasmSoy, Go, GoEnrichmentBlog, Home, Nust, Post, Search } from './index';
+import {
+    DataStore,
+    GeneTranslation,
+    GermplasmSoy,
+    Go,
+    GoEnrichmentBlog,
+    Home,
+    Nust,
+    Post,
+    PostAdmin,
+    PostDetail,
+    Search,
+} from './index';
 
 export const routes = [
     {
@@ -43,6 +55,19 @@ export const routes = [
         element: <GeneTranslation />,
         requiresAuth: false,
     },
+    {
+        name: 'PostAdmin',
+        path: '/admin/post/*',
+        element: <PostAdmin />,
+        requiresAuth: true,
+    },
+    {
+        name: 'PostDetail',
+        path: '/post/:id',
+        element: <PostDetail />,
+        requiresAuth: true,
+    },
+
     //TODO
     {
         name: 'Blog',

@@ -126,7 +126,7 @@ const FormPostCommon = ({ label, data, path, isBlog = false }: FormPostCommonPro
                               return (
                                   <ListItem key={index} mb={2}>
                                       <LinkCustom content={item.title} path={item.path} fontWeight={500} />
-                                      {!isBlog && <Text>{item.date}</Text>}
+                                      {!isBlog && <Text>{item.createdAt}</Text>}
                                   </ListItem>
                               );
                           })

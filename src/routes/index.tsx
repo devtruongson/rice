@@ -11,3 +11,5 @@ export const GoEnrichmentBlog = lazy(() => import('../components/pages/Post/GoEn
 export const Search = lazy(() => import('../components/pages/Search'));
 export const Post = lazy(() => import('../components/pages/Post'));
 export const GeneTranslation = lazy(() => import('../components/pages/GeneTranslation'));
+export const PostAdmin = lazy(() => import('../components/pages/PostAdmin'));
+export const PostDetail = lazy(() => import('../components/pages/PostDetail'));

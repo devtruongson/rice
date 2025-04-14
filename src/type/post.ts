@@ -6,4 +6,8 @@ export type PostType = {
     description: string;
     createdAt: string;
     path: string;
+    type: string;
 };
+
+export type CreatePostType = Pick<PostType, 'title' | 'sub_title' | 'author' | 'description' | 'type'>;
+export type UpdatePostType = Pick<PostType, 'title' | 'sub_title' | 'author' | 'description' | 'type' | '_id'>;

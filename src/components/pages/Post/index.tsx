@@ -18,7 +18,7 @@ const Post = () => {
         if (pathname === routesMap.Event) {
             return 'event';
         }
-        return 'post';
+        return 'new';
     }, [pathname]);
 
     const { data } = useGetPostByType({ type: type });
@@ -39,13 +39,7 @@ const Post = () => {
 
     const handleNavigate = useCallback(
         (id: string) => {
-            let path = '';
-            if (isBlogPage && !id) {
-                path = routesMap.GoEnrichmentBlog;
-            } else {
-                path = `${pathname}/${id}`;
-            }
-            navigate(path);
+            navigate(routesMap.PostDetail.replace(':id', id));
         },
         [isBlogPage, navigate, pathname],
     );
@@ -93,7 +87,7 @@ const ItemCommon = ({ data, handleNavigate }: ItemCommonProps) => {
                     <Text>{data?.author}</Text>
                     <Text>,</Text>
                     <Text>
-                        {new Date(data.createdAt).toLocaleDateString('en-GB', {
+                        {new Date(data?.createdAt).toLocaleDateString('en-GB', {
                             year: 'numeric',
                             month: 'long',
                             day: '2-digit',
