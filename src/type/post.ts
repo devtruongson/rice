@@ -1,8 +1,9 @@
 export type PostType = {
-    id: string;
+    _id: string;
     title: string;
+    sub_title: string;
     author: string;
     description: string;
-    date: string;
+    createdAt: string;
     path: string;
 };

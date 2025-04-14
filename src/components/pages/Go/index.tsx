@@ -2,8 +2,40 @@ import { Box, FormControl, Text, Textarea, VStack } from '@chakra-ui/react';
 import MainTemPlate from '../../templates/MainTemPlate';
 import LinkCustom from '../../atoms/Link';
 import ButtonCustom from '../../atoms/Button';
+import { useEffect, useState } from 'react';
+import { useGetListGene } from '../../../services/gene/get-list';
 
 const Go = () => {
+    const [isEnable, setIsEnable] = useState(false);
+    const [list, setList] = useState<string>('');
+    const { data } = useGetListGene({ names: list, enabled: isEnable && Boolean(list) });
+
+    const handleDowload = () => {
+        setIsEnable(true);
+    };
+
+    useEffect(() => {
+        if (data?.data?.length && isEnable) {
+            let textContent = '`Gene Model\tArabidopsis hit\tGO terms\n';
+            data.data.forEach((item) => {
+                const geneModel = item.name;
+                const arabidopsisHit = item.arabidopsis_hit;
+                const goTerms = item.go_terms.join('\t');
+                textContent += `${geneModel}\t${arabidopsisHit}\t${goTerms}\n`;
+            });
+            const blob = new Blob([textContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'gene_model_data.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            setIsEnable(false);
+        }
+    }, [data, isEnable]);
     return (
         <MainTemPlate>
             <Box>
@@ -61,10 +93,15 @@ const Go = () => {
                     </Box>
 
                     <FormControl>
-                        <Textarea placeholder="Glyma.09G044100..." mt={3} minHeight={80} />
+                        <Textarea
+                            placeholder="Glyma.09G044100..."
+                            mt={3}
+                            minHeight={80}
+                            onChange={(e) => setList(e.target.value)}
+                        />
 
                         <VStack spacing={2} mt={4}>
-                            <ButtonCustom text="GO ANNOTATION" action={() => {}} width="100%" />
+                            <ButtonCustom text="GO ANNOTATION" action={() => handleDowload()} width="100%" />
                             <ButtonCustom text="GO TERM ENRICHMENT ANALYSIS" action={() => {}} width="100%" />
                         </VStack>
                     </FormControl>

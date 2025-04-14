@@ -1,17 +1,20 @@
-// import api from '@/libs/axios';
+import api from '../../libs/axios';
 import { QueryConfig } from '../../libs/query';
 import { queryOptions, useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 
 export const GET_GENES_QUERY_KEY = 'genes';
 
-const getListGene = async (names: string[]) => {
-    const query = names.map((item) => `names=${item}`).join('&');
-    const { data } = await axios.get(`http://localhost:8080/api/v1/gene/list?${query}`);
+const getListGene = async (names: string) => {
+    const list = names
+        .split('\n')
+        .map((line) => line.trim())
+        .filter((line) => line);
+    const query = list.map((item) => `names=${item}`).join('&');
+    const { data } = await api.get(`/gene/list?${query}`);
     return data;
 };
 
-export const getListGeneOptions = (names: string[]) =>
+export const getListGeneOptions = (names: string) =>
     queryOptions({
         queryKey: [GET_GENES_QUERY_KEY],
         queryFn: () => getListGene(names),
@@ -19,12 +22,14 @@ export const getListGeneOptions = (names: string[]) =>
 
 type UseGetListGeneType = {
     queryConfig?: QueryConfig<typeof getListGeneOptions>;
-    names: string[];
+    names: string;
+    enabled: boolean;
 };
 
-export const useListGene = ({ queryConfig, names }: UseGetListGeneType) => {
+export const useGetListGene = ({ queryConfig, names, enabled }: UseGetListGeneType) => {
     return useQuery({
         ...getListGeneOptions(names),
         ...queryConfig,
+        enabled: enabled,
     });
 };

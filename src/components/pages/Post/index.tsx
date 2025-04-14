@@ -6,21 +6,22 @@ import { routesMap } from '../../../routes/routes';
 import { PostType } from '../../../type/post';
 import colors from '../../../constants/colors';
 import { blogsDefault } from '../../../constants';
-
-const posts = [
-    // {
-    //     id: '1',
-    //     title: 'SBW2026 Theme Announced',
-    //     date: '25 March 2025',
-    //     author: 'Steven Cannon',
-    //     description: 'SoyBase offers two methods for calculating GO enrichment. This post explains these approaches.',
-    //     path: routesMap.GoEnrichmentBlog,
-    // },
-] as PostType[];
+import { useGetPostByType } from '../../../services/post/get-by-type';
 
 const Post = () => {
     const pathname = useLocation().pathname;
     const navigate = useNavigate();
+    const type = useMemo(() => {
+        if (pathname === routesMap.Blog) {
+            return 'blog';
+        }
+        if (pathname === routesMap.Event) {
+            return 'event';
+        }
+        return 'post';
+    }, [pathname]);
+
+    const { data } = useGetPostByType({ type: type });
 
     const isBlogPage = useMemo(() => pathname === routesMap.Blog, [pathname]);
     const title = useMemo(() => {
@@ -58,9 +59,9 @@ const Post = () => {
 
                 {isBlogPage && <ItemCommon data={blogsDefault} handleNavigate={handleNavigate} />}
 
-                {posts?.length > 0
-                    ? posts?.map((item) => {
-                          return <ItemCommon data={item} key={item?.id} handleNavigate={handleNavigate} />;
+                {data?.data?.length > 0
+                    ? data?.data?.map((item: PostType) => {
+                          return <ItemCommon data={item} key={item?._id} handleNavigate={handleNavigate} />;
                       })
                     : null}
             </Box>
@@ -82,16 +83,24 @@ const ItemCommon = ({ data, handleNavigate }: ItemCommonProps) => {
                 py={4}
                 cursor="pointer"
                 _hover={{ bg: '#f4f4f4' }}
-                onClick={() => handleNavigate(data?.id)}
+                onClick={() => handleNavigate(data?._id)}
             >
                 <HStack>
                     <Text fontWeight={600} color={colors.brand}>
                         {data?.title}
                     </Text>
                     <Text>|</Text>
-                    <Text>{data?.date}</Text>
+                    <Text>{data?.author}</Text>
+                    <Text>,</Text>
+                    <Text>
+                        {new Date(data.createdAt).toLocaleDateString('en-GB', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: '2-digit',
+                        })}
+                    </Text>
                 </HStack>
-                <Text>{data?.description}</Text>
+                <Text>{data?.sub_title}</Text>
             </VStack>
             <Divider borderColor={'#ccc'} />
         </Box>

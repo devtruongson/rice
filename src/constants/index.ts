@@ -32,9 +32,10 @@ export const listTranstLast = [
 ];
 
 export const blogsDefault = {
-    id: '',
+    _id: '',
     title: 'GO Enrichments',
-    date: '01 July 2024',
+    sub_title: 'Cassava offers two methods for calculating GO enrichment. This post explains these approaches.',
+    createdAt: '01 July 2024',
     path: routesMap.GoEnrichmentBlog,
     author: 'Steven Cannon',
     description: 'Cassava offers two methods for calculating GO enrichment. This post explains these approaches.',
