@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useMemo } from 'react';
 import { PostType } from '../../../type/post';
 import BasicTemplate from '../../templates/BasicTemplate';
+import { formatDate } from '../../../helpers/formatDate';
 
 const PostDetail = () => {
     const { id } = useParams();
@@ -18,12 +19,7 @@ const PostDetail = () => {
                         {post?.title}
                     </Text>
                     <Text fontSize={14} mb={4}>
-                        Posted {post?.author && `by ${post?.author}`}{' '}
-                        {new Date(post?.createdAt).toLocaleDateString('en-GB', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: '2-digit',
-                        })}
+                        Posted {post?.author && `by ${post?.author}`} {formatDate(post?.createdAt)}
                     </Text>
                     <Text fontSize={24} fontWeight={300} mb={6}>
                         {post?.sub_title}

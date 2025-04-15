@@ -2,20 +2,19 @@ import { Box, Divider, Flex, HStack, Image, Input, ListItem, Text, UnorderedList
 import MainTemPlate from '../../templates/MainTemPlate';
 import { listTransitFirst, listTransitSecond, personalBrand, listTranstLast, blogsDefault } from '../../../constants';
 import LinkCustom from '../../atoms/Link';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import ButtonCustom from '../../atoms/Button';
 import { PostType } from '../../../type/post';
 import { Link, useNavigate } from 'react-router-dom';
 import { routesMap } from '../../../routes/routes';
+import { useGetPostByType } from '../../../services/post/get-by-type';
+import { formatDate } from '../../../helpers/formatDate';
 
 const listStransit = [
     { label: 'Keyword Search', list: listTransitFirst },
     { label: 'Gene identifier search', list: listTransitSecond },
     { label: 'Synteny viewer', list: listTranstLast },
 ];
-const blogs = [blogsDefault];
-const news = [] as PostType[];
-const events = [] as PostType[];
 const Home = () => {
     const [textSearch, setTextSearch] = useState('');
     const navigate = useNavigate();
@@ -94,9 +93,9 @@ const Home = () => {
 
                 <Box w="20%">
                     <VStack gap={10} w="100%">
-                        <FormPostCommon label="Blog posts" data={blogs} path={routesMap.Blog} isBlog />
-                        <FormPostCommon label="New posts" data={news} path={routesMap.New} />
-                        <FormPostCommon label="Event posts" data={events} path={routesMap.Event} />
+                        <FormPostCommon label="Blog posts" path={routesMap.Blog} isBlog type="blog" />
+                        <FormPostCommon label="New posts" path={routesMap.New} type="new" />
+                        <FormPostCommon label="Event posts" path={routesMap.Event} type="event" />
                     </VStack>
                 </Box>
             </Flex>
@@ -108,11 +107,13 @@ export default Home;
 
 type FormPostCommonProps = {
     label: string;
-    data: PostType[];
     path: string;
     isBlog?: boolean;
+    type: string;
 };
-const FormPostCommon = ({ label, data, path, isBlog = false }: FormPostCommonProps) => {
+const FormPostCommon = ({ label, path, isBlog = false, type }: FormPostCommonProps) => {
+    const { data: postData } = useGetPostByType({ rest: { type: type, page: 1, pageSize: 3 } });
+    const posts = useMemo(() => (postData?.data as PostType[]) || [], [postData]);
     return (
         <Box shadow="md" w="full">
             <Box fontWeight={200} fontSize={28} p={4}>
@@ -121,12 +122,22 @@ const FormPostCommon = ({ label, data, path, isBlog = false }: FormPostCommonPro
             <Divider />
             <Box p={4}>
                 <UnorderedList>
-                    {data?.length > 0
-                        ? data?.map((item, index) => {
+                    {type === 'blog' ? (
+                        <ListItem mb={2}>
+                            <LinkCustom content={blogsDefault.title} path={blogsDefault.path} fontWeight={500} />
+                            {!isBlog && <Text>{blogsDefault.createdAt}</Text>}
+                        </ListItem>
+                    ) : null}
+                    {posts?.length > 0
+                        ? posts?.map((item, index) => {
                               return (
                                   <ListItem key={index} mb={2}>
-                                      <LinkCustom content={item.title} path={item.path} fontWeight={500} />
-                                      {!isBlog && <Text>{item.createdAt}</Text>}
+                                      <LinkCustom
+                                          content={item.title}
+                                          path={routesMap.PostDetail.replace('/:id', `/${item?._id}`)}
+                                          fontWeight={500}
+                                      />
+                                      {!isBlog && <Text>{formatDate(item?.createdAt)}</Text>}
                                   </ListItem>
                               );
                           })

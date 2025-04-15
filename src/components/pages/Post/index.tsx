@@ -21,7 +21,7 @@ const Post = () => {
         return 'new';
     }, [pathname]);
 
-    const { data } = useGetPostByType({ type: type });
+    const { data } = useGetPostByType({ rest: { type: type, page: 1, pageSize: 10 } });
 
     const isBlogPage = useMemo(() => pathname === routesMap.Blog, [pathname]);
     const title = useMemo(() => {

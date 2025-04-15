@@ -4,25 +4,33 @@ import { queryOptions, useQuery } from '@tanstack/react-query';
 
 export const GET_POSTS_QUERY_KEY = 'posts';
 
-const getPosts = async (type: string) => {
-    const { data } = await api.get(`/post/type/${type}`);
+type PropsType = {
+    type: string;
+    page?: number;
+    pageSize?: number;
+};
+
+const getPosts = async (rest: PropsType) => {
+    const page = rest?.page || 1;
+    const pageSize = rest?.pageSize || 10;
+    const { data } = await api.get(`/post/type/${rest.type}?page=${page}&pageSize=${pageSize}`);
     return data;
 };
 
-export const getPostByTypeOptions = (type: string) =>
+export const getPostByTypeOptions = (rest: PropsType) =>
     queryOptions({
-        queryKey: [GET_POSTS_QUERY_KEY, type],
-        queryFn: () => getPosts(type),
+        queryKey: [GET_POSTS_QUERY_KEY, rest],
+        queryFn: () => getPosts(rest),
     });
 
 type UseGetPostByType = {
     queryConfig?: QueryConfig<typeof getPostByTypeOptions>;
-    type: string;
+    rest: PropsType;
 };
 
-export const useGetPostByType = ({ queryConfig, type }: UseGetPostByType) => {
+export const useGetPostByType = ({ queryConfig, rest }: UseGetPostByType) => {
     return useQuery({
-        ...getPostByTypeOptions(type),
+        ...getPostByTypeOptions(rest),
         ...queryConfig,
     });
 };
