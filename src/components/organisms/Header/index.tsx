@@ -36,6 +36,7 @@ const Header = ({ type = 'user', ...props }: Props) => {
             top={0}
             right={0}
             left={0}
+            zIndex={1000}
         >
             <HStack color="white" onClick={() => navigate(routesMap.Home)}>
                 <Image src={logo} w={12} h={12} />

@@ -1,10 +1,8 @@
-import { FaXTwitter } from 'react-icons/fa6';
+import { FaXTwitter, FaRegCircleUser, FaPen } from 'react-icons/fa6';
 import { CiMail } from 'react-icons/ci';
 import { FaGithub } from 'react-icons/fa';
-import { GoBell } from 'react-icons/go';
-import { FaRegCircleUser } from 'react-icons/fa6';
-import { GoTrash } from 'react-icons/go';
-import { FaPen } from 'react-icons/fa6';
+import { GoTrash, GoBell } from 'react-icons/go';
+import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
 
 const icons = {
     xTwitter: FaXTwitter,
@@ -14,6 +12,8 @@ const icons = {
     user: FaRegCircleUser,
     trash: GoTrash,
     pen: FaPen,
+    next: GrFormNext,
+    previous: GrFormPrevious,
 };
 
 export default icons;

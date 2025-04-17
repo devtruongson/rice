@@ -10,6 +10,7 @@ import {
     PostAdmin,
     PostDetail,
     Search,
+    GeneFamily,
 } from './index';
 
 export const routes = [
@@ -65,6 +66,12 @@ export const routes = [
         name: 'PostDetail',
         path: '/post/:id',
         element: <PostDetail />,
+        requiresAuth: true,
+    },
+    {
+        name: 'GeneFamily',
+        path: '/admin/gene_family/*',
+        element: <GeneFamily />,
         requiresAuth: true,
     },
 

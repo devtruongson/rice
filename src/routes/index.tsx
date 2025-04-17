@@ -13,3 +13,4 @@ export const Post = lazy(() => import('../components/pages/Post'));
 export const GeneTranslation = lazy(() => import('../components/pages/GeneTranslation'));
 export const PostAdmin = lazy(() => import('../components/pages/PostAdmin'));
 export const PostDetail = lazy(() => import('../components/pages/PostDetail'));
+export const GeneFamily = lazy(() => import('../components/pages/GenneFamilyManager'));

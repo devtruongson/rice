@@ -113,7 +113,7 @@ type FormPostCommonProps = {
 };
 const FormPostCommon = ({ label, path, isBlog = false, type }: FormPostCommonProps) => {
     const { data: postData } = useGetPostByType({ rest: { type: type, page: 1, pageSize: 3 } });
-    const posts = useMemo(() => (postData?.data as PostType[]) || [], [postData]);
+    const posts = useMemo(() => (postData?.data?.data as PostType[]) || [], [postData]);
     return (
         <Box shadow="md" w="full">
             <Box fontWeight={200} fontSize={28} p={4}>

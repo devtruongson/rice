@@ -13,7 +13,7 @@ type PropsType = {
 const getPosts = async (rest: PropsType) => {
     const page = rest?.page || 1;
     const pageSize = rest?.pageSize || 10;
-    const { data } = await api.get(`/post/type/${rest.type}?page=${page}&pageSize=${pageSize}`);
+    const { data } = await api.get(`/post/type?type=${rest.type}&page=${page}&pageSize=${pageSize}`);
     return data;
 };
 

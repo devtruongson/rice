@@ -53,8 +53,8 @@ const Post = () => {
 
                 {isBlogPage && <ItemCommon data={blogsDefault} handleNavigate={handleNavigate} />}
 
-                {data?.data?.length > 0
-                    ? data?.data?.map((item: PostType) => {
+                {data?.data?.data?.length > 0
+                    ? data?.data?.data?.map((item: PostType) => {
                           return <ItemCommon data={item} key={item?._id} handleNavigate={handleNavigate} />;
                       })
                     : null}

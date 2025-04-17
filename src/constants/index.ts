@@ -54,8 +54,8 @@ export const navbarAdmin = [
     },
     {
         icon: '',
-        label: 'Post',
-        url: '/',
+        label: 'Gene Family',
+        url: routesMap.GeneFamily,
     },
 ];
 

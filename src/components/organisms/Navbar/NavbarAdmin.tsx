@@ -1,12 +1,13 @@
 import { Box, VStack } from '@chakra-ui/react';
 import { HEADER_HEIGHT, NAVBAR_WIDTH, navbarAdmin } from '../../../constants';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import colors from '../../../constants/colors';
 import { useCallback } from 'react';
 
 const NavbarAdmin = () => {
     const pathname = useLocation().pathname;
     const isActive = useCallback((url: string) => (url.includes(pathname) ? colors.brand : ''), [pathname]);
+    const navigate = useNavigate();
     return (
         <Box
             width={NAVBAR_WIDTH}
@@ -33,6 +34,7 @@ const NavbarAdmin = () => {
                             }}
                             background={isActive(item.url) && colors.brand}
                             color={isActive(item.url) && 'white'}
+                            onClick={() => navigate(item.url.replace('/*', '/manager'))}
                         >
                             {item.label}
                         </Box>

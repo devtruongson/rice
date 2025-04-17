@@ -1,26 +1,33 @@
-import { Box, Button, HStack, Icon, Text } from '@chakra-ui/react';
-import TableCusTom from '../../../molecules/Table';
 import { useMemo } from 'react';
-import { PostType } from '../../../../type/post';
-import icons from '../../../../constants/icons';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useGetGeneFamilys } from '../../../../services/geneFamily/get-more';
+import { Box, Button, HStack, Icon, Text, VStack } from '@chakra-ui/react';
+import icons from '../../../../constants/icons';
 import { routesMap } from '../../../../routes/routes';
+import { GeneFamilyResType } from '../../../../type/geneFamily';
+import TableCusTom from '../../../molecules/Table';
 import Pagination from '../../../molecules/Pagination';
-import { useGetPostByType } from '../../../../services/post/get-by-type';
 
-const PostManager = () => {
+const Manager = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const page = useMemo(() => Number(searchParams.get('page')) || 1, [searchParams]);
     const pageSize = useMemo(() => Number(searchParams.get('pageSize')) || 1, [searchParams]);
-    const { data } = useGetPostByType({
-        rest: { type: '', page: page, pageSize: pageSize },
+    const { data } = useGetGeneFamilys({
+        rest: { page: page, pageSize: pageSize },
     });
-    const posts = useMemo(
+
+    const geneFamilys = useMemo(
         () =>
-            data?.data?.data?.map((item: PostType) => {
+            data?.data?.data?.map((item: GeneFamilyResType) => {
                 return {
                     ...item,
+                    path_detail: (
+                        <VStack alignItems="start">
+                            <Text>view tree :{item.path_detail[0]}</Text>
+                            <Text>view report :{item.path_detail[1]}</Text>
+                        </VStack>
+                    ),
                     action: (
                         <HStack>
                             <Button
@@ -38,7 +45,7 @@ const PostManager = () => {
                                 color="white"
                                 fontSize={14}
                                 variant="variants"
-                                onClick={() => navigate(routesMap.PostAdmin.replace('/*', `/edit?id=${item._id}`))}
+                                onClick={() => navigate(routesMap.GeneFamily.replace('/*', `/edit?id=${item._id}`))}
                             >
                                 Edit
                             </Button>
@@ -49,23 +56,21 @@ const PostManager = () => {
         [data],
     );
 
+    console.log(geneFamilys);
     return (
         <Box>
-            <Text>Post Manager</Text>
+            <Text>GeneFamily Manager</Text>
             <TableCusTom
                 columns={[
-                    { key: 'title', label: 'Title', w: '10%' },
-                    { key: 'sub_title', label: 'Sub Title', w: '20%' },
-                    { key: 'author', label: 'Author', w: '10%' },
-                    { key: 'description', label: 'description', w: '40%' },
-                    { key: 'type', label: 'Type', w: '5%' },
+                    { key: 'name', label: 'name', w: '10%' },
+                    { key: 'path_detail', label: 'path detail', w: '20%' },
                     { key: 'action', label: '', w: '15%' },
                 ]}
-                data={posts}
+                data={geneFamilys}
             />
             <Pagination currentPage={data?.data?.page || 1} totalPage={data?.data?.totalPages || 1} />
         </Box>
     );
 };
 
-export default PostManager;
+export default Manager;

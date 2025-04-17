@@ -120,7 +120,6 @@ const PostNew = () => {
                         placeholder="title"
                         value={value.title}
                         onChange={(event) => {
-                            console.log(event.target.value);
                             setValue({ ...value, title: event.target.value });
                         }}
                     />
