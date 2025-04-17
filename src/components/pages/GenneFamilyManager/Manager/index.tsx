@@ -1,18 +1,18 @@
 import { useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useGetGeneFamilys } from '../../../../services/geneFamily/get-more';
-import { Box, Button, HStack, Icon, Text, VStack } from '@chakra-ui/react';
-import icons from '../../../../constants/icons';
+import { Box, Text, VStack } from '@chakra-ui/react';
 import { routesMap } from '../../../../routes/routes';
 import { GeneFamilyResType } from '../../../../type/geneFamily';
 import TableCusTom from '../../../molecules/Table';
 import Pagination from '../../../molecules/Pagination';
+import ActionCustom from '../../../molecules/ActionCustom';
 
 const Manager = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const page = useMemo(() => Number(searchParams.get('page')) || 1, [searchParams]);
-    const pageSize = useMemo(() => Number(searchParams.get('pageSize')) || 1, [searchParams]);
+    const pageSize = useMemo(() => Number(searchParams.get('pageSize')) || 10, [searchParams]);
     const { data } = useGetGeneFamilys({
         rest: { page: page, pageSize: pageSize },
     });
@@ -29,27 +29,10 @@ const Manager = () => {
                         </VStack>
                     ),
                     action: (
-                        <HStack>
-                            <Button
-                                leftIcon={<Icon as={icons.trash} />}
-                                bg={'red'}
-                                color="white"
-                                fontSize={14}
-                                variant="variants"
-                            >
-                                Delete
-                            </Button>
-                            <Button
-                                leftIcon={<Icon as={icons.pen} />}
-                                bg={'orange'}
-                                color="white"
-                                fontSize={14}
-                                variant="variants"
-                                onClick={() => navigate(routesMap.GeneFamily.replace('/*', `/edit?id=${item._id}`))}
-                            >
-                                Edit
-                            </Button>
-                        </HStack>
+                        <ActionCustom
+                            actionDelete={() => {}}
+                            actionEdit={() => navigate(routesMap.GeneFamily.replace('/*', `/edit?id=${item._id}`))}
+                        />
                     ),
                 };
             }) || [],

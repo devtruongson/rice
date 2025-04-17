@@ -6,7 +6,7 @@ import { useCallback } from 'react';
 
 const NavbarAdmin = () => {
     const pathname = useLocation().pathname;
-    const isActive = useCallback((url: string) => (url.includes(pathname) ? colors.brand : ''), [pathname]);
+    const isActive = useCallback((url: string) => pathname.includes(url.split('*')[0]), [pathname]);
     const navigate = useNavigate();
     return (
         <Box
@@ -32,8 +32,8 @@ const NavbarAdmin = () => {
                                 background: colors.brand,
                                 color: 'white',
                             }}
-                            background={isActive(item.url) && colors.brand}
-                            color={isActive(item.url) && 'white'}
+                            background={isActive(item.url) ? colors.brand : ''}
+                            color={isActive(item.url) ? 'white' : ''}
                             onClick={() => navigate(item.url.replace('/*', '/manager'))}
                         >
                             {item.label}

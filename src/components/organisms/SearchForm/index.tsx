@@ -6,6 +6,9 @@ import { SearchGeneFormType } from '../../../type/gene';
 import { defaultsearchGeneFormSchema, searchGeneFormSchema } from './form-schema';
 import SelectCustom from '../../atoms/Select';
 import ButtonCustom from '../../atoms/Button';
+import { useGetStrains } from '../../../services/strain/get-all';
+import { useMemo } from 'react';
+import { StrainResType } from '../../../type/strain';
 
 type Props = {
     onSubmit: (data: SearchGeneFormType) => void;
@@ -15,6 +18,16 @@ const SearchForm = ({ onSubmit, ...props }: Props) => {
         resolver: yupResolver(searchGeneFormSchema),
         defaultValues: defaultsearchGeneFormSchema,
     });
+
+    const { data } = useGetStrains({});
+    const strains = useMemo(
+        () =>
+            data?.data?.map((item: StrainResType) => ({
+                value: item._id,
+                label: item.name,
+            })) || [],
+        [data],
+    );
 
     const { handleSubmit } = formMethods;
 
@@ -30,7 +43,7 @@ const SearchForm = ({ onSubmit, ...props }: Props) => {
                             <SelectCustom field="species" label="Species" options={[]} placeholder="any" />
                         </GridItem>
                         <GridItem w="100%">
-                            <SelectCustom field="strain" label="Strain" options={[]} placeholder="any" />
+                            <SelectCustom field="strain" label="Strain" options={strains} placeholder="any" />
                         </GridItem>
                         <GridItem w="100%">
                             <InputCustom field="identifier" label="Identifier" eg="e.g. Glyma.16G044100" />

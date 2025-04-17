@@ -1,30 +1,30 @@
-import { Box, Text } from '@chakra-ui/react';
-import TableCusTom from '../../../molecules/Table';
 import { useMemo } from 'react';
-import { PostType } from '../../../../type/post';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useGetPanGeneSets } from '../../../../services/panGeneSet/get-more';
+import { PanGeneSetResType } from '../../../../type/panGeneSet';
+import { Box, Text } from '@chakra-ui/react';
 import { routesMap } from '../../../../routes/routes';
-import Pagination from '../../../molecules/Pagination';
-import { useGetPostByType } from '../../../../services/post/get-by-type';
 import ActionCustom from '../../../molecules/ActionCustom';
+import TableCusTom from '../../../molecules/Table';
+import Pagination from '../../../molecules/Pagination';
 
-const PostManager = () => {
+const Manager = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const page = useMemo(() => Number(searchParams.get('page')) || 1, [searchParams]);
     const pageSize = useMemo(() => Number(searchParams.get('pageSize')) || 10, [searchParams]);
-    const { data } = useGetPostByType({
+    const { data } = useGetPanGeneSets({
         rest: { type: '', page: page, pageSize: pageSize },
     });
     const posts = useMemo(
         () =>
-            data?.data?.data?.map((item: PostType) => {
+            data?.data?.data?.map((item: PanGeneSetResType) => {
                 return {
                     ...item,
                     action: (
                         <ActionCustom
                             actionDelete={() => {}}
-                            actionEdit={() => navigate(routesMap.PostAdmin.replace('/*', `/edit?id=${item._id}`))}
+                            actionEdit={() => navigate(routesMap.PanGeneSet.replace('/*', `/edit?id=${item._id}`))}
                         />
                     ),
                 };
@@ -37,11 +37,9 @@ const PostManager = () => {
             <Text>Post Manager</Text>
             <TableCusTom
                 columns={[
-                    { key: 'title', label: 'Title', w: '10%' },
-                    { key: 'sub_title', label: 'Sub Title', w: '20%' },
-                    { key: 'author', label: 'Author', w: '10%' },
-                    { key: 'description', label: 'description', w: '40%' },
-                    { key: 'type', label: 'Type', w: '5%' },
+                    { key: 'name', label: 'name', w: '10%' },
+                    { key: 'path_detail', label: 'Path Detail', w: '20%' },
+
                     { key: 'action', label: '', w: '15%' },
                 ]}
                 data={posts}
@@ -51,4 +49,4 @@ const PostManager = () => {
     );
 };
 
-export default PostManager;
+export default Manager;

@@ -11,7 +11,7 @@ const getPost = async (id: string) => {
 
 export const getPostOptions = (id: string) =>
     queryOptions({
-        queryKey: [GET_POST_QUERY_KEY],
+        queryKey: [GET_POST_QUERY_KEY, id],
         queryFn: () => getPost(id),
     });
 

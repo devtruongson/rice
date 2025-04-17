@@ -10,7 +10,7 @@ type Props = {
 const Pagination = ({ currentPage, totalPage, ...props }: Props) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const page = useMemo(() => Number(searchParams.get('page')) || 1, [searchParams]);
-    const pageSize = useMemo(() => Number(searchParams.get('pageSize')) || 1, [searchParams]);
+    const pageSize = useMemo(() => Number(searchParams.get('pageSize')) || 10, [searchParams]);
 
     const handlePrevious = () => {
         if (!page || page === 1) {

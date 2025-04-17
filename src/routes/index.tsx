@@ -14,3 +14,5 @@ export const GeneTranslation = lazy(() => import('../components/pages/GeneTransl
 export const PostAdmin = lazy(() => import('../components/pages/PostAdmin'));
 export const PostDetail = lazy(() => import('../components/pages/PostDetail'));
 export const GeneFamily = lazy(() => import('../components/pages/GenneFamilyManager'));
+export const Strain = lazy(() => import('../components/pages/StrainManager'));
+export const PanGeneSet = lazy(() => import('../components/pages/PanGeneSetManager'));

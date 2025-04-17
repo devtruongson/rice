@@ -57,6 +57,16 @@ export const navbarAdmin = [
         label: 'Gene Family',
         url: routesMap.GeneFamily,
     },
+    {
+        icon: '',
+        label: 'Strain',
+        url: routesMap.Strain,
+    },
+    {
+        icon: '',
+        label: 'PanGeneSet',
+        url: routesMap.PanGeneSet,
+    },
 ];
 
 export const typePost = [

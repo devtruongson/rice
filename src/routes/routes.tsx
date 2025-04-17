@@ -11,6 +11,8 @@ import {
     PostDetail,
     Search,
     GeneFamily,
+    Strain,
+    PanGeneSet,
 } from './index';
 
 export const routes = [
@@ -72,6 +74,18 @@ export const routes = [
         name: 'GeneFamily',
         path: '/admin/gene_family/*',
         element: <GeneFamily />,
+        requiresAuth: true,
+    },
+    {
+        name: 'Strain',
+        path: '/admin/strain/*',
+        element: <Strain />,
+        requiresAuth: true,
+    },
+    {
+        name: 'PanGeneSet',
+        path: '/admin/pan_gene_set/*',
+        element: <PanGeneSet />,
         requiresAuth: true,
     },
 
