@@ -49,7 +49,7 @@ const GermplasmSoy = () => {
                 </Text>
 
                 <Text fontWeight={300} fontSize={28} mb={8}>
-                    View SoySNP50K SNPs in SoyBase Genome Browser
+                    View SoySNP50K SNPs in Cassava Genome Browser
                 </Text>
                 <TableCusTom
                     columns={[

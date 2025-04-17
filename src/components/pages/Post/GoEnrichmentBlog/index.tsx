@@ -17,6 +17,7 @@ import BasicTemplate from '../../../templates/BasicTemplate';
 import { blogsDefault, personalBrand } from '../../../../constants';
 import LinkCustom from '../../../atoms/Link';
 import colors from '../../../../constants/colors';
+import { formatDate } from '../../../../helpers/formatDate';
 
 const listOne = {
     data: [
@@ -56,7 +57,7 @@ const GoEnrichmentBlog = () => {
                     {blogsDefault?.title}
                 </Text>
                 <Text mb={4}>
-                    Posted by {blogsDefault?.author} on {blogsDefault?.date}
+                    Posted by {blogsDefault?.author} on {formatDate(blogsDefault?.createdAt)}
                 </Text>
                 <Text fontSize={24} fontWeight={300} mb={4}>
                     {blogsDefault?.description}
@@ -94,7 +95,7 @@ const GoEnrichmentBlog = () => {
                 </UnorderedList>
                 <Text mb={6}>{personalBrand} offers two methods for calculating GO enrichment.</Text>
                 <Text fontSize={36} fontWeight={300} mb={4}>
-                    1. Use the custom service at the SoyBase tools page
+                    1. Use the custom service at the Cassava tools page
                 </Text>
                 <Text mb={6}>
                     {

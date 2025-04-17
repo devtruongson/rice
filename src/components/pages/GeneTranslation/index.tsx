@@ -22,7 +22,7 @@ const GeneTranslation = () => {
                             The set of allelic genes found in multiple individuals in a species or closely related
                             species may be called a "pangene set," with the gene models that correspond by homology and
                             position being called a pangene. The pangene set calculated for Glycine accessions at
-                            SoyBase can be used to find corresponding genes across assemblies and annotations.
+                            Cassava can be used to find corresponding genes across assemblies and annotations.
                         </Text>
                         <Text mb={4}>
                             If you have one or several (fewer than 100) genes to look up, use the Pangene Lookup tool

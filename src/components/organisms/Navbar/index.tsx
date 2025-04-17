@@ -48,7 +48,7 @@ const Navbar = () => {
 
             {/*  */}
             <LabelCommon label="Sequence search" />
-            <ItemCustom label="SoyBase SequenceServer BLAST" path="/" />
+            <ItemCustom label="Cassava SequenceServer BLAST" path="/" />
             <ItemCustom label="Annotate Your Sequences" path="/" />
 
             {/*  */}

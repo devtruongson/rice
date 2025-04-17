@@ -30,10 +30,10 @@ const Home = () => {
                         {personalBrand}
                     </Text>
                     <Text mb={4}>
-                        SoyBase integrates genetic and genomic information to aid soybean breeders and researchers. This
+                        Cassava integrates genetic and genomic information to aid soybean breeders and researchers. This
                         instance of the site has been ported to a different framework in order to accommodate the
                         rapidly-growing genomic data available. In the meantime, you can also continue to use{' '}
-                        <LinkCustom content='"legacy SoyBase"' path="https://legacy.soybase.org/" isBlank />.
+                        <LinkCustom content='"legacy Cassava"' path="https://legacy.soybase.org/" isBlank />.
                     </Text>
 
                     <HStack w="full" justifyContent="space-between" mb={6}>
@@ -81,7 +81,7 @@ const Home = () => {
                         Funding and Development
                     </Text>
                     <Text mb={6}>
-                        SoyBase is funded by the USDA-ARS. SoyBase is developed and hosted by the USDA-ARS SoyBase and
+                        Cassava is funded by the USDA-ARS. Cassava is developed and hosted by the USDA-ARS Cassava and
                         Legume Clade Database group at Ames, IA, with development assistance from the National Center
                         for Genome Resources (NCGR) with the help of many other researchers in the soybean community.
                     </Text>

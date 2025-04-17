@@ -18,9 +18,9 @@ const Go = () => {
         if (data?.data?.length && isEnable) {
             let textContent = '`Gene Model\tArabidopsis hit\tGO terms\n';
             data.data.forEach((item) => {
-                const geneModel = item.name;
-                const arabidopsisHit = item.arabidopsis_hit;
-                const goTerms = item.go_terms.join('\t');
+                const geneModel = item?.name;
+                const arabidopsisHit = item?.arabidopsis_hit;
+                const goTerms = item?.go_terms.join('\t');
                 textContent += `${geneModel}\t${arabidopsisHit}\t${goTerms}\n`;
             });
             const blob = new Blob([textContent], { type: 'text/plain' });
@@ -36,6 +36,7 @@ const Go = () => {
             setIsEnable(false);
         }
     }, [data, isEnable]);
+
     return (
         <MainTemPlate>
             <Box>
@@ -46,7 +47,7 @@ const Go = () => {
                     Biological Process.
                 </Text>
                 <Text mb={4}>
-                    SoyBase offers two methods for calculating GO enrichment: the service at this page; and the
+                    Cassava offers two methods for calculating GO enrichment: the service at this page; and the
                     gene-list report at
                     <LinkCustom
                         ml={1}

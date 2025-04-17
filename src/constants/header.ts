@@ -71,7 +71,7 @@ export const listCatesHeader = [
                 path: routesMap.Home,
             },
             {
-                label: 'SoyBase SequenceServer BLAST',
+                label: 'Cassava SequenceServer BLAST',
                 isBlank: false,
                 path: routesMap.Home,
             },
