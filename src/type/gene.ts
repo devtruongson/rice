@@ -4,3 +4,27 @@ import { searchTranslationFormSchema } from '../components/organisms/SearchTrans
 
 export type SearchGeneFormType = yup.InferType<typeof searchGeneFormSchema>;
 export type SearchTranslationFormType = yup.InferType<typeof searchTranslationFormSchema>;
+
+export type GeneCreateType = {
+    name: string;
+    arabidopsis_hit: string;
+    go_terms: string[];
+    identifier: {
+        name: string;
+        path_detailo: string[];
+    };
+    location: {
+        name: string;
+        path_detail: string[];
+    };
+    description: string;
+    gene_family: string;
+    pan_gene_set: string;
+    genus: string;
+    species: string[];
+    strain: string;
+};
+
+export type GeneResType = {
+    _id: string;
+} & GeneCreateType;

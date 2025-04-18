@@ -13,6 +13,8 @@ import {
     GeneFamily,
     Strain,
     PanGeneSet,
+    Species,
+    Gene,
 } from './index';
 
 export const routes = [
@@ -86,6 +88,18 @@ export const routes = [
         name: 'PanGeneSet',
         path: '/admin/pan_gene_set/*',
         element: <PanGeneSet />,
+        requiresAuth: true,
+    },
+    {
+        name: 'Species',
+        path: '/admin/species/*',
+        element: <Species />,
+        requiresAuth: true,
+    },
+    {
+        name: 'Gene',
+        path: '/admin/gene/*',
+        element: <Gene />,
         requiresAuth: true,
     },
 
