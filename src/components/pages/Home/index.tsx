@@ -1,26 +1,41 @@
 import { Box, Divider, Flex, HStack, Image, Input, ListItem, Text, UnorderedList, VStack } from '@chakra-ui/react';
-import MainTemPlate from '../../templates/MainTemPlate';
-import { listTransitFirst, listTransitSecond, personalBrand, listTranstLast, blogsDefault } from '../../../constants';
-import LinkCustom from '../../atoms/Link';
 import { useMemo, useState } from 'react';
-import ButtonCustom from '../../atoms/Button';
-import { PostType } from '../../../type/post';
 import { Link, useNavigate } from 'react-router-dom';
+import { blogsDefault, listTransitFirst, listTransitSecond, listTranstLast, personalBrand } from '../../../constants';
+import { formatDate } from '../../../helpers/formatDate';
 import { routesMap } from '../../../routes/routes';
 import { useGetPostByType } from '../../../services/post/get-by-type';
-import { formatDate } from '../../../helpers/formatDate';
+import { PostType } from '../../../type/post';
+import ButtonCustom from '../../atoms/Button';
+import LinkCustom from '../../atoms/Link';
+import MainTemPlate from '../../templates/MainTemPlate';
 
 const listStransit = [
-    { label: 'Keyword Search', list: listTransitFirst },
-    { label: 'Gene identifier search', list: listTransitSecond },
-    { label: 'Synteny viewer', list: listTranstLast },
-];
+    { label: 'Keyword Search', list: listTransitFirst, search: 'keyword' },
+    { label: 'Gene identifier search', list: listTransitSecond, search: 'identifier' },
+    { label: 'Synteny viewer', list: listTranstLast, search: 'synteny' },
+] as const;
+
 const Home = () => {
-    const [textSearch, setTextSearch] = useState('');
+    const [textSearch, setTextSearch] = useState<{
+        keyword: string;
+        identifier: string;
+        synteny: string;
+    }>({
+        identifier: 'Glyma.15g026400',
+        keyword: 'seed "weight"2w6',
+        synteny: 'Glyma.20G0100006',
+    });
     const navigate = useNavigate();
 
-    const handleSearch = () => {
-        navigate(routesMap.Search);
+    const handleSearch = (index?: number) => {
+        if (!index && index !== 0) {
+            navigate(routesMap.Search);
+        }
+
+        if (index === 0) {
+            window.location.href = `https://mines.legumeinfo.org/glycinemine/keywordSearchResults.do?searchTerm=${textSearch.keyword}&searchSubmit=`;
+        }
     };
     return (
         <MainTemPlate>
@@ -45,15 +60,31 @@ const Home = () => {
                                     </Text>
                                     <HStack w="full" justifyContent="center" mb={4}>
                                         <Input
-                                            w="40%"
-                                            h={8}
-                                            value={textSearch}
-                                            onChange={(e) => setTextSearch(e.target.value)}
-                                            borderRadius={0}
+                                            fontSize={'14px'}
+                                            fontWeight={'400'}
+                                            fontStyle={'italic'}
+                                            color={'rgb(35, 86, 38)'}
+                                            borderRadius={'4px'}
+                                            w="60%"
+                                            h={'30px'}
+                                            value={textSearch[item.search]}
+                                            onChange={(e) =>
+                                                setTextSearch((prev) => {
+                                                    return {
+                                                        ...prev,
+                                                        [item.search]: e.target.value,
+                                                    };
+                                                })
+                                            }
                                             py={0}
                                             px={2}
                                         />
-                                        <ButtonCustom text="GO" action={handleSearch} h={8} />
+                                        <ButtonCustom
+                                            borderRadius={'4px'}
+                                            text="GO"
+                                            action={() => handleSearch(index)}
+                                            h={'30px'}
+                                        />
                                     </HStack>
                                     <Divider borderColor="#ccc" mb={4} />
                                     <VStack w="full" gap={2}>

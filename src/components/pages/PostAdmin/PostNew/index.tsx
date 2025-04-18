@@ -1,17 +1,17 @@
 import { Box, Button, Flex, Grid, GridItem, Text, Textarea } from '@chakra-ui/react';
-import BasicInput from '../../../atoms/Input/BasicInput';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { CreatePostType, PostType } from '../../../../type/post';
-import BasicSelect from '../../../atoms/Select/BasicSelect';
-import { typePost } from '../../../../constants';
-import { useCreatePost } from '../../../../services/post/create';
-import toast from '../../../../libs/toast';
 import { isAxiosError } from 'axios';
-import { getAxiosError } from '../../../../libs/axios';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { typePost } from '../../../../constants';
+import { getAxiosError } from '../../../../libs/axios';
+import toast from '../../../../libs/toast';
+import { routesMap } from '../../../../routes/routes';
+import { useCreatePost } from '../../../../services/post/create';
 import { useGetPost } from '../../../../services/post/get-one';
 import { useUpdatePost } from '../../../../services/post/update';
-import { routesMap } from '../../../../routes/routes';
+import { CreatePostType, PostType } from '../../../../type/post';
+import BasicInput from '../../../atoms/Input/BasicInput';
+import BasicSelect from '../../../atoms/Select/BasicSelect';
 
 const defaultValue = {
     title: '',
@@ -97,7 +97,6 @@ const PostNew = () => {
     useEffect(() => {
         if (data?.data) {
             const post = data.data as PostType;
-            // console.log(post);
             setValue({
                 title: post?.title || '',
                 sub_title: post?.sub_title || '',
@@ -109,63 +108,65 @@ const PostNew = () => {
     }, [data]);
 
     return (
-        <Box>
-            <Text textAlign="center" fontSize={20} fontWeight={500} textTransform="uppercase" mb={8}>
+        <Box bg="white" borderWidth="1px" borderRadius="lg" boxShadow="md" p={8}>
+            <Text textAlign="center" fontSize={24} fontWeight="bold" color="gray.800" textTransform="uppercase" mb={6}>
                 {isEditPage ? 'Edit' : 'Create'}
             </Text>
-            <Grid templateColumns="repeat(2, 1fr)" gap={10} mb={10}>
+            <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }} gap={6} mb={10}>
                 <GridItem>
                     <BasicInput
                         label="title"
-                        placeholder="title"
+                        placeholder="Nhập tên bài viết ...."
                         value={value.title}
-                        onChange={(event) => {
-                            setValue({ ...value, title: event.target.value });
-                        }}
+                        onChange={(event) => setValue({ ...value, title: event.target.value })}
                     />
                 </GridItem>
                 <GridItem>
                     <BasicInput
                         label="sub title"
-                        placeholder="sub title"
+                        placeholder="Nhập sub title cho bài viết của bạn ...."
                         value={value.sub_title}
-                        onChange={(event) => {
-                            setValue({ ...value, sub_title: event.target.value });
-                        }}
+                        onChange={(event) => setValue({ ...value, sub_title: event.target.value })}
                     />
                 </GridItem>
                 <GridItem>
                     <BasicInput
                         label="author"
-                        placeholder="author"
+                        placeholder="Nhập tên tác giả của bạn ..."
                         value={value.author}
-                        onChange={(event) => {
-                            setValue({ ...value, author: event.target.value });
-                        }}
+                        onChange={(event) => setValue({ ...value, author: event.target.value })}
                     />
                 </GridItem>
                 <GridItem>
                     <BasicSelect
-                        label="type"
+                        label="Paper type"
                         placeholder="choose type"
                         value={value.type}
                         options={typePost}
-                        onChange={(event) => {
-                            setValue({ ...value, type: event.target.value });
-                        }}
+                        onChange={(event) => setValue({ ...value, type: event.target.value })}
                     />
                 </GridItem>
                 <GridItem colSpan={2}>
-                    <Text mb={3}>Description</Text>
+                    <Text fontSize="sm" fontWeight="medium" color="gray.600" mb={3}>
+                        Description
+                    </Text>
                     <Textarea
-                        placeholder="description"
+                        placeholder="Nhập mô tả cho bài viết của bạn....."
                         value={value.description}
                         onChange={(e) => setValue({ ...value, description: e.target.value })}
+                        rows={5}
+                        resize="vertical"
                     />
                 </GridItem>
             </Grid>
             <Flex justifyContent="end">
-                <Button onClick={isEditPage ? handleEdit : handleCreate}>{isEditPage ? 'Edit' : 'Create'}</Button>
+                <Button
+                    onClick={isEditPage ? handleEdit : handleCreate}
+                    colorScheme="blue"
+                    w={{ base: 'full', md: 'auto' }}
+                >
+                    {isEditPage ? 'Edit' : 'Create'}
+                </Button>
             </Flex>
         </Box>
     );

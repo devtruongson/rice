@@ -1,20 +1,32 @@
+import {
+    Box,
+    Button,
+    Flex,
+    FormControl,
+    FormLabel,
+    Grid,
+    GridItem,
+    Heading,
+    useColorModeValue,
+    VStack,
+} from '@chakra-ui/react';
+import { isAxiosError } from 'axios';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { PanGeneSetCreateType, PanGeneSetResType } from '../../../../type/panGeneSet';
-import { useGetPanGeneSet } from '../../../../services/panGeneSet/get-one';
-import { useCreatePanGeneSet } from '../../../../services/panGeneSet/create';
-import toast from '../../../../libs/toast';
-import { isAxiosError } from 'axios';
 import { getAxiosError } from '../../../../libs/axios';
+import toast from '../../../../libs/toast';
 import { routesMap } from '../../../../routes/routes';
+import { useCreatePanGeneSet } from '../../../../services/panGeneSet/create';
+import { useGetPanGeneSet } from '../../../../services/panGeneSet/get-one';
 import { useUpdatePanGeneSet } from '../../../../services/panGeneSet/update';
-import { Box, Button, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
+import { PanGeneSetCreateType, PanGeneSetResType } from '../../../../type/panGeneSet';
 import BasicInput from '../../../atoms/Input/BasicInput';
 
 const defaultValue = {
     name: '',
     path_detail: '',
 };
+
 const New = () => {
     const navigate = useNavigate();
     const pathname = useLocation().pathname;
@@ -31,7 +43,7 @@ const New = () => {
             onSuccess() {
                 toast({
                     status: 'success',
-                    title: 'Tạo Post thành công',
+                    title: 'Tạo Pan Gene Set thành công',
                 });
                 setValue(defaultValue);
             },
@@ -51,7 +63,7 @@ const New = () => {
             onSuccess() {
                 toast({
                     status: 'success',
-                    title: 'Edit Post thành công',
+                    title: 'Edit Pan Gene Set thành công',
                 });
                 navigate(routesMap.PanGeneSet.replace('/*', '/manager'));
             },
@@ -99,36 +111,76 @@ const New = () => {
         }
     }, [data]);
 
+    const bgCard = useColorModeValue('white', 'gray.800');
+    const borderColor = useColorModeValue('gray.200', 'gray.700');
+    const buttonColorScheme = isEditPage ? 'orange' : 'green';
+
     return (
-        <Box>
-            <Text textAlign="center" fontSize={20} fontWeight={500} textTransform="uppercase" mb={8}>
-                {isEditPage ? 'Edit' : 'Create'}
-            </Text>
-            <Grid templateColumns="repeat(2, 1fr)" gap={10} mb={10}>
-                <GridItem>
-                    <BasicInput
-                        label="name"
-                        placeholder="name"
-                        value={value.name}
-                        onChange={(event) => {
-                            setValue({ ...value, name: event.target.value });
-                        }}
-                    />
-                </GridItem>
-                <GridItem>
-                    <BasicInput
-                        label="path detail"
-                        placeholder="path detail"
-                        value={value.path_detail}
-                        onChange={(event) => {
-                            setValue({ ...value, path_detail: event.target.value });
-                        }}
-                    />
-                </GridItem>
-            </Grid>
-            <Flex justifyContent="end">
-                <Button onClick={isEditPage ? handleEdit : handleCreate}>{isEditPage ? 'Edit' : 'Create'}</Button>
-            </Flex>
+        <Box
+            bg={bgCard}
+            borderRadius="lg"
+            boxShadow="md"
+            p={6}
+            borderWidth="1px"
+            borderColor={borderColor}
+            maxWidth="800px"
+            mx="auto"
+        >
+            <VStack spacing={6} align="stretch">
+                <Heading
+                    as="h2"
+                    size="md"
+                    textAlign="center"
+                    textTransform="uppercase"
+                    pb={2}
+                    borderBottomWidth="1px"
+                    borderColor={borderColor}
+                >
+                    {isEditPage ? 'Edit Pan Gene Set' : 'Create New Pan Gene Set'}
+                </Heading>
+
+                <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
+                    <GridItem>
+                        <FormControl isRequired>
+                            <FormLabel fontWeight="medium">Name</FormLabel>
+                            <BasicInput
+                                placeholder="Enter name"
+                                value={value.name}
+                                onChange={(event) => {
+                                    setValue({ ...value, name: event.target.value });
+                                }}
+                            />
+                        </FormControl>
+                    </GridItem>
+
+                    <GridItem>
+                        <FormControl isRequired>
+                            <FormLabel fontWeight="medium">Path Detail</FormLabel>
+                            <BasicInput
+                                placeholder="Enter path detail"
+                                value={value.path_detail}
+                                onChange={(event) => {
+                                    setValue({ ...value, path_detail: event.target.value });
+                                }}
+                            />
+                        </FormControl>
+                    </GridItem>
+                </Grid>
+
+                <Flex justify="space-between" pt={4} borderTopWidth="1px" borderColor={borderColor}>
+                    <Button variant="outline" onClick={() => navigate(routesMap.PanGeneSet.replace('/*', '/manager'))}>
+                        Cancel
+                    </Button>
+
+                    <Button
+                        colorScheme={buttonColorScheme}
+                        onClick={isEditPage ? handleEdit : handleCreate}
+                        isLoading={isEditPage ? update.isLoading : create.isLoading}
+                    >
+                        {isEditPage ? 'Save Changes' : 'Create'}
+                    </Button>
+                </Flex>
+            </VStack>
         </Box>
     );
 };
