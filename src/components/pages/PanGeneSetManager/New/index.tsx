@@ -1,15 +1,4 @@
-import {
-    Box,
-    Button,
-    Flex,
-    FormControl,
-    FormLabel,
-    Grid,
-    GridItem,
-    Heading,
-    useColorModeValue,
-    VStack,
-} from '@chakra-ui/react';
+import { Box, Button, Flex, FormControl, Grid, GridItem, Heading, useColorModeValue, VStack } from '@chakra-ui/react';
 import { isAxiosError } from 'axios';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
@@ -142,8 +131,9 @@ const New = () => {
                 <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
                     <GridItem>
                         <FormControl isRequired>
-                            <FormLabel fontWeight="medium">Name</FormLabel>
+                            {/* <FormLabel fontWeight="medium">Name</FormLabel> */}
                             <BasicInput
+                                label="Name"
                                 placeholder="Enter name"
                                 value={value.name}
                                 onChange={(event) => {
@@ -155,8 +145,9 @@ const New = () => {
 
                     <GridItem>
                         <FormControl isRequired>
-                            <FormLabel fontWeight="medium">Path Detail</FormLabel>
+                            {/* <FormLabel fontWeight="medium">Path Detail</FormLabel> */}
                             <BasicInput
+                                label="Path Detail"
                                 placeholder="Enter path detail"
                                 value={value.path_detail}
                                 onChange={(event) => {
@@ -175,7 +166,7 @@ const New = () => {
                     <Button
                         colorScheme={buttonColorScheme}
                         onClick={isEditPage ? handleEdit : handleCreate}
-                        isLoading={isEditPage ? update.isLoading : create.isLoading}
+                        isLoading={isEditPage ? update.isPending : create.isPending}
                     >
                         {isEditPage ? 'Save Changes' : 'Create'}
                     </Button>
