@@ -29,12 +29,16 @@ const Home = () => {
     const navigate = useNavigate();
 
     const handleSearch = (index?: number) => {
-        if (!index && index !== 0) {
+        if (index !== 0) {
             navigate(routesMap.Search);
         }
 
         if (index === 0) {
-            window.location.href = `https://mines.legumeinfo.org/glycinemine/keywordSearchResults.do?searchTerm=${textSearch.keyword}&searchSubmit=`;
+            window.open(
+                `https://mines.legumeinfo.org/glycinemine/keywordSearchResults.do?searchTerm=${textSearch.keyword}&searchSubmit=`,
+                '_blank',
+                'noopener,noreferrer',
+            );
         }
     };
     return (

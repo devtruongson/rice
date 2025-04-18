@@ -87,7 +87,7 @@ const Header = ({ type = 'user', ...props }: Props) => {
                             fontSize={20}
                             color="white"
                             cursor="pointer"
-                            onClick={() => navigate(routesMap.PostAdmin)}
+                            onClick={() => navigate(routesMap.PostAdmin.replace('/*', '/manager'))}
                         />
                     </HStack>
                 </HStack>
