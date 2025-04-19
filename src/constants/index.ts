@@ -77,6 +77,11 @@ export const navbarAdmin = [
         label: 'Gene',
         url: routesMap.Gene,
     },
+    {
+        icon: '',
+        label: 'Study',
+        url: routesMap.Study,
+    },
 ];
 
 export const typePost = [

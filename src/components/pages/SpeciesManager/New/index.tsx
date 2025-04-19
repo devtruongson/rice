@@ -8,16 +8,12 @@ import { getAxiosError } from '../../../../libs/axios';
 import { useUpdateSpecies } from '../../../../services/species/update';
 import { routesMap } from '../../../../routes/routes';
 import { SpeciesResType } from '../../../../type/species';
-import { Box, Button, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
+import { Box, Button, Divider, Grid, GridItem, HStack, Text } from '@chakra-ui/react';
 import BasicInput from '../../../atoms/Input/BasicInput';
-import { Select, SingleValue } from 'chakra-react-select';
-import { useGetGenes } from '../../../../services/gene/get-genes';
-import { GeneResType } from '../../../../type/gene';
-import { OptionType } from '../../../../type';
+import colors from '../../../../constants/colors';
 
 const defaultValue = {
     name: '',
-    gene_id: [] as string[],
 };
 
 const New = () => {
@@ -26,8 +22,6 @@ const New = () => {
     const pathname = useLocation().pathname;
     const [searchParams] = useSearchParams();
     const isEditPage = useMemo(() => pathname.includes('/edit'), [pathname]);
-    const [options, setOptions] = useState<OptionType[]>([]);
-    const [inputText, setInputText] = useState('');
 
     const { data } = useGetSpeci({
         id: searchParams.get('id') || '',
@@ -104,66 +98,36 @@ const New = () => {
             const species = data.data as SpeciesResType;
             setValue({
                 name: species?.name || '',
-                gene_id: species?.gene_id || [],
             });
         }
     }, [data]);
 
-    const handleChange = (option: SingleValue<OptionType>) => {
-        setValue({ ...value, gene_id: option.map((item: OptionType) => item.value) });
-    };
-
-    const handleInputChange = (newValue: string, { action }: { action: string }) => {
-        if (action === 'input-change') {
-            setInputText(newValue);
-            setOptions([]);
-        }
-    };
-
-    const { data: geneData } = useGetGenes({ rest: { page: 1, pageSize: 10 } });
-    useEffect(() => {
-        const newData = geneData?.data?.data;
-        if (newData?.length) {
-            const newOptions = newData.map((item: GeneResType) => ({ value: item._id, label: item?.name }));
-            setOptions((prev) => [...prev, ...newOptions]);
-        }
-    }, [geneData]);
-
     return (
-        <Box>
-            <Text textAlign="center" fontSize={20} fontWeight={500} textTransform="uppercase" mb={8}>
-                {isEditPage ? 'Edit' : 'Create'}
-            </Text>
-            <Grid templateColumns="repeat(2, 1fr)" gap={10} mb={10}>
-                <GridItem>
-                    <BasicInput
-                        label="name"
-                        placeholder="name"
-                        value={value.name}
-                        onChange={(event) => {
-                            setValue({ ...value, name: event.target.value });
-                        }}
-                    />
-                </GridItem>
-                <GridItem>
-                    <Text mb={3} textTransform="capitalize">
-                        Chọn gene
-                    </Text>
-                    <Select
-                        isMulti
-                        options={options}
-                        placeholder="Chọn nhiều giá trị..."
-                        onChange={handleChange}
-                        inputValue={inputText}
-                        onInputChange={handleInputChange}
-                    />
-                </GridItem>
-            </Grid>
-
-            <Flex justifyContent="end">
-                <Button onClick={isEditPage ? handleEdit : handleCreate}>{isEditPage ? 'Edit' : 'Create'}</Button>
-            </Flex>
-        </Box>
+        <HStack justifyContent="center">
+            <Box w="80%" rounded={4} boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" p={5}>
+                <Text textAlign="start" fontSize={20} fontWeight={500} textTransform="uppercase" mb={8}>
+                    {isEditPage ? 'Edit Species' : 'Create new Species'}
+                </Text>
+                <Divider borderWidth={1} />
+                <Grid templateColumns="repeat(3, 1fr)" gap={10} mb={10} pt={4} px={6}>
+                    <GridItem colSpan={2}>
+                        <BasicInput
+                            label="name Species"
+                            placeholder="Enter name species"
+                            value={value.name}
+                            onChange={(event) => {
+                                setValue({ ...value, name: event.target.value });
+                            }}
+                        />
+                    </GridItem>
+                    <GridItem pt={9}>
+                        <Button onClick={isEditPage ? handleEdit : handleCreate} bg={colors.brand} color="white">
+                            {isEditPage ? 'Edit' : 'Create'}
+                        </Button>
+                    </GridItem>
+                </Grid>
+            </Box>
+        </HStack>
     );
 };
 

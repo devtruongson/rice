@@ -8,10 +8,13 @@ type Props = {
 
 const BasicInput = ({ label, value, onChange, ...props }: Props) => {
     return (
-        <Box>
-            <Text mb={3} textTransform="capitalize">
-                {label}
-            </Text>
+        <Box w="100%">
+            {label ? (
+                <Text mb={3} textTransform="capitalize">
+                    {label}
+                </Text>
+            ) : null}
+
             <Input mb={1} {...props} value={value} onChange={(e) => onChange(e)} />
         </Box>
     );

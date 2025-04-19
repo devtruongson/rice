@@ -18,6 +18,7 @@ const NavbarAdmin = () => {
             left={0}
             bottom={0}
             top={HEADER_HEIGHT}
+            boxShadow="base"
         >
             <VStack w="full" gap={1}>
                 {navbarAdmin.map((item, index) => {

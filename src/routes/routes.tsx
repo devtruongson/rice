@@ -15,6 +15,7 @@ import {
     PanGeneSet,
     Species,
     Gene,
+    Study,
 } from './index';
 
 export const routes = [
@@ -100,6 +101,12 @@ export const routes = [
         name: 'Gene',
         path: '/admin/gene/*',
         element: <Gene />,
+        requiresAuth: true,
+    },
+    {
+        name: 'Study',
+        path: '/admin/study/*',
+        element: <Study />,
         requiresAuth: true,
     },
 

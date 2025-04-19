@@ -11,20 +11,23 @@ export type GeneCreateType = {
     go_terms: string[];
     identifier: {
         name: string;
-        path_detailo: string[];
+        path_detail: string;
     };
     location: {
         name: string;
-        path_detail: string[];
+        path_detail: string;
     };
     description: string;
     gene_family: string;
     pan_gene_set: string;
-    genus: string;
-    species: string[];
+    species: string;
     strain: string;
 };
 
-export type GeneResType = {
+export type GeneUpdateType = {
     _id: string;
 } & GeneCreateType;
+
+export type GeneResType = {
+    genus: string;
+} & GeneUpdateType;
