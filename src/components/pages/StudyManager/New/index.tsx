@@ -12,6 +12,8 @@ import { Box, Button, Divider, Flex, Grid, GridItem, HStack, Text, Textarea } fr
 import BasicInput from '../../../atoms/Input/BasicInput';
 import colors from '../../../../constants/colors';
 import BasicSelect from '../../../atoms/Select/BasicSelect';
+import { useGetSpecies } from '../../../../services/species/get-all';
+import { SpeciesResType } from '../../../../type/species';
 
 const defaultValue = {
     study_name: '',
@@ -22,6 +24,8 @@ const defaultValue = {
     synopsis: '',
     description: '',
     genotypes: '',
+    species: '',
+    traits: '',
 };
 const New = () => {
     const [value, setValue] = useState(defaultValue);
@@ -33,6 +37,16 @@ const New = () => {
     const { data } = useGetStudy({
         id: searchParams.get('id') || '',
     });
+
+    const { data: speciesData } = useGetSpecies({});
+    const speciesOptions = useMemo(
+        () =>
+            speciesData?.data?.map((item: SpeciesResType) => ({
+                value: item._id,
+                label: item.name,
+            })) || [],
+        [speciesData],
+    );
 
     const create = useCreateStudy({
         mutationConfig: {
@@ -161,6 +175,17 @@ const New = () => {
                         />
                     </GridItem>
                     <GridItem>
+                        <BasicSelect
+                            label="Species"
+                            placeholder="Enter species"
+                            value={value.species}
+                            onChange={(event) => {
+                                setValue({ ...value, species: event.target.value });
+                            }}
+                            options={speciesOptions}
+                        />
+                    </GridItem>
+                    <GridItem>
                         <BasicInput
                             label="Publication Id"
                             placeholder="Enter publication id"
@@ -177,6 +202,16 @@ const New = () => {
                             value={value.author}
                             onChange={(event) => {
                                 setValue({ ...value, author: event.target.value });
+                            }}
+                        />
+                    </GridItem>
+                    <GridItem>
+                        <BasicInput
+                            label="Traits"
+                            placeholder="Enter traits"
+                            value={value.traits}
+                            onChange={(event) => {
+                                setValue({ ...value, traits: event.target.value });
                             }}
                         />
                     </GridItem>

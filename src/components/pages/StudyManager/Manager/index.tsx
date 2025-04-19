@@ -47,6 +47,7 @@ const Manager = () => {
             data?.data?.data?.map((item: StudyResType) => {
                 return {
                     ...item,
+                    species: item?.species?.name || '',
                     action: (
                         <ActionCustom
                             actionDelete={() => {
@@ -71,14 +72,16 @@ const Manager = () => {
                 <TableCusTom
                     mt={4}
                     columns={[
-                        { key: 'study_name', label: 'Study Name', w: '20%' },
-                        { key: 'link_detail_study', label: 'Link Detail', w: '15%' },
+                        { key: 'study_name', label: 'Study Name', w: '10%' },
+                        { key: 'link_detail_study', label: 'Link Detail', w: '10%' },
                         { key: 'study_type', label: 'Type', w: '10%' },
                         { key: 'publication_id', label: 'Publication ID', w: '10%' },
                         { key: 'author', label: 'Author', w: '10%' },
                         { key: 'synopsis', label: 'Synopsis', w: '10%' },
                         { key: 'description', label: 'Description', w: '10%' },
                         { key: 'genotypes', label: 'Genotypes', w: '10%' },
+                        { key: 'traits', label: 'Traits', w: '10%' },
+                        { key: 'species', label: 'Species', w: '10%' },
                         { key: 'action', label: '', w: '5%' },
                     ]}
                     data={studies}

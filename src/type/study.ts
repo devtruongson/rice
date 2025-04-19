@@ -7,6 +7,8 @@ export type StudyCreateType = {
     synopsis: string;
     description: string;
     genotypes: string;
+    species: string;
+    traits: string;
 };
 
 export type StudyResType = {
