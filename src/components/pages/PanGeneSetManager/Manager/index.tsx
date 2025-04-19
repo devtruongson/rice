@@ -39,7 +39,7 @@ const Manager = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const cancelRef = useRef<any>(null);
 
-    const posts = useMemo(
+    const panGeneSets = useMemo(
         () =>
             data?.data?.data?.map((item: PanGeneSetResType) => {
                 return {
@@ -132,7 +132,7 @@ const Manager = () => {
                         { key: 'path_detail', label: 'Path Detail', w: '20%' },
                         { key: 'action', label: '', w: '15%' },
                     ]}
-                    data={posts}
+                    data={panGeneSets}
                 />
 
                 <Box mt={4}>
