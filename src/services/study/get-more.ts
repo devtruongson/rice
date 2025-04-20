@@ -20,7 +20,6 @@ const getStudies = async (rest: PropsType) => {
         page: rest.page || 1,
         pageSize: rest.pageSize || 10,
     };
-    console.log('rest >>', rest);
     if (rest.species) params.species = rest.species;
     if (rest.study_type) params.study_type = rest.study_type;
     if (rest.traits) params.traits = rest.traits;
