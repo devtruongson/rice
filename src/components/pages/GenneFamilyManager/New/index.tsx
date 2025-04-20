@@ -157,6 +157,7 @@ const New = () => {
                         <FormControl>
                             <FormLabel fontWeight="medium">Gene Family Name</FormLabel>
                             <BasicInput
+                                label=""
                                 placeholder="Enter gene family name"
                                 value={value.name}
                                 onChange={(event) => {
@@ -172,6 +173,7 @@ const New = () => {
                                 <FormControl>
                                     <FormLabel fontWeight="medium">View Tree Path</FormLabel>
                                     <BasicInput
+                                        label=""
                                         placeholder="Enter view tree path"
                                         value={value.path_detail[0]}
                                         onChange={(event) => {
@@ -188,6 +190,7 @@ const New = () => {
                                 <FormControl>
                                     <FormLabel fontWeight="medium">View Report Path</FormLabel>
                                     <BasicInput
+                                        label=""
                                         placeholder="Enter view report path"
                                         value={value.path_detail[1]}
                                         onChange={(event) => {

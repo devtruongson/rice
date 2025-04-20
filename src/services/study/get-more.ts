@@ -7,12 +7,27 @@ export const GET_STUDYS_QUERY_KEY = 'studies';
 type PropsType = {
     page?: number;
     pageSize?: number;
+    species?: string;
+    study_type?: string;
+    traits?: string;
+    publication_id?: string;
+    author?: string;
 };
 
 const getStudies = async (rest: PropsType) => {
-    const page = rest?.page || 1;
-    const pageSize = rest?.pageSize || 10;
-    const { data } = await api.get(`/study?page=${page}&pageSize=${pageSize}`);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const params: any = {
+        page: rest.page || 1,
+        pageSize: rest.pageSize || 10,
+    };
+    console.log('rest >>', rest);
+    if (rest.species) params.species = rest.species;
+    if (rest.study_type) params.study_type = rest.study_type;
+    if (rest.traits) params.traits = rest.traits;
+    if (rest.publication_id) params.publication_id = rest.publication_id;
+    if (rest.author) params.author = rest.author;
+    const query = new URLSearchParams(params).toString();
+    const { data } = await api.get(`/study?${query}`);
     return data;
 };
 

@@ -21,3 +21,4 @@ export const Species = lazy(() => import('../components/pages/SpeciesManager'));
 export const Gene = lazy(() => import('../components/pages/GeneManager'));
 export const Study = lazy(() => import('../components/pages/StudyManager'));
 export const DscensorClient = lazy(() => import('../components/pages/DscensorClient'));
+export const TrainSearch = lazy(() => import('../components/pages/TrainSearch'));

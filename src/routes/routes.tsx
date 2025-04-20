@@ -18,6 +18,7 @@ import {
     Species,
     Strain,
     Study,
+    TrainSearch,
 } from './index';
 
 export const routes = [
@@ -116,6 +117,12 @@ export const routes = [
         path: '/admin/study/*',
         element: <Study />,
         requiresAuth: true,
+    },
+    {
+        name: 'TrainSearch',
+        path: '/tools/search/trait',
+        element: <TrainSearch />,
+        requiresAuth: false,
     },
 
     //TODO
