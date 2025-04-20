@@ -27,12 +27,12 @@
 
 // export default App;
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { routes } from './routes/routes';
-import ProtectedRoute from './routes/ProtectedRoute';
-import { Suspense } from 'react';
 import { Progress } from '@chakra-ui/react';
+import { Suspense } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { GlobalProvider } from './contexts/GlobalContext';
+import ProtectedRoute from './routes/ProtectedRoute';
+import { routes } from './routes/routes';
 
 const router = createBrowserRouter(
     routes.map((route) => ({

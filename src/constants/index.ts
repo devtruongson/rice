@@ -82,6 +82,12 @@ export const navbarAdmin = [
         label: 'Study',
         url: routesMap.Study,
     },
+
+    {
+        icon: '',
+        label: 'Dscensors',
+        url: routesMap.Dscensor,
+    },
 ];
 
 export const typePost = [

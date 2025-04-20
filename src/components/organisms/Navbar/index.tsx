@@ -32,6 +32,7 @@ const Navbar = () => {
                 path="https://dscensor.legumeinfo.org/multiqc-demo/genome_main:Glycine"
                 isBlank
             />
+            <ItemCustom label="Dscensor Soybase" path={routesMap.DscensorSoybase} />
             <ItemCustom label="USDA Germplasm SoySNP50K" path={routesMap.GermplasmSoy} />
 
             {/*  */}

@@ -1,20 +1,22 @@
 import {
     DataStore,
+    DscensorClient,
+    Dscensors,
+    Gene,
+    GeneFamily,
     GeneTranslation,
     GermplasmSoy,
     Go,
     GoEnrichmentBlog,
     Home,
     Nust,
+    PanGeneSet,
     Post,
     PostAdmin,
     PostDetail,
     Search,
-    GeneFamily,
-    Strain,
-    PanGeneSet,
     Species,
-    Gene,
+    Strain,
     Study,
 } from './index';
 
@@ -92,6 +94,12 @@ export const routes = [
         requiresAuth: true,
     },
     {
+        name: 'Dscensor',
+        path: '/admin/dscensor/*',
+        element: <Dscensors />,
+        requiresAuth: true,
+    },
+    {
         name: 'Species',
         path: '/admin/species/*',
         element: <Species />,
@@ -121,6 +129,12 @@ export const routes = [
         name: 'New',
         path: '/news',
         element: <Post />,
+        requiresAuth: false,
+    },
+    {
+        name: 'DscensorSoybase',
+        path: '/dscensor',
+        element: <DscensorClient />,
         requiresAuth: false,
     },
     {
