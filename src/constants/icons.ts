@@ -5,6 +5,7 @@ import { GoTrash, GoBell } from 'react-icons/go';
 import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { IoIosRemoveCircleOutline } from 'react-icons/io';
+import { IoMdEye } from 'react-icons/io';
 
 const icons = {
     xTwitter: FaXTwitter,
@@ -18,6 +19,7 @@ const icons = {
     previous: GrFormPrevious,
     add: IoIosAddCircleOutline,
     remove: IoIosRemoveCircleOutline,
+    eye: IoMdEye,
 };
 
 export default icons;

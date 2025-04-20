@@ -17,6 +17,10 @@ import { useGetAllGeneFamily } from '../../../../services/geneFamily/get-all';
 import { GeneFamilyResType } from '../../../../type/geneFamily';
 import { useGetAllPanGeneSet } from '../../../../services/panGeneSet/get-all';
 import { PanGeneSetResType } from '../../../../type/panGeneSet';
+import { useGetStrains } from '../../../../services/strain/get-all';
+import { StrainResType } from '../../../../type/strain';
+import { useGetSpecies } from '../../../../services/species/get-all';
+import { SpeciesResType } from '../../../../type/species';
 
 const defaultValue = {
     name: '',
@@ -122,7 +126,6 @@ const New = () => {
     );
 
     const { data: panGeneSetData } = useGetAllPanGeneSet({});
-    console.log(panGeneSetData);
     const panGeneSetOptions = useMemo(
         () =>
             panGeneSetData?.data?.map((item: PanGeneSetResType) => ({
@@ -130,6 +133,26 @@ const New = () => {
                 label: item.name,
             })) || [],
         [panGeneSetData],
+    );
+
+    const { data: strainData } = useGetStrains({});
+    const strainOptions = useMemo(
+        () =>
+            strainData?.data?.map((item: StrainResType) => ({
+                value: item._id,
+                label: item.name,
+            })) || [],
+        [strainData],
+    );
+
+    const { data: speciesData } = useGetSpecies({});
+    const speciesOptions = useMemo(
+        () =>
+            speciesData?.data?.map((item: SpeciesResType) => ({
+                value: item._id,
+                label: item.name,
+            })) || [],
+        [speciesData],
     );
 
     useEffect(() => {
@@ -209,7 +232,7 @@ const New = () => {
                             onChange={(event) => {
                                 setValue({ ...value, strain: event.target.value });
                             }}
-                            options={[]}
+                            options={strainOptions}
                         />
                     </GridItem>
 
@@ -272,7 +295,7 @@ const New = () => {
                             onChange={(event) => {
                                 setValue({ ...value, species: event.target.value });
                             }}
-                            options={[]}
+                            options={speciesOptions}
                         />
                     </GridItem>
                     <GridItem>

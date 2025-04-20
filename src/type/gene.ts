@@ -30,4 +30,20 @@ export type GeneUpdateType = {
 
 export type GeneResType = {
     genus: string;
+    gene_family: {
+        _id: string;
+        name: string;
+    };
+    pan_gene_set: {
+        _id: string;
+        name: string;
+    };
+    species: {
+        _id: string;
+        name: string;
+    };
+    strain: {
+        _id: string;
+        name: string;
+    };
 } & GeneUpdateType;
