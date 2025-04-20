@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 import api from '../../libs/axios';
 import { MutationConfig } from '../../libs/query';
-import { StudyResType } from '../../type/study';
+import { StudyUpdateType } from '../../type/study';
 
-const updateStudy = async (payload: StudyResType) => {
+const updateStudy = async (payload: StudyUpdateType) => {
     const { data } = await api.patch('/study', payload);
     return data;
 };

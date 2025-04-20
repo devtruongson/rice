@@ -64,7 +64,7 @@ const Manager = () => {
 
     return (
         <HStack justifyContent="center">
-            <Box w="80%" rounded={4} boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" p={5}>
+            <Box w="100%" rounded={4} boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" p={5}>
                 <Text textAlign="start" fontSize={20} fontWeight={500} textTransform="uppercase" mb={8}>
                     Study Manager
                 </Text>
@@ -80,8 +80,8 @@ const Manager = () => {
                         { key: 'synopsis', label: 'Synopsis', w: '10%' },
                         { key: 'description', label: 'Description', w: '10%' },
                         { key: 'genotypes', label: 'Genotypes', w: '10%' },
-                        { key: 'traits', label: 'Traits', w: '10%' },
-                        { key: 'species', label: 'Species', w: '10%' },
+                        // { key: 'traits', label: 'Traits', w: '10%' },
+                        // { key: 'species', label: 'Species', w: '10%' },
                         { key: 'action', label: '', w: '5%' },
                     ]}
                     data={studies}

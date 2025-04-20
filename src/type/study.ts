@@ -11,6 +11,14 @@ export type StudyCreateType = {
     traits: string;
 };
 
+export type StudyUpdateType = {
+    _id: string;
+} & StudyCreateType;
+
 export type StudyResType = {
     _id: string;
+    species: {
+        _id: string;
+        name: string;
+    };
 } & StudyCreateType;

@@ -7,7 +7,7 @@ import { isAxiosError } from 'axios';
 import { getAxiosError } from '../../../../libs/axios';
 import { useUpdateStudy } from '../../../../services/study/update';
 import { routesMap } from '../../../../routes/routes';
-import { StudyResType } from '../../../../type/study';
+import { StudyUpdateType } from '../../../../type/study';
 import { Box, Button, Divider, Flex, Grid, GridItem, HStack, Text, Textarea } from '@chakra-ui/react';
 import BasicInput from '../../../atoms/Input/BasicInput';
 import colors from '../../../../constants/colors';
@@ -125,7 +125,7 @@ const New = () => {
 
     useEffect(() => {
         if (data?.data) {
-            const study = data.data as StudyResType;
+            const study = data.data as StudyUpdateType;
             setValue({
                 ...study,
             });
