@@ -21,11 +21,11 @@ const Navbar = () => {
             </Text>
             <LabelCommon label="Analysis" />
             <ItemCustom label="GO Enrichment Analysis" path={routesMap.Go} isBlank />
-            <ItemCustom label="Northern Uniform Soybean Trials (NUST)" path={routesMap.Nust} />
+            {/* <ItemCustom label="Northern Uniform Soybean Trials (NUST)" path={routesMap.Nust} /> */}
 
             {/*  */}
             <LabelCommon label="Download / Query" />
-            <ItemCustom label="Datastore" path={routesMap.DataStore} />
+            {/* <ItemCustom label="Datastore" path={routesMap.DataStore} /> */}
             <ItemCustom label="GlycineMine" path="https://mines.legumeinfo.org/glycinemine/begin.do" isBlank />
             <ItemCustom
                 label="Data Overviews for soy genomic data"
@@ -42,10 +42,10 @@ const Navbar = () => {
 
             {/*  */}
             <LabelCommon label="Search" />
-            <ItemCustom label="Gene-name translator" path={routesMap.GeneTranslation} />
+            {/* <ItemCustom label="Gene-name translator" path={routesMap.GeneTranslation} /> */}
             <ItemCustom label="Gene Search Tool" path={routesMap.Search} />
             <ItemCustom label="Trait Search Tool" path={routesMap.TrainSearch} />
-            <ItemCustom label="SoyCyc" path="/" />
+            {/* <ItemCustom label="SoyCyc" path="/" /> */}
 
             {/*  */}
             <LabelCommon label="Sequence search" />
@@ -53,7 +53,7 @@ const Navbar = () => {
             <ItemCustom label="Annotate Your Sequences" path="/" />
 
             {/*  */}
-            <LabelCommon label="Visualize / Browse" />
+            {/* <LabelCommon label="Visualize / Browse" />
             <ItemCustom label="Genome browsers" path="/" />
             <ItemCustom label="Genome Context Viewer for Glycine" path="/" />
             <ItemCustom label="ZZBrowse GWAS/QTL" path="/" />
@@ -62,7 +62,7 @@ const Navbar = () => {
             <ItemCustom label="Expression Resources" path="/" />
             <ItemCustom label="GCViT: SNP Comparison Tool" path="/" />
             <ItemCustom label="Ontology" path="/" />
-            <ItemCustom label="Parentage" path="/" />
+            <ItemCustom label="Parentage" path="/" /> */}
         </Box>
     );
 };
