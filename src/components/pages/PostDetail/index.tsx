@@ -24,7 +24,7 @@ const PostDetail = () => {
                     <Text fontSize={24} fontWeight={300} mb={6}>
                         {post?.sub_title}
                     </Text>
-                    <Text>{post?.description}</Text>
+                    <Text whiteSpace="pre-line">{post?.description}</Text>
                 </Box>
             </Wrapper>
         </BasicTemplate>

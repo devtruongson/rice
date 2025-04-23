@@ -164,6 +164,7 @@ const New = () => {
                     </Button>
 
                     <Button
+                        variant="outline"
                         colorScheme={buttonColorScheme}
                         onClick={isEditPage ? handleEdit : handleCreate}
                         isLoading={isEditPage ? update.isPending : create.isPending}
