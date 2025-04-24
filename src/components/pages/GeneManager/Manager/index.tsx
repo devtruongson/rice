@@ -25,6 +25,7 @@ import ConfirmDelete from '../../../molecules/ConfirmDelete';
 import { GeneResType } from '../../../../type/gene';
 import ActionCustom from '../../../molecules/ActionCustom';
 import { routesMap } from '../../../../routes/routes';
+import Pagination from '../../../molecules/Pagination';
 
 const Manager = () => {
     const navigate = useNavigate();
@@ -88,6 +89,8 @@ const Manager = () => {
         [data],
     );
 
+    console.log(data?.data?.totalItems / data?.data?.pageSize);
+
     return (
         <HStack justifyContent="center" w="full">
             <Box w="100%" rounded={4} boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" p={5}>
@@ -102,14 +105,20 @@ const Manager = () => {
                         w="full"
                         columns={[
                             { key: 'name', label: 'name', w: '10%' },
-                            { key: 'arabidopsis_hit', label: 'Arabidopsis Hit', w: '10%' },
-                            { key: 'go_terms', label: 'Go Terms', w: '5%' },
-                            { key: 'description', label: 'Description', w: '20%' },
-                            { key: 'gene_family', label: 'Gene Family', w: '10%' },
-                            { key: 'pan_gene_set', label: 'PanGene Set', w: '10%' },
-                            { key: 'action', label: '', w: '10%' },
+                            // { key: 'arabidopsis_hit', label: 'Arabidopsis Hit', w: '10%' },
+                            // { key: 'go_terms', label: 'Go Terms', w: '5%' },
+                            { key: 'description', label: 'Description', w: '30%' },
+                            { key: 'gene_family', label: 'Gene Family', w: '30%' },
+                            // { key: 'pan_gene_set', label: 'PanGene Set', w: '10%' },
+                            { key: 'action', label: '', w: '30%' },
                         ]}
                         data={genes}
+                    />
+
+                    {/* <Pagination/> */}
+                    <Pagination
+                        currentPage={data?.data?.page || 1}
+                        totalPage={Math.ceil(data?.data?.totalItems / data?.data?.pageSize) || 1}
                     />
                 </Box>
 

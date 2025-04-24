@@ -53,7 +53,7 @@ const New = () => {
             onSuccess() {
                 toast({
                     status: 'success',
-                    title: 'Tạo Post thành công',
+                    title: 'Tạo Study thành công',
                 });
                 setValue(defaultValue);
             },

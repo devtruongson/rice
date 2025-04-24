@@ -57,7 +57,7 @@ const New = () => {
             onSuccess() {
                 toast({
                     status: 'success',
-                    title: 'Tạo Post thành công',
+                    title: 'Tạo Gene thành công',
                 });
                 setValue(defaultValue);
             },

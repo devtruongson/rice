@@ -25,6 +25,7 @@ import { isAxiosError } from 'axios';
 import { getAxiosError } from '../../../../libs/axios';
 import { useGetStudies } from '../../../../services/study/get-more';
 import { StudyResType } from '../../../../type/study';
+import Pagination from '../../../molecules/Pagination';
 
 const Manager = () => {
     const navigate = useNavigate();
@@ -92,16 +93,18 @@ const Manager = () => {
                 <TableCusTom
                     mt={4}
                     columns={[
-                        { key: 'study_name', label: 'Study Name', w: '10%' },
+                        { key: 'study_name', label: 'Study Name', w: '20%' },
                         { key: 'study_type', label: 'Type', w: '10%' },
-                        { key: 'publication_id', label: 'Publication ID', w: '10%' },
-                        { key: 'author', label: 'Author', w: '10%' },
-                        { key: 'synopsis', label: 'Synopsis', w: '10%' },
-                        { key: 'genotypes', label: 'Genotypes', w: '10%' },
-                        { key: 'action', label: '', w: '5%' },
+                        // { key: 'publication_id', label: 'Publication ID', w: '10%' },
+                        { key: 'author', label: 'Author', w: '20%' },
+                        { key: 'synopsis', label: 'Synopsis', w: '20%' },
+                        // { key: 'genotypes', label: 'Genotypes', w: '10%' },
+                        { key: 'action', label: '', w: '30%' },
                     ]}
                     data={studies}
                 />
+
+                <Pagination currentPage={data?.data?.page || 1} totalPage={data?.data?.totalPages || 1} />
 
                 <Modal isOpen={isOpenModal} onClose={onCloseModal} size="4xl">
                     <ModalOverlay />

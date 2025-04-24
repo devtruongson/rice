@@ -21,14 +21,14 @@ import MainTemPlate from '../../templates/MainTemPlate';
 type DscensorResType = {
     _id: string;
     sample_name: string;
-    gennus: string;
-    specis: string;
+    genus: string;
+    species: string;
     infraspecies: string;
     scaffolds: number;
     scaffolds_n50: number;
     assembly_bases: number;
     gap_bases: number;
-    config_bases: number;
+    contig_bases: number;
     complete_buscos: number;
     missing: number;
     url_download: string;
@@ -218,7 +218,7 @@ export default function DscensorClient() {
                                 >
                                     Complete BUSCOs
                                 </Th>
-                                <Th
+                                {/* <Th
                                     borderRight="1px solid"
                                     borderColor="gray.200"
                                     textTransform="uppercase"
@@ -228,7 +228,7 @@ export default function DscensorClient() {
                                     textAlign="right"
                                 >
                                     Missing
-                                </Th>
+                                </Th> */}
                                 <Th textTransform="uppercase" fontSize="xs" py={2} w="8%">
                                     Download
                                 </Th>
@@ -252,10 +252,10 @@ export default function DscensorClient() {
                                                 {item.sample_name}
                                             </Td>
                                             <Td borderRight="1px solid" borderColor="gray.200">
-                                                {item.gennus as string}
+                                                {item.genus as string}
                                             </Td>
                                             <Td borderRight="1px solid" borderColor="gray.200">
-                                                {item.specis}
+                                                {item.species}
                                             </Td>
                                             <Td
                                                 borderRight="1px solid"
@@ -288,7 +288,7 @@ export default function DscensorClient() {
                                                 {item.gap_bases}
                                             </Td>
                                             <Td borderRight="1px solid" borderColor="gray.200" textAlign="right">
-                                                {item.config_bases}
+                                                {item.contig_bases}
                                             </Td>
                                             <Td
                                                 borderRight="1px solid"
@@ -298,9 +298,9 @@ export default function DscensorClient() {
                                             >
                                                 {item.complete_buscos}
                                             </Td>
-                                            <Td borderRight="1px solid" borderColor="gray.200" textAlign="right">
+                                            {/* <Td borderRight="1px solid" borderColor="gray.200" textAlign="right">
                                                 {item.missing}
-                                            </Td>
+                                            </Td> */}
 
                                             <Td>{item.download}</Td>
                                         </Tr>
