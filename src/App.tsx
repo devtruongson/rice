@@ -1,32 +1,3 @@
-// import { Container, Image } from '@chakra-ui/react';
-// import Header from './components/organisms/Header';
-// import RiceGenomeProject from './components/pages/RiceGenomeProject';
-// import { Route, Routes } from 'react-router-dom';
-// import HomeOverview from './components/pages/HomeOverview';
-
-// function App() {
-//     return (
-//         <Container
-//             border={'1px solid #ccc'}
-//             padding={0}
-//             borderBottomLeftRadius={6}
-//             borderBottomRightRadius={6}
-//             overflow={'hidden'}
-//             mb={10}
-//         >
-//             <Image w={'100%'} objectFit={'cover'} src="https://rice.uga.edu/images/TestLogo2.png" alt="" />
-//             <Header />
-
-//             <Routes>
-//                 <Route path="/" element={<RiceGenomeProject />} />
-//                 <Route path="/home_overview" element={<HomeOverview />}></Route>
-//             </Routes>
-//         </Container>
-//     );
-// }
-
-// export default App;
-
 import { Progress } from '@chakra-ui/react';
 import { Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';

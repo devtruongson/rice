@@ -104,7 +104,7 @@ const Manager = () => {
                             { key: 'name', label: 'name', w: '10%' },
                             { key: 'arabidopsis_hit', label: 'Arabidopsis Hit', w: '10%' },
                             { key: 'go_terms', label: 'Go Terms', w: '5%' },
-                            { key: 'description', label: 'Description', w: '10%' },
+                            { key: 'description', label: 'Description', w: '20%' },
                             { key: 'gene_family', label: 'Gene Family', w: '10%' },
                             { key: 'pan_gene_set', label: 'PanGene Set', w: '10%' },
                             { key: 'action', label: '', w: '10%' },

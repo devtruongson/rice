@@ -30,7 +30,7 @@ import BasicInput from '../../../atoms/Input/BasicInput';
 
 const defaultValue = {
     name: '',
-    path_detail: [''],
+    path_detail: ['', ''],
 };
 
 const New = () => {
@@ -57,6 +57,7 @@ const New = () => {
                     status: 'success',
                     title: 'Success',
                 });
+                setValue(defaultValue);
             },
             onError(error) {
                 if (isAxiosError(error)) {
