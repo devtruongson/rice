@@ -57,110 +57,124 @@ const GoEnrichmentBlog = () => {
                     {blogsDefault?.title}
                 </Text>
                 <Text mb={4}>
-                    Posted by {blogsDefault?.author} on {formatDate(blogsDefault?.createdAt)}
+                    Đăng bởi {blogsDefault?.author} on {formatDate(blogsDefault?.createdAt)}
                 </Text>
                 <Text fontSize={24} fontWeight={300} mb={4}>
                     {blogsDefault?.description}
                 </Text>
                 <Text mb={4}>
                     <Text as={'span'} fontWeight={600}>
-                        GO enrichment analysis
+                        Phân tích làm giàu GO
                     </Text>{' '}
-                    uses statistical tests to determine if a set of provided genes are statistically different than a
-                    comparison set (typically, the set of all genes in the organism), for each of the three main gene
-                    ontology aspects.
+                    sử dụng các thử nghiệm thống kê để xác định xem một tập hợp các gen được cung cấp có khác biệt về
+                    mặt thống kê so với một tập hợp so sánh (thường là tập hợp tất cả các gen trong sinh vật) hay không,
+                    đối với mỗi một trong ba khía cạnh chính của thuật ngữ học gen.
                 </Text>
                 <Text mb={4}>
                     <LinkCustom
-                        content="Gene Ontology (GO)"
+                        content="Bản thể học gen (GO)"
                         path="https://geneontology.org/docs/ontology-documentation/"
                         isBlank
                         as="span"
                     />{' '}
-                    is a classification system that describes three aspects of gene function:
+                    là một hệ thống phân loại mô tả ba khía cạnh của chức năng gen:
                 </Text>
                 <UnorderedList mb={3}>
                     <ListItem>
-                        Molecular Function, describing activities such as catalytic activity or finer-scale activities
-                        such as lipoprotein lipase activity;
+                        Chức năng phân tử, mô tả các hoạt động như hoạt động xúc tác hoặc các hoạt động ở quy mô nhỏ hơn
+                        như hoạt động của lipoprotein lipase;
                     </ListItem>
                     <ListItem>
-                        Cellular Component, describing cellular components such as the cytoskeleton, or finer-scale
-                        locations such as centrosome;
+                        Thành phần tế bào, mô tả các thành phần tế bào như bộ khung tế bào, hoặc các vị trí ở quy mô nhỏ
+                        hơn như trung thể;
                     </ListItem>
                     <ListItem>
-                        Biological Process, describing biological programs such as signal transduction, or finer-scale
-                        processes such as protein serine/threonine kinase activity.
+                        Quá trình sinh học, mô tả các chương trình sinh học như truyền tín hiệu hoặc các quá trình ở quy
+                        mô nhỏ hơn như hoạt động của protein serine/threonine kinase.
                     </ListItem>
                 </UnorderedList>
-                <Text mb={6}>{personalBrand} offers two methods for calculating GO enrichment.</Text>
+                <Text mb={6}>{personalBrand} cung cấp hai phương pháp để tính toán mức độ làm giàu GO.</Text>
                 <Text fontSize={36} fontWeight={300} mb={4}>
-                    1. Use the custom service at the Cassava tools page
+                    1. Sử dụng dịch vụ tùy chỉnh tại trang công cụ Cassava{' '}
                 </Text>
                 <Text mb={6}>
                     {
-                        'The <a href=”/tools/analysis/go.html target=”_blank>tools/analysis/go.html</a> page offers services for annotating your gene list with GO accessions and for calculating GO enrichment, using the method described in Morales et al. (2013). The gene IDs need to be from the Wm82.a4.v1 assembly and annotation (aka Wm82.gnm4.ann1). Try the provided sample identifiers at the page to see the results.'
+                        'Trang <a href=”/tools/analysis/go.html target=”_blank>tools/analysis/go.html</a> cung cấp các dịch vụ để chú thích danh sách gen của bạn với các bản ghi GO và để tính toán sự làm giàu GO, sử dụng phương pháp được mô tả trong Morales et al. (2013). ID gen cần phải từ tập hợp và chú thích Wm82.a4.v1 (hay còn gọi là Wm82.gnm4.ann1). Hãy thử các định danh mẫu được cung cấp tại trang để xem kết quả.'
                     }
                 </Text>
                 <Text fontSize={36} fontWeight={300} mb={4}>
-                    2. Use the GO enrichment tool at GlycineMine.
+                    2. Sử dụng công cụ làm giàu GO tại GlycineMine.
                 </Text>
                 <Text mb={6}>
-                    At GlycineMine, enrichment can be calculated for genes from ANY Glycine accession and annotation in
-                    GlycineMine (there are more than 50 annotation sets as of mid-2024).
+                    Tại GlycineMine, có thể tính toán sự làm giàu cho các gen từ BẤT KỲ nguồn gốc Glycine nào và chú
+                    thích trong GlycineMine (có hơn 50 bộ chú thích tính đến giữa năm 2024).
                     <br />
-                    Here are the steps:
+                    Sau đây là các bước thực hiện:{' '}
                 </Text>
 
                 <Text fontSize={24} fontWeight={300} mb={4}>
-                    1. Enter a gene list under Analyze a List.
+                    1. Nhập danh sách gen vào mục Phân tích danh sách.
                 </Text>
                 <Text mb={4}>
-                    Open GlycineMine, and paste a list of genes in the central box (“Analyze a List”). The list can
-                    consist of un-prefixed gene IDs such as Glyma.01G022700, but if that gene exists in multiple
-                    assemblies or annotation sets, you will see an intermediate page in which you will be asked to
-                    select which genes you want to analyze. Therefore, it is generally best to prefix your identifiers
-                    with the following four, dot-separated fields:
+                    Mở GlycineMine và dán danh sách gen vào hộp trung tâm (“Phân tích danh sách”). Danh sách có thể bao
+                    gồm các ID gen không có tiền tố như Glyma.01G022700, nhưng nếu gen đó tồn tại trong nhiều bộ lắp ráp
+                    hoặc bộ chú thích, bạn sẽ thấy một trang trung gian trong đó bạn sẽ được yêu cầu chọn gen nào bạn
+                    muốn phân tích. Do đó, nói chung, tốt nhất là thêm tiền tố cho các mã định danh của bạn bằng bốn
+                    trường sau, được phân tách bằng dấu chấm:
                     Genusspecies.Accession.Assemblyversion.Annotationversion.GeneID glyma.Wm82.gnm4.ann1.Glyma.01G022700
                 </Text>
                 <Text mb={6}>
-                    Also note that the identifiers should be gene IDs rather than mRNAs these are typically
-                    distinguished by a numeric suffix. That is: use gene Glyma.01G022700 rather than mRNA
-                    Glyma.01G022700.1
+                    Ngoài ra, lưu ý rằng các định danh phải là ID gen chứ không phải mRNA, chúng thường được phân biệt
+                    bằng hậu tố số. Nghĩa là: sử dụng gen Glyma.01G022700 thay vì mRNA Glyma.01G022700.1
                 </Text>
 
                 <Text fontSize={24} fontWeight={300} mb={4}>
-                    2. Name and save the list.
+                    2. Đặt tên và lưu danh sách.{' '}
                 </Text>
                 <Text mb={6}>
-                    You can use the provided name if you wish (based on date and time), or you can give it a more
-                    meaningful name. Then click the green “Save a list of 10 Genes” button. (Note that if you register
-                    with GlycineMine you will be able to save your gene list so that you can use the same list over and
-                    over again on the same tool or use that list on various GlycineMine tools.)
+                    Bạn có thể sử dụng tên được cung cấp nếu muốn (dựa trên ngày và giờ), hoặc bạn có thể đặt cho nó một
+                    tên có ý nghĩa hơn. Sau đó, nhấp vào nút màu xanh lá cây "Lưu danh sách 10 gen". (Lưu ý rằng nếu bạn
+                    đăng ký với GlycineMine, bạn sẽ có thể lưu danh sách gen của mình để có thể sử dụng cùng một danh
+                    sách nhiều lần trên cùng một công cụ hoặc sử dụng danh sách đó trên nhiều công cụ GlycineMine khác
+                    nhau.)
                 </Text>
 
                 <Text fontSize={24} fontWeight={300} mb={4}>
-                    3. Examine the Gene Ontology Enrichment results.
+                    3. Kiểm tra kết quả làm giàu Gene Ontology.{' '}
                 </Text>
                 <Text mb={4}>
-                    The report page will give descriptive information about each gene; and near the bottom of the page
-                    are four reports: “Gene Ontology Enrichment”, “Gene Family Enrichment”, “Pathway Enrichment”, and
-                    “Chromosome Distribution”.
+                    Trang báo cáo sẽ cung cấp thông tin mô tả về từng gen; và gần cuối trang là bốn báo cáo: “Làm giàu
+                    bản thể gen”, “Làm giàu họ gen”, “Làm giàu đường dẫn” và “Phân phối nhiễm sắc thể”.
                 </Text>
                 <Text mb={4}>
-                    In the “Gene Ontology Enrichment” box, be sure to check each ontology aspect that you wich to
-                    evaluate:
+                    Trong hộp “Làm giàu bản thể học gen”, hãy đảm bảo kiểm tra từng khía cạnh bản thể học mà bạn muốn
+                    đánh giá:
                 </Text>
                 <UnorderedList mb={4}>
-                    <ListItem>biological_process</ListItem>
-                    <ListItem>cellular_component</ListItem>
-                    <ListItem>molecular_function</ListItem>
+                    <ListItem>quá trình sinh học</ListItem>
+                    <ListItem>thành phần di động</ListItem>
+                    <ListItem>chức năng phân tử</ListItem>
                 </UnorderedList>
-                <Text mb={8}>It is common for a set of genes to show enrichment for one aspect and not others.</Text>
+                <Text mb={8}>
+                    Thông thường, một tập hợp gen sẽ biểu hiện sự phong phú ở một khía cạnh này nhưng không biểu hiện ở
+                    những khía cạnh khác.
+                </Text>
                 <Divider mb={6} />
-                <ListCommon label="List 1" button="Results for List 1, showing `biological_process`" data={listOne} />
-                <ListCommon label="List 2" button="Results for List 1, showing `cellular_component`" data={listTwo} />
-                <ListCommon label="List 3" button="Results for List 1, showing `molecular_function`" data={listThree} />
+                <ListCommon
+                    label="Danh sách 1"
+                    button="Kết quả cho Danh sách 1, hiển thị `biological_process`"
+                    data={listOne}
+                />
+                <ListCommon
+                    label="Danh sách 2"
+                    button="Kết quả cho Danh sách 1, hiển thị `cellular_component`"
+                    data={listTwo}
+                />
+                <ListCommon
+                    label="Danh sách 3"
+                    button="Kết quả cho Danh sách 1, hiển thị `molecular_function`"
+                    data={listThree}
+                />
             </Box>
         </BasicTemplate>
     );

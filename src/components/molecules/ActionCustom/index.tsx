@@ -20,7 +20,7 @@ const ActionCustom = ({ actionDelete, actionEdit, actionShow }: Props) => {
                     variant="variants"
                     onClick={actionShow}
                 >
-                    Show
+                    Xem chi tiết
                 </Button>
             )}
 
@@ -32,7 +32,7 @@ const ActionCustom = ({ actionDelete, actionEdit, actionShow }: Props) => {
                 variant="variants"
                 onClick={actionDelete}
             >
-                Delete
+                Xóa
             </Button>
             <Button
                 leftIcon={<Icon as={icons.pen} />}
@@ -42,7 +42,7 @@ const ActionCustom = ({ actionDelete, actionEdit, actionShow }: Props) => {
                 variant="variants"
                 onClick={actionEdit}
             >
-                Edit
+                Cập nhật
             </Button>
         </HStack>
     );

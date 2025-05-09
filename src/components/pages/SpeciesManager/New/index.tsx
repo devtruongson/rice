@@ -23,10 +23,12 @@ const New = () => {
     const [searchParams] = useSearchParams();
     const isEditPage = useMemo(() => pathname.includes('/edit'), [pathname]);
 
+    // Lấy thông tin species 
     const { data } = useGetSpeci({
         id: searchParams.get('id') || '',
     });
 
+    // Tạo species 
     const create = useCreateSpecies({
         mutationConfig: {
             onSuccess() {
@@ -47,6 +49,7 @@ const New = () => {
         },
     });
 
+    // Cập nhật species 
     const update = useUpdateSpecies({
         mutationConfig: {
             onSuccess() {
@@ -67,6 +70,7 @@ const New = () => {
         },
     });
 
+    // Validate dữ liệu 
     const handleValidate = useCallback(() => {
         if (!value.name) {
             toast({ status: 'warning', title: 'Vui lòng điền đủ thông tin' });
@@ -75,6 +79,7 @@ const New = () => {
         return true;
     }, [value]);
 
+    // Tạo species 
     const handleCreate = () => {
         const isValid = handleValidate();
         if (!isValid) {
@@ -84,6 +89,7 @@ const New = () => {
         create.mutate(value);
     };
 
+    // Cập nhật species 
     const handleEdit = useCallback(() => {
         const isValid = handleValidate();
         if (!isValid || !data?.data?._id) return;
@@ -93,6 +99,7 @@ const New = () => {
         });
     }, [data, value]);
 
+    // Set value khi có dữ liệu 
     useEffect(() => {
         if (data?.data) {
             const species = data.data as SpeciesResType;
@@ -106,14 +113,15 @@ const New = () => {
         <HStack justifyContent="center">
             <Box w="80%" rounded={4} boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" p={5}>
                 <Text textAlign="start" fontSize={20} fontWeight={500} textTransform="uppercase" mb={8}>
-                    {isEditPage ? 'Edit Species' : 'Create new Species'}
+                    {isEditPage ? 'Cập nhật Species' : 'Tạo Species'}
                 </Text>
                 <Divider borderWidth={1} />
                 <Grid templateColumns="repeat(3, 1fr)" gap={10} mb={10} pt={4} px={6}>
+                    {/* Input tên species */}
                     <GridItem colSpan={2}>
                         <BasicInput
-                            label="name Species"
-                            placeholder="Enter name species"
+                            label="Tên Species"
+                            placeholder="Nhập tên species"
                             value={value.name}
                             onChange={(event) => {
                                 setValue({ ...value, name: event.target.value });
@@ -121,8 +129,9 @@ const New = () => {
                         />
                     </GridItem>
                     <GridItem pt={9}>
+                        {/* Button tạo hoặc cập nhật species */}
                         <Button onClick={isEditPage ? handleEdit : handleCreate} bg={colors.brand} color="white">
-                            {isEditPage ? 'Edit' : 'Create'}
+                            {isEditPage ? 'Lưu thay đổi' : 'Tạo'}
                         </Button>
                     </GridItem>
                 </Grid>

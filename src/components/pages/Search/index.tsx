@@ -28,6 +28,7 @@ const Search = () => {
     const pageSize = useMemo(() => Number(getParam('pageSize', '10')), [searchParams]);
     // const [urlModal, setUrlModal] = useState('');
 
+    // Lấy thông tin filter 
     const filterParams = useMemo(
         () => ({
             species: getParam('species'),
@@ -38,6 +39,8 @@ const Search = () => {
         }),
         [searchParams],
     );
+
+    // Lấy danh sách species 
     const { data } = useGetSpecies({});
     const speciesOptions = useMemo(
         () =>
@@ -48,6 +51,7 @@ const Search = () => {
         [data],
     );
 
+    // Lấy danh sách strain 
     const { data: strainData } = useGetStrains({});
     const strainOptions = useMemo(
         () =>
@@ -58,6 +62,7 @@ const Search = () => {
         [strainData],
     );
 
+    // Lấy danh sách gene 
     const { data: geneData } = useGetGenes({
         rest: { page: page, pageSize: pageSize, ...filterParams },
     });
@@ -75,6 +80,7 @@ const Search = () => {
         [geneData],
     );
 
+    // Xử lý tìm kiếm 
     const handleSearch = () => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const filteredParams = Object.fromEntries(Object.entries(dataFilter).filter(([_, value]) => value !== ''));
@@ -85,23 +91,23 @@ const Search = () => {
         });
     };
 
+    // Set value khi có dữ liệu 
     useEffect(() => {
         setDataFilter({ ...dataFilter, ...filterParams });
     }, [filterParams]);
-
-    console.log(dataFilter);
 
     return (
         <BasicTemplate size="medium">
             <Box>
                 <Text fontSize={24} mb={10}>
-                    Trait Association Search
+                    Tìm kiếm Gene{' '}
                 </Text>
                 <Box>
                     <Grid templateColumns="repeat(3, 1fr)" gap={6} alignItems="flex-end" mb={4}>
                         <GridItem>
+                            {/* Select chi */}
                             <BasicSelect
-                                label="Genus"
+                                label="Chi"
                                 placeholder="Manihot"
                                 value={''}
                                 onChange={() => {}}
@@ -110,92 +116,100 @@ const Search = () => {
                             />
                         </GridItem>
                         <GridItem>
+                            {/* Select giống loài */}
                             <BasicSelect
-                                label="Species"
-                                placeholder="Choose Species"
+                                label="Giống loài"
+                                placeholder="Chọn loài"
                                 value={dataFilter.species}
                                 onChange={(e) => setDataFilter({ ...dataFilter, species: e.target.value })}
                                 options={speciesOptions}
                             />
                         </GridItem>
                         <GridItem>
+                            {/* Select huyết thống */}
                             <BasicSelect
-                                label="Strain"
-                                placeholder="Choose Strain"
+                                label="huyết thống"
+                                placeholder="Chọn huyết thống"
                                 value={dataFilter.strain}
                                 onChange={(e) => setDataFilter({ ...dataFilter, strain: e.target.value })}
                                 options={strainOptions}
                             />
                         </GridItem>
                         <GridItem>
+                            {/* Input mã định danh */}
                             <BasicInput
-                                label="Identifier"
-                                placeholder="Enter identifier"
+                                label="Mã định danh"
+                                placeholder="Nhập mã định danh"
                                 value={dataFilter.identifier}
                                 onChange={(e) => setDataFilter({ ...dataFilter, identifier: e.target.value })}
                             />
                         </GridItem>
                         <GridItem>
+                            {/* Input mô tả */}
                             <BasicInput
-                                label="Description"
-                                placeholder="Enter description"
+                                label="Mô tả"
+                                placeholder="Nhập mô tả"
                                 value={dataFilter.description}
                                 onChange={(e) => setDataFilter({ ...dataFilter, description: e.target.value })}
                             />
                         </GridItem>
                         <GridItem>
+                            {/* Input ID họ gen */}
                             <BasicInput
-                                label="Gene Family ID"
-                                placeholder="Enter gene family ID"
+                                label="ID họ gen"
+                                placeholder="Nhập ID họ gen"
                                 value={dataFilter.gene_family}
                                 onChange={(e) => setDataFilter({ ...dataFilter, gene_family: e.target.value })}
                             />
                         </GridItem>
                     </Grid>
                     <Flex mb={4}>
-                        <ButtonCustom text="Search" action={handleSearch} />
+                        {/* Button tìm kiếm */}
+                        <ButtonCustom text="Tìm kiếm" action={handleSearch} />
                     </Flex>
+                    {/* Table gene */}
                     <TableCusTom
                         columns={[
                             {
                                 key: 'name',
-                                label: 'Name',
+                                label: 'Tên',
                             },
                             {
                                 key: 'identifier',
-                                label: 'Identifier',
+                                label: 'Mã định danh',
                             },
                             {
                                 key: 'location',
-                                label: 'Location',
+                                label: 'Vị trí',
                             },
                             {
                                 key: 'description',
-                                label: 'Description',
+                                label: 'Miêu tả',
                             },
                             {
                                 key: 'gene_family',
-                                label: 'Gene Family Assignments',
+                                label: 'Bài tập về họ gen',
                             },
                             {
                                 key: 'pan_gene_sets',
-                                label: 'PanGene Sets',
+                                label: 'Bộ PanGene',
                             },
                             {
                                 key: 'genus',
-                                label: 'Genus',
+                                label: 'Chi',
                             },
                             {
                                 key: 'species',
-                                label: 'Species',
+                                label: 'Giống loài',
                             },
                             {
                                 key: 'strain',
-                                label: 'Strain',
+                                label: 'huyết thống',
                             },
                         ]}
                         data={genes}
                     />
+                    {/* Pagination */}
                     <Pagination currentPage={page} totalPage={geneData?.data?.totalPages || 1} />
                 </Box>
             </Box>

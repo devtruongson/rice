@@ -30,15 +30,20 @@ const Manager = () => {
     const [searchParams] = useSearchParams();
     const page = useMemo(() => Number(searchParams.get('page')) || 1, [searchParams]);
     const pageSize = useMemo(() => Number(searchParams.get('pageSize')) || 10, [searchParams]);
+
+    // Lấy danh sách PanGeneSet 
     const { data, refetch } = useGetPanGeneSets({
         rest: { type: '', page: page, pageSize: pageSize },
     });
+
+    // Đóng mở modal confirm xóa PanGeneSet 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [idDel, setIdDel] = useState<string | null>(null);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const cancelRef = useRef<any>(null);
 
+    // Build data table 
     const panGeneSets = useMemo(
         () =>
             data?.data?.data?.map((item: PanGeneSetResType) => {
@@ -63,6 +68,7 @@ const Manager = () => {
 
     return (
         <Box>
+            {/* Modal confirm xóa PanGeneSet */}
             <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
                 <AlertDialogOverlay>
                     <AlertDialogContent borderRadius="md" boxShadow="xl">
@@ -116,7 +122,7 @@ const Manager = () => {
 
             <Box bg={bgCard} borderRadius="lg" boxShadow="md" p={5} borderWidth="1px" borderColor={borderColor}>
                 <Flex justifyContent="space-between" alignItems="center" mb={4}>
-                    <Heading size="md">Pan Gene Set Manager</Heading>
+                    <Heading size="md">Quản lý PanGene Set</Heading>
                     <Button
                         colorScheme="blue"
                         onClick={() => navigate(routesMap.PanGeneSet.replace('/*', '/new'))}
@@ -126,15 +132,17 @@ const Manager = () => {
                     </Button>
                 </Flex>
 
+                {/* Table PanGeneSet */}
                 <TableCusTom
                     columns={[
-                        { key: 'name', label: 'Name', w: '10%' },
-                        { key: 'path_detail', label: 'Path Detail', w: '20%' },
+                        { key: 'name', label: 'Tên', w: '10%' },
+                        { key: 'path_detail', label: 'link chi tiết', w: '20%' },
                         { key: 'action', label: '', w: '15%' },
                     ]}
                     data={panGeneSets}
                 />
 
+                {/* Pagination */}
                 <Box mt={4}>
                     <Pagination currentPage={data?.data?.page || 1} totalPage={data?.data?.totalPages || 1} />
                 </Box>

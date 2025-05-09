@@ -46,10 +46,12 @@ const New = () => {
     const headerBg = useColorModeValue('blue.50', 'blue.900');
     const buttonColorScheme = isEditPage ? 'green' : 'blue';
 
+    // Lấy thông tin họ gene 
     const { data } = useGetGeneFamily({
         id: searchParams.get('id') || '',
     });
 
+    // Tạo họ gene 
     const create = useCreateGeneFamily({
         mutationConfig: {
             onSuccess() {
@@ -70,6 +72,7 @@ const New = () => {
         },
     });
 
+    // Cập nhật họ gene 
     const update = useUpdateGeneFamily({
         mutationConfig: {
             onSuccess() {
@@ -90,6 +93,7 @@ const New = () => {
         },
     });
 
+    // Validate dữ liệu 
     const handleValidate = useCallback(() => {
         if (!value.name || !value.path_detail[0] || !value.path_detail[1]) {
             toast({
@@ -101,6 +105,7 @@ const New = () => {
         return true;
     }, [value]);
 
+    // Tạo họ gene 
     const handleCreate = () => {
         const isValid = handleValidate();
         if (!isValid) {
@@ -110,6 +115,7 @@ const New = () => {
         create.mutate(value);
     };
 
+    // Cập nhật họ gene 
     const handleEdit = useCallback(() => {
         const isValid = handleValidate();
         if (!isValid || !data?.data?._id) return;
@@ -119,6 +125,7 @@ const New = () => {
         });
     }, [data, value]);
 
+    // Set value khi có dữ liệu 
     useEffect(() => {
         if (data?.data) {
             const geneFamily = data.data as GeneFamilyResType;
@@ -129,6 +136,7 @@ const New = () => {
         }
     }, [data]);
 
+    // Loading 
     const isLoading = isEditPage ? update.isLoading : create.isLoading;
 
     return (
@@ -149,17 +157,18 @@ const New = () => {
                             boxSize={5}
                             color={isEditPage ? 'green.500' : 'blue.500'}
                         />
-                        <Heading size="md">{isEditPage ? 'Edit Gene Family' : 'Create New Gene Family'}</Heading>
+                        <Heading size="md">{isEditPage ? 'Chỉnh sửa họ gen' : 'Tạo họ gen mới'}</Heading>
                     </Flex>
                 </Box>
 
                 <CardBody py={6}>
                     <Stack spacing={6}>
                         <FormControl>
-                            <FormLabel fontWeight="medium">Gene Family Name</FormLabel>
+                            <FormLabel fontWeight="medium">Tên họ gen</FormLabel>
+                            {/* Input tên họ gen */}
                             <BasicInput
                                 label=""
-                                placeholder="Enter gene family name"
+                                placeholder="Nhập tên họ gen"
                                 value={value.name}
                                 onChange={(event) => {
                                     setValue({ ...value, name: event.target.value });
@@ -172,10 +181,11 @@ const New = () => {
                         <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
                             <GridItem>
                                 <FormControl>
-                                    <FormLabel fontWeight="medium">View Tree Path</FormLabel>
+                                    <FormLabel fontWeight="medium">Xem đường dẫn cây</FormLabel>
+                                    {/* Input đường dẫn cây xem */}
                                     <BasicInput
                                         label=""
-                                        placeholder="Enter view tree path"
+                                        placeholder="Đường dẫn cây xem"
                                         value={value.path_detail[0]}
                                         onChange={(event) => {
                                             setValue({
@@ -189,10 +199,11 @@ const New = () => {
 
                             <GridItem>
                                 <FormControl>
-                                    <FormLabel fontWeight="medium">View Report Path</FormLabel>
+                                    <FormLabel fontWeight="medium">Đường dẫn báo cáo</FormLabel>
+                                    {/* Input đường dẫn báo cáo */}
                                     <BasicInput
                                         label=""
-                                        placeholder="Enter view report path"
+                                        placeholder="Nhập đường dẫn xem báo cáo"
                                         value={value.path_detail[1]}
                                         onChange={(event) => {
                                             setValue({
@@ -207,16 +218,17 @@ const New = () => {
                     </Stack>
 
                     <Flex justifyContent="flex-end" mt={8}>
+                        {/* Button tạo hoặc cập nhật họ gen */}
                         <Button
                             onClick={isEditPage ? handleEdit : handleCreate}
                             colorScheme={buttonColorScheme}
                             size="md"
                             leftIcon={<Icon as={isEditPage ? FaSave : FaPlus} />}
                             isLoading={isLoading}
-                            loadingText={isEditPage ? 'Updating' : 'Creating'}
+                            loadingText={isEditPage ? 'Cập nhật' : 'Tạo'}
                             px={6}
                         >
-                            {isEditPage ? 'Update' : 'Create'}
+                            {isEditPage ? 'Cập nhật' : 'Tạo'}
                         </Button>
                     </Flex>
                 </CardBody>

@@ -27,10 +27,12 @@ const PostNew = () => {
     const isEditPage = useMemo(() => pathname.includes('/edit'), [pathname]);
     const [value, setValue] = useState<CreatePostType>(defaultValue);
 
+    // Lấy thông tin bài viết 
     const { data } = useGetPost({
         id: searchParams.get('id') || '',
     });
 
+    // Tạo bài viết 
     const create = useCreatePost({
         mutationConfig: {
             onSuccess() {
@@ -51,6 +53,7 @@ const PostNew = () => {
         },
     });
 
+    // Cập nhật bài viết 
     const update = useUpdatePost({
         mutationConfig: {
             onSuccess() {
@@ -71,6 +74,7 @@ const PostNew = () => {
         },
     });
 
+    // Validate dữ liệu 
     const handleValidate = useCallback(() => {
         if (!value.title || !value.sub_title || !value.description || !value.type) {
             toast({ status: 'warning', title: 'Vui lòng điền đủ thông tin' });
@@ -79,12 +83,14 @@ const PostNew = () => {
         return true;
     }, [value]);
 
+    // Tạo bài viết 
     const handleCreate = () => {
         const isValid = handleValidate();
         if (!isValid) return;
         create.mutate(value);
     };
 
+    // Cập nhật bài viết 
     const handleEdit = useCallback(() => {
         const isValid = handleValidate();
         if (!isValid || !data?.data?._id) return;
@@ -94,6 +100,7 @@ const PostNew = () => {
         });
     }, [data, value]);
 
+    // Set value khi có dữ liệu 
     useEffect(() => {
         if (data?.data) {
             const post = data.data as PostType;
@@ -110,45 +117,50 @@ const PostNew = () => {
     return (
         <Box bg="white" borderWidth="1px" borderRadius="lg" boxShadow="md" p={8}>
             <Text textAlign="center" fontSize={24} fontWeight="bold" color="gray.800" textTransform="uppercase" mb={6}>
-                {isEditPage ? 'Edit' : 'Create'}
+                {isEditPage ? 'Chỉnh sửa' : 'Tạo mới'}
             </Text>
             <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }} gap={6} mb={10}>
                 <GridItem>
+                    {/* Input tiêu đề */}
                     <BasicInput
-                        label="title"
+                        label="tiêu đề"
                         placeholder="Nhập tên bài viết ...."
                         value={value.title}
                         onChange={(event) => setValue({ ...value, title: event.target.value })}
                     />
                 </GridItem>
                 <GridItem>
+                    {/* Input phụ đề */}
                     <BasicInput
-                        label="sub title"
-                        placeholder="Nhập sub title cho bài viết của bạn ...."
+                        label="phụ đề"
+                        placeholder="Nhập phụ đề cho bài viết của bạn ...."
                         value={value.sub_title}
                         onChange={(event) => setValue({ ...value, sub_title: event.target.value })}
                     />
                 </GridItem>
                 <GridItem>
+                    {/* Input tác giả */}
                     <BasicInput
-                        label="author"
+                        label="tác giả"
                         placeholder="Nhập tên tác giả của bạn ..."
                         value={value.author}
                         onChange={(event) => setValue({ ...value, author: event.target.value })}
                     />
                 </GridItem>
                 <GridItem>
+                    {/* Select kiểu */}
                     <BasicSelect
-                        label="Paper type"
-                        placeholder="choose type"
+                        label="kiểu"
+                        placeholder="chọn kiểu"
                         value={value.type}
                         options={typePost}
                         onChange={(event) => setValue({ ...value, type: event.target.value })}
                     />
                 </GridItem>
                 <GridItem colSpan={2}>
+                    {/* Textarea mô tả */}
                     <Text fontSize="sm" fontWeight="medium" color="gray.600" mb={3}>
-                        Description
+                        Mô tả
                     </Text>
                     <Textarea
                         placeholder="Nhập mô tả cho bài viết của bạn....."
@@ -160,12 +172,13 @@ const PostNew = () => {
                 </GridItem>
             </Grid>
             <Flex justifyContent="end">
+                {/* Button tạo hoặc cập nhật bài viết */}
                 <Button
                     onClick={isEditPage ? handleEdit : handleCreate}
                     colorScheme="blue"
                     w={{ base: 'full', md: 'auto' }}
                 >
-                    {isEditPage ? 'Edit' : 'Create'}
+                    {isEditPage ? 'Cập nhật' : 'Tạo'}
                 </Button>
             </Flex>
         </Box>

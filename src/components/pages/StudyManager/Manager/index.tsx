@@ -32,11 +32,16 @@ const Manager = () => {
     const [searchParams] = useSearchParams();
     const page = useMemo(() => Number(searchParams.get('page')) || 1, [searchParams]);
     const pageSize = useMemo(() => Number(searchParams.get('pageSize')) || 10, [searchParams]);
+
+    // Đóng mở modal confirm xóa study 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [idDelete, setIdDelete] = useState<string>('');
+
+    // Đóng mở modal chi tiết study 
     const { isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal } = useDisclosure();
     const [indexShow, setIndexShow] = useState(0);
 
+    // Xóa study 
     const deleteSpecies = useDeleteStudy({
         mutationConfig: {
             onSuccess() {
@@ -58,7 +63,9 @@ const Manager = () => {
         },
     });
 
+    // Lấy danh sách study 
     const { data, refetch } = useGetStudies({ rest: { page: page, pageSize: pageSize } });
+    // build data table 
     const studies = useMemo(
         () =>
             data?.data?.data?.map((item: StudyResType, index: number) => {
@@ -87,25 +94,28 @@ const Manager = () => {
         <HStack justifyContent="center">
             <Box w="100%" rounded={4} boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" p={5}>
                 <Text textAlign="start" fontSize={20} fontWeight={500} textTransform="uppercase" mb={8}>
-                    Study Manager
+                    Quản lý nghiên cứu
                 </Text>
                 <Divider borderWidth={1} />
+                {/* Table study */}
                 <TableCusTom
                     mt={4}
                     columns={[
-                        { key: 'study_name', label: 'Study Name', w: '20%' },
+                        { key: 'study_name', label: 'Tên nghiên cứu', w: '20%' },
                         { key: 'study_type', label: 'Type', w: '10%' },
                         // { key: 'publication_id', label: 'Publication ID', w: '10%' },
-                        { key: 'author', label: 'Author', w: '20%' },
-                        { key: 'synopsis', label: 'Synopsis', w: '20%' },
+                        { key: 'author', label: 'Tác giả', w: '20%' },
+                        { key: 'synopsis', label: 'Tóm tắt', w: '20%' },
                         // { key: 'genotypes', label: 'Genotypes', w: '10%' },
                         { key: 'action', label: '', w: '30%' },
                     ]}
                     data={studies}
                 />
 
+                {/* Pagination study */}
                 <Pagination currentPage={data?.data?.page || 1} totalPage={data?.data?.totalPages || 1} />
 
+                {/* Modal chi tiết study */}
                 <Modal isOpen={isOpenModal} onClose={onCloseModal} size="4xl">
                     <ModalOverlay />
                     <ModalContent>
@@ -126,6 +136,7 @@ const Manager = () => {
                             </Box>
                         </ModalBody>
 
+                        {/* Button close modal */}      
                         <ModalFooter>
                             <Button colorScheme="blue" mr={3} onClick={onCloseModal}>
                                 Close
@@ -134,6 +145,7 @@ const Manager = () => {
                     </ModalContent>
                 </Modal>
 
+                {/* Modal confirm xóa study */} 
                 <ConfirmDelete
                     header="Xóa Species"
                     title="Bạn chắc chắn muốn xóa Study, hành động này không thể khôi phục."

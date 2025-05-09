@@ -28,15 +28,20 @@ const PostManager = () => {
     const [searchParams] = useSearchParams();
     const page = useMemo(() => Number(searchParams.get('page')) || 1, [searchParams]);
     const pageSize = useMemo(() => Number(searchParams.get('pageSize')) || 10, [searchParams]);
+
+    // Lấy danh sách bài viết 
     const { data, refetch } = useGetPostByType({
         rest: { type: '', page: page, pageSize: pageSize },
     });
+
+    // Đóng mở modal confirm xóa bài viết 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [idDel, setIdDel] = useState<string | null>(null);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const cancelRef = useRef<any>(null);
 
+    // Build data table 
     const posts = useMemo(
         () =>
             data?.data?.data?.map((item: PostType) => {
@@ -59,6 +64,7 @@ const PostManager = () => {
 
     return (
         <Box bg="white" borderWidth="1px" borderRadius="lg" boxShadow="md" p={6}>
+            {/* Modal confirm xóa bài viết */}
             <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
                 <AlertDialogOverlay>
                     <AlertDialogContent>
@@ -103,15 +109,17 @@ const PostManager = () => {
                 </AlertDialogOverlay>
             </AlertDialog>
             <Text fontSize="2xl" fontWeight="bold" color="gray.800" mb={6}>
-                Post Manager
+                Quản lý bài đăng{' '}
             </Text>
+
+            {/* Table bài viết */}
             <TableCusTom
                 columns={[
-                    { key: 'title', label: 'Title', w: '10%' },
-                    { key: 'sub_title', label: 'Sub Title', w: '20%' },
-                    { key: 'author', label: 'Author', w: '10%' },
-                    { key: 'description', label: 'Description', w: '40%' },
-                    { key: 'type', label: 'Type', w: '5%' },
+                    { key: 'title', label: 'tiêu đề', w: '10%' },
+                    { key: 'sub_title', label: 'Phụ đề', w: '20%' },
+                    { key: 'author', label: 'Tác giả', w: '10%' },
+                    { key: 'description', label: 'Mô tả', w: '40%' },
+                    { key: 'type', label: 'Kiểu', w: '5%' },
                     { key: 'action', label: '', w: '15%' },
                 ]}
                 data={posts}
@@ -119,6 +127,7 @@ const PostManager = () => {
                 size="md"
             />
             <Flex justifyContent="center" mt={6}>
+                {/* Pagination */}
                 <Pagination currentPage={data?.data?.page || 1} totalPage={data?.data?.totalPages || 1} />
             </Flex>
         </Box>

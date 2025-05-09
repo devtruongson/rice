@@ -17,52 +17,36 @@ const Navbar = () => {
             top={HEADER_HEIGHT}
         >
             <Text mb={4} fontSize={20}>
-                Tools
+                Công cụ
             </Text>
-            <LabelCommon label="Analysis" />
-            <ItemCustom label="GO Enrichment Analysis" path={routesMap.Go} isBlank />
-            {/* <ItemCustom label="Northern Uniform Soybean Trials (NUST)" path={routesMap.Nust} /> */}
+            <LabelCommon label="Phân tích" />
+            <ItemCustom label="Phân tích làm giàu GO" path={routesMap.Go} isBlank />
 
             {/*  */}
-            <LabelCommon label="Download / Query" />
-            {/* <ItemCustom label="Datastore" path={routesMap.DataStore} /> */}
+            <LabelCommon label="Tải xuống / Truy vấn" />
             <ItemCustom label="GlycineMine" path="https://mines.legumeinfo.org/glycinemine/begin.do" isBlank />
             <ItemCustom
-                label="Data Overviews for soy genomic data"
+                label="Tổng quan dữ liệu cho dữ liệu bộ gen cây sắn"
                 path="https://dscensor.legumeinfo.org/multiqc-demo/genome_main:Glycine"
                 isBlank
             />
-            <ItemCustom label="Dscensor Cassava" path={routesMap.DscensorSoybase} />
+            <ItemCustom label="Sắn Dscensor" path={routesMap.DscensorSoybase} />
             <ItemCustom label="USDA Germplasm SoySNP50K" path={routesMap.GermplasmSoy} />
 
             {/*  */}
-            <LabelCommon label="Legacy tools" />
-            <ItemCustom label="GRIN Data Explorer" path="https://legacy.soybase.org/grindata/" isBlank />
-            <ItemCustom label="Gene Expression Explorer" path="https://legacy.soybase.org/experiments/" isBlank />
+            <LabelCommon label="Công cụ kế thừa" />
+            <ItemCustom label="Trình khám phá dữ liệu GRIN" path="https://legacy.soybase.org/grindata/" isBlank />
+            <ItemCustom label="Trình khám phá biểu hiện gen" path="https://legacy.soybase.org/experiments/" isBlank />
 
             {/*  */}
-            <LabelCommon label="Search" />
-            {/* <ItemCustom label="Gene-name translator" path={routesMap.GeneTranslation} /> */}
-            <ItemCustom label="Gene Search Tool" path={routesMap.Search} />
-            <ItemCustom label="Trait Search Tool" path={routesMap.TrainSearch} />
-            {/* <ItemCustom label="SoyCyc" path="/" /> */}
+            <LabelCommon label="Tìm kiếm" />
+            <ItemCustom label="Công cụ tìm kiếm gen" path={routesMap.Search} />
+            <ItemCustom label="Công cụ tìm kiếm đặc điểm" path={routesMap.TrainSearch} />
 
             {/*  */}
-            <LabelCommon label="Sequence search" />
-            <ItemCustom label="Cassava SequenceServer BLAST" path="/" />
-            <ItemCustom label="Annotate Your Sequences" path="/" />
-
-            {/*  */}
-            {/* <LabelCommon label="Visualize / Browse" />
-            <ItemCustom label="Genome browsers" path="/" />
-            <ItemCustom label="Genome Context Viewer for Glycine" path="/" />
-            <ItemCustom label="ZZBrowse GWAS/QTL" path="/" />
-            <ItemCustom label="CMap-js: Genetic Map Viewer" path="/" />
-            <ItemCustom label="LIS Germplasm GIS Viewer" path="/" />
-            <ItemCustom label="Expression Resources" path="/" />
-            <ItemCustom label="GCViT: SNP Comparison Tool" path="/" />
-            <ItemCustom label="Ontology" path="/" />
-            <ItemCustom label="Parentage" path="/" /> */}
+            <LabelCommon label="Tìm kiếm theo trình tự" />
+            <ItemCustom label="Máy chủ BLAST của Cassava Sequence" path="/" />
+            <ItemCustom label="Chú thích chuỗi của bạn" path="/" />
         </Box>
     );
 };

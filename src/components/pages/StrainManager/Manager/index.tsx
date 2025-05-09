@@ -35,6 +35,8 @@ import TableCusTom from '../../../molecules/Table';
 
 const Manager = () => {
     const navigate = useNavigate();
+
+    // Đóng mở modal confirm xóa strain  
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [idDel, setIdDel] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
@@ -47,7 +49,10 @@ const Manager = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const cancelRef = useRef<any>(null);
 
+    // Lấy danh sách strain 
     const { data, refetch } = useGetStrains({});
+
+    // Build data table 
     const strains = useMemo(
         () =>
             data?.data?.map((item: StrainResType) => {
@@ -77,6 +82,7 @@ const Manager = () => {
 
     return (
         <Box>
+            {/* Modal confirm xóa strain */}
             <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose} isCentered>
                 <AlertDialogOverlay>
                     <AlertDialogContent>
@@ -97,6 +103,7 @@ const Manager = () => {
                                 onClick={async () => {
                                     if (!idDel) return;
                                     try {
+                                        // Xóa strain 
                                         const res = await axios.delete(`/strain/${idDel}`);
 
                                         if (res.data.statusCode === HttpStatusCode.Ok) {
@@ -170,6 +177,7 @@ const Manager = () => {
                         </HStack>
                     </Flex>
 
+                    {/* Table strain */}
                     <TableCusTom
                         columns={[
                             { key: 'name', label: 'Tên Strain', w: '85%' },

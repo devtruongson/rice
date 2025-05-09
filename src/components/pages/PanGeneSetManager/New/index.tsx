@@ -23,10 +23,12 @@ const New = () => {
     const isEditPage = useMemo(() => pathname.includes('/edit'), [pathname]);
     const [value, setValue] = useState<PanGeneSetCreateType>(defaultValue);
 
+    // Lấy thông tin PanGeneSet 
     const { data } = useGetPanGeneSet({
         id: searchParams.get('id') || '',
     });
 
+    // Tạo PanGeneSet 
     const create = useCreatePanGeneSet({
         mutationConfig: {
             onSuccess() {
@@ -47,6 +49,7 @@ const New = () => {
         },
     });
 
+    // Cập nhật PanGeneSet 
     const update = useUpdatePanGeneSet({
         mutationConfig: {
             onSuccess() {
@@ -67,6 +70,7 @@ const New = () => {
         },
     });
 
+    // Validate dữ liệu 
     const handleValidate = useCallback(() => {
         if (!value.name || !value.path_detail) {
             toast({ status: 'warning', title: 'Vui lòng điền đủ thông tin' });
@@ -75,12 +79,14 @@ const New = () => {
         return true;
     }, [value]);
 
+    // Tạo PanGeneSet 
     const handleCreate = () => {
         const isValid = handleValidate();
         if (!isValid) return;
         create.mutate(value);
     };
 
+    // Cập nhật PanGeneSet 
     const handleEdit = useCallback(() => {
         const isValid = handleValidate();
         if (!isValid || !data?.data?._id) return;
@@ -90,6 +96,7 @@ const New = () => {
         });
     }, [data, value]);
 
+    // Set value khi có dữ liệu 
     useEffect(() => {
         if (data?.data) {
             const res = data.data as PanGeneSetResType;
@@ -125,16 +132,16 @@ const New = () => {
                     borderBottomWidth="1px"
                     borderColor={borderColor}
                 >
-                    {isEditPage ? 'Edit Pan Gene Set' : 'Create New Pan Gene Set'}
+                    {isEditPage ? 'Cập nhật PanGene Set' : 'Tạo PanGene Set'}
                 </Heading>
 
                 <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }} gap={6}>
                     <GridItem>
                         <FormControl isRequired>
-                            {/* <FormLabel fontWeight="medium">Name</FormLabel> */}
+                            {/* <FormLabel fontWeight="medium">Name</FormLabel> */}         
                             <BasicInput
-                                label="Name"
-                                placeholder="Enter name"
+                                label="Tên "
+                                placeholder="Nhập tên PanGene set"
                                 value={value.name}
                                 onChange={(event) => {
                                     setValue({ ...value, name: event.target.value });
@@ -145,9 +152,9 @@ const New = () => {
 
                     <GridItem>
                         <FormControl isRequired>
-                            {/* <FormLabel fontWeight="medium">Path Detail</FormLabel> */}
+                            {/* <FormLabel fontWeight="medium">Path Detail</FormLabel> */}  
                             <BasicInput
-                                label="Path Detail"
+                                label="Link chi tiết"
                                 placeholder="Enter path detail"
                                 value={value.path_detail}
                                 onChange={(event) => {
@@ -159,17 +166,19 @@ const New = () => {
                 </Grid>
 
                 <Flex justify="space-between" pt={4} borderTopWidth="1px" borderColor={borderColor}>
+                    {/* Button hủy bỏ */}
                     <Button variant="outline" onClick={() => navigate(routesMap.PanGeneSet.replace('/*', '/manager'))}>
-                        Cancel
+                        Hủy bỏ
                     </Button>
 
+                    {/* Button tạo hoặc cập nhật PanGeneSet */}
                     <Button
                         variant="outline"
                         colorScheme={buttonColorScheme}
                         onClick={isEditPage ? handleEdit : handleCreate}
                         isLoading={isEditPage ? update.isPending : create.isPending}
                     >
-                        {isEditPage ? 'Save Changes' : 'Create'}
+                        {isEditPage ? 'Lưu thay đổi' : 'Tạo'}
                     </Button>
                 </Flex>
             </VStack>

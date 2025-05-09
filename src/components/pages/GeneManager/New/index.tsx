@@ -48,10 +48,12 @@ const New = () => {
     const isEditPage = useMemo(() => pathname.includes('/edit'), [pathname]);
     const [value, setValue] = useState<GeneCreateType>(defaultValue);
 
+    // Lấy thông tin gene 
     const { data } = useGetGene({
         id: searchParams.get('id') || '',
     });
 
+    // Tạo gene 
     const create = useCreateGene({
         mutationConfig: {
             onSuccess() {
@@ -72,6 +74,7 @@ const New = () => {
         },
     });
 
+    // Cập nhật gene 
     const update = useUpdateGene({
         mutationConfig: {
             onSuccess() {
@@ -92,6 +95,7 @@ const New = () => {
         },
     });
 
+    // Validate dữ liệu 
     const handleValidate = useCallback(() => {
         if (!value.name) {
             toast({ status: 'warning', title: 'Vui lòng điền đủ thông tin' });
@@ -100,12 +104,14 @@ const New = () => {
         return true;
     }, [value]);
 
+    // Tạo gene 
     const handleCreate = () => {
         const isValid = handleValidate();
         if (!isValid) return;
         create.mutate(value);
     };
 
+    // Cập nhật gene 
     const handleEdit = useCallback(() => {
         const isValid = handleValidate();
         if (!isValid || !data?.data?._id) return;
@@ -115,6 +121,7 @@ const New = () => {
         });
     }, [data, value]);
 
+    // Lấy danh sách họ gene 
     const { data: geneFamilyData } = useGetAllGeneFamily({});
     const geneFamilyOptions = useMemo(
         () =>
@@ -125,6 +132,7 @@ const New = () => {
         [geneFamilyData],
     );
 
+    // Lấy danh sách PangeneSet 
     const { data: panGeneSetData } = useGetAllPanGeneSet({});
     const panGeneSetOptions = useMemo(
         () =>
@@ -135,6 +143,7 @@ const New = () => {
         [panGeneSetData],
     );
 
+    // Lấy danh sách strain 
     const { data: strainData } = useGetStrains({});
     const strainOptions = useMemo(
         () =>
@@ -145,6 +154,7 @@ const New = () => {
         [strainData],
     );
 
+    // Lấy danh sách species 
     const { data: speciesData } = useGetSpecies({});
     const speciesOptions = useMemo(
         () =>
@@ -155,6 +165,7 @@ const New = () => {
         [speciesData],
     );
 
+    // Set value khi có dữ liệu 
     useEffect(() => {
         if (data?.data) {
             const res = data.data as GeneResType;
@@ -168,20 +179,22 @@ const New = () => {
         <HStack justifyContent="center">
             <Box w="80%" rounded={4} boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" p={5}>
                 <Text textAlign="start" fontSize={20} fontWeight={500} textTransform="uppercase" mb={8}>
-                    {isEditPage ? 'Edit Species' : 'Create new Species'}
+                    {isEditPage ? 'Cập nhật Gene' : 'Tạo Gene'}
                 </Text>
                 <Divider borderWidth={1} mb={6} />
                 <Grid templateColumns="repeat(2, 1fr)" gap={10} mb={10}>
+                    {/* Input tên gene */}
                     <GridItem>
                         <BasicInput
-                            label="name"
-                            placeholder="name"
+                            label="Tên Gene"
+                            placeholder="Nhập tên gene"
                             value={value.name}
                             onChange={(event) => {
                                 setValue({ ...value, name: event.target.value });
                             }}
                         />
                     </GridItem>
+                    {/* Input arabidopsis hit */}
                     <GridItem>
                         <BasicInput
                             label="arabidopsis hit"
@@ -192,20 +205,22 @@ const New = () => {
                             }}
                         />
                     </GridItem>
+                    {/* Input mô tả */}
                     <GridItem>
                         <BasicInput
-                            label="description"
-                            placeholder="description"
+                            label="Mô tả"
+                            placeholder="Nhập mô tả"
                             value={value.description}
                             onChange={(event) => {
                                 setValue({ ...value, description: event.target.value });
                             }}
                         />
                     </GridItem>
+                    {/* Select họ gene */}
                     <GridItem>
                         <BasicSelect
                             label="gene_family"
-                            placeholder="gene_family"
+                            placeholder="gene family"
                             onChange={(event) => {
                                 setValue({ ...value, gene_family: event.target.value });
                             }}
@@ -213,10 +228,11 @@ const New = () => {
                             value={value.gene_family}
                         />
                     </GridItem>
+                    {/* Select PangeneSet */}
                     <GridItem>
                         <BasicSelect
-                            label="pan_gene_set"
-                            placeholder="pan_gene_set"
+                            label="Pangene set"
+                            placeholder="pangene set"
                             value={value.pan_gene_set}
                             onChange={(event) => {
                                 setValue({ ...value, pan_gene_set: event.target.value });
@@ -224,6 +240,7 @@ const New = () => {
                             options={panGeneSetOptions}
                         />
                     </GridItem>
+                    {/* Select strain */}
                     <GridItem>
                         <BasicSelect
                             label="strain"
@@ -235,10 +252,10 @@ const New = () => {
                             options={strainOptions}
                         />
                     </GridItem>
-
+                    {/* Input mã định danh */}
                     <GridItem>
                         <Text fontWeight={500} fontSize={18} textTransform="capitalize" mb={2}>
-                            identifier
+                            Mã định danh
                         </Text>
                         <BasicInput
                             label="name"
@@ -250,8 +267,8 @@ const New = () => {
                             mb={4}
                         />
                         <BasicInput
-                            label="path_detail"
-                            placeholder="path_detail"
+                            label="path detail"
+                            placeholder="path detail"
                             value={value.identifier.path_detail}
                             onChange={(event) => {
                                 setValue({
@@ -261,10 +278,10 @@ const New = () => {
                             }}
                         />
                     </GridItem>
-
+                    {/* Input vị trí */}
                     <GridItem>
                         <Text fontWeight={500} fontSize={18} textTransform="capitalize" mb={2}>
-                            location
+                            Vị trí
                         </Text>
                         <BasicInput
                             label="name"
@@ -276,8 +293,8 @@ const New = () => {
                             mb={4}
                         />
                         <BasicInput
-                            label="path_detail"
-                            placeholder="path_detail"
+                            label="path detail"
+                            placeholder="path detail"
                             value={value.location.path_detail}
                             onChange={(event) => {
                                 setValue({
@@ -345,6 +362,7 @@ const New = () => {
                         </HStack>
                     </GridItem>
                 </Grid>
+                {/* Button tạo hoặc cập nhật gene */}
                 <Flex justifyContent="end">
                     <Button onClick={isEditPage ? handleEdit : handleCreate} bg={colors.brand} color="white">
                         {isEditPage ? 'Edit' : 'Create'}

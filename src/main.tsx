@@ -9,9 +9,12 @@ import theme from './theme';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
+    // Query client 
     <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
+        {/* Chakra provider */}
         <ChakraProvider theme={theme}>
+            {/* App */}
             <App />
         </ChakraProvider>
     </QueryClientProvider>,

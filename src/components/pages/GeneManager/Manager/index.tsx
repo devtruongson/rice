@@ -34,9 +34,12 @@ const Manager = () => {
     const pageSize = useMemo(() => Number(searchParams.get('pageSize')) || 10, [searchParams]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [idDelete, setIdDelete] = useState<string>('');
+
+    // Đóng mở modal confirm xóa gene 
     const { isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal } = useDisclosure();
     const [indexShow, setIndexShow] = useState(0);
 
+    // Xóa gene 
     const deleteSpecies = useDeleteGene({
         mutationConfig: {
             onSuccess() {
@@ -58,7 +61,10 @@ const Manager = () => {
         },
     });
 
+    // Lấy danh sách gene 
     const { data, refetch } = useGetGenes({ rest: { page: page, pageSize: pageSize } });
+
+    // Build data table 
     const genes = useMemo(
         () =>
             data?.data?.data?.map((item: GeneResType, index: number) => {
@@ -89,25 +95,25 @@ const Manager = () => {
         [data],
     );
 
-    console.log(data?.data?.totalItems / data?.data?.pageSize);
 
     return (
         <HStack justifyContent="center" w="full">
             <Box w="100%" rounded={4} boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" p={5}>
                 <Button display="none" />
                 <Text textAlign="start" fontSize={20} fontWeight={500} textTransform="uppercase" mb={8}>
-                    Post Manager
+                    Quản lý Gene
                 </Text>
                 <Divider borderWidth={1} />
                 <Box maxW="100%" overflowX="auto">
+                    {/* Table gene */}  
                     <TableCusTom
                         mt={4}
                         w="full"
                         columns={[
-                            { key: 'name', label: 'name', w: '10%' },
+                            { key: 'name', label: 'Tên', w: '10%' },
                             // { key: 'arabidopsis_hit', label: 'Arabidopsis Hit', w: '10%' },
                             // { key: 'go_terms', label: 'Go Terms', w: '5%' },
-                            { key: 'description', label: 'Description', w: '30%' },
+                            { key: 'description', label: 'Mô tả', w: '30%' },
                             { key: 'gene_family', label: 'Gene Family', w: '30%' },
                             // { key: 'pan_gene_set', label: 'PanGene Set', w: '10%' },
                             { key: 'action', label: '', w: '30%' },
@@ -115,13 +121,14 @@ const Manager = () => {
                         data={genes}
                     />
 
-                    {/* <Pagination/> */}
+                    {/* Pagination */}
                     <Pagination
                         currentPage={data?.data?.page || 1}
                         totalPage={Math.ceil(data?.data?.totalItems / data?.data?.pageSize) || 1}
                     />
                 </Box>
 
+                {/* Modal chi tiết gene */}
                 <Modal isOpen={isOpenModal} onClose={onCloseModal} size="4xl">
                     <ModalOverlay />
                     <ModalContent>
@@ -151,6 +158,7 @@ const Manager = () => {
                     </ModalContent>
                 </Modal>
 
+                {/* Modal confirm xóa gene */}
                 <ConfirmDelete
                     header="Xóa Gene"
                     title="Bạn chắc chắn muốn xóa Gene, hành động này không thể khôi phục."

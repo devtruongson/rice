@@ -44,7 +44,7 @@ const Header = ({ type = 'user', ...props }: Props) => {
                     <Text fontSize={24} fontWeight={500}>
                         {personalBrand}
                     </Text>
-                    <Text>Integrating Genetics and Genomics to Advance Soybean Research</Text>
+                    <Text>Tích hợp Di truyền học và Di truyền học để thúc đẩy Nghiên cứu Sắn</Text>
                 </Box>
             </HStack>
 

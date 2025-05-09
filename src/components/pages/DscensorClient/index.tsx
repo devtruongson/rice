@@ -44,11 +44,13 @@ const fetchDscensors = async () => {
 };
 
 export default function DscensorClient() {
+    // Lấy danh sách dscensor 
     const { data: dscensors, isLoading } = useQuery({
         queryKey: ['dscensors'],
         queryFn: fetchDscensors,
     });
 
+    // Build data table 
     const processedDscensors = useMemo(() => {
         return (
             dscensors?.map((item: DscensorResType) => ({
@@ -83,7 +85,7 @@ export default function DscensorClient() {
                     DSMetrics
                 </Heading>
                 <Box fontSize="sm" color="gray.600" mb={4}>
-                    DSMetrics: Benchmarking Universal Single-Copy Orthologs (BUSCOs).
+                    DSMetrics: Đánh giá chuẩn các Ortholog bản sao đơn phổ biến (BUSCO).
                 </Box>
 
                 {/* Toolbar Section */}
@@ -96,7 +98,7 @@ export default function DscensorClient() {
                         borderColor="gray.300"
                     />
                     <Button leftIcon={<FaChartBar />} size="sm" variant="outline" borderColor="gray.300">
-                        Plot
+                        Kịch bản
                     </Button>
                     <Box fontSize="sm" color="gray.600">
                         Showing {processedDscensors.length} rows and ~ {Object.keys(processedDscensors[0] || {}).length}{' '}
@@ -104,8 +106,9 @@ export default function DscensorClient() {
                     </Box>
                 </HStack>
 
-                {/* Table Section */}
+                {/* Table Section */}   
                 <TableContainer border="1px solid" borderColor="gray.200" borderRadius="md" overflowX="auto">
+                    {/* Table dscensor */}
                     <Table variant="simple" size="sm" colorScheme="gray">
                         <Thead bg="gray.100">
                             <Tr>
@@ -117,7 +120,7 @@ export default function DscensorClient() {
                                     py={2}
                                     w="12%"
                                 >
-                                    Sample Name
+                                    Tên mẫu
                                 </Th>
                                 <Th
                                     borderRight="1px solid"
@@ -127,7 +130,7 @@ export default function DscensorClient() {
                                     py={2}
                                     w="8%"
                                 >
-                                    Genus
+                                    Chi
                                 </Th>
                                 <Th
                                     borderRight="1px solid"
@@ -137,7 +140,7 @@ export default function DscensorClient() {
                                     py={2}
                                     w="8%"
                                 >
-                                    Species
+                                    Giống loài
                                 </Th>
                                 <Th
                                     borderRight="1px solid"
@@ -230,7 +233,7 @@ export default function DscensorClient() {
                                     Missing
                                 </Th> */}
                                 <Th textTransform="uppercase" fontSize="xs" py={2} w="8%">
-                                    Download
+                                    Tải xuống
                                 </Th>
                             </Tr>
                         </Thead>
@@ -301,7 +304,7 @@ export default function DscensorClient() {
                                             {/* <Td borderRight="1px solid" borderColor="gray.200" textAlign="right">
                                                 {item.missing}
                                             </Td> */}
-
+    
                                             <Td>{item.download}</Td>
                                         </Tr>
                                     );

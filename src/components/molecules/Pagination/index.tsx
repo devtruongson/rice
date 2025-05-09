@@ -29,14 +29,14 @@ const Pagination = ({ currentPage, totalPage, ...props }: Props) => {
         <HStack justifyContent="space-between" {...props} mt="20px">
             <HStack>
                 <Button leftIcon={<Icon as={icons.previous} />} variant="variants" onClick={handlePrevious}>
-                    Previous
+                    Trước
                 </Button>
                 <Text>
-                    Page {currentPage} of {totalPage}
+                    Trang {currentPage} của {totalPage}
                 </Text>
             </HStack>
             <Button rightIcon={<Icon as={icons.next} />} variant="variants" onClick={handleNext}>
-                Next
+                Sau
             </Button>
         </HStack>
     );

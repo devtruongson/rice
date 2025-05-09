@@ -70,13 +70,13 @@ const TrainSearch = () => {
         <BasicTemplate size="medium">
             <Box>
                 <Text fontSize={24} mb={10}>
-                    Trait Association Search
+                    Tìm kiếm theo Đặc điểm
                 </Text>
                 <Box>
                     <Grid templateColumns="repeat(3, 1fr)" gap={6} alignItems="flex-end" mb={4}>
                         <GridItem>
                             <BasicSelect
-                                label="Genus"
+                                label="Chi"
                                 placeholder="Manihot"
                                 value={''}
                                 onChange={() => {}}
@@ -86,8 +86,8 @@ const TrainSearch = () => {
                         </GridItem>
                         <GridItem>
                             <BasicSelect
-                                label="Species"
-                                placeholder="Choose Species"
+                                label="Giống loài"
+                                placeholder="Chọn Giống loài"
                                 value={dataFilter.species}
                                 onChange={(e) => setDataFilter({ ...dataFilter, species: e.target.value })}
                                 options={speciesOptions}
@@ -95,8 +95,8 @@ const TrainSearch = () => {
                         </GridItem>
                         <GridItem>
                             <BasicSelect
-                                label="Study Type"
-                                placeholder="Choose Study Type"
+                                label="Loại nghiên cứu"
+                                placeholder="Chọn Loại nghiên cứu"
                                 value={dataFilter.study_type}
                                 onChange={(e) => setDataFilter({ ...dataFilter, study_type: e.target.value })}
                                 options={[
@@ -107,39 +107,39 @@ const TrainSearch = () => {
                         </GridItem>
                         <GridItem>
                             <BasicInput
-                                label="Traits"
-                                placeholder="Enter traits"
+                                label="Đặc điểm"
+                                placeholder="Nhập đặc điểm"
                                 value={dataFilter.traits}
                                 onChange={(e) => setDataFilter({ ...dataFilter, traits: e.target.value })}
                             />
                         </GridItem>
                         <GridItem>
                             <BasicInput
-                                label="Publication ID (DOI or PMID)"
-                                placeholder="Enter Publication ID"
+                                label="Mã số xuất bản (DOI hoặc PMID)"
+                                placeholder="Nhập ID ấn bản"
                                 value={dataFilter.publication_id}
                                 onChange={(e) => setDataFilter({ ...dataFilter, publication_id: e.target.value })}
                             />
                         </GridItem>
                         <GridItem>
                             <BasicInput
-                                label="Author"
-                                placeholder="Enter author"
+                                label="Tác giả"
+                                placeholder="Nhập tác giả"
                                 value={dataFilter.author}
                                 onChange={(e) => setDataFilter({ ...dataFilter, author: e.target.value })}
                             />
                         </GridItem>
                     </Grid>
                     <Flex mb={4}>
-                        <ButtonCustom text="Search" action={handleSearch} />
+                        <ButtonCustom text="Tìm kiếm" action={handleSearch} />
                     </Flex>
                     <TableCusTom
                         columns={[
-                            { key: 'study_name', label: 'study_name' },
-                            { key: 'study_type', label: 'study_type' },
-                            { key: 'synopsis', label: 'synopsis' },
-                            { key: 'description', label: 'description' },
-                            { key: 'genotypes', label: 'genotypes' },
+                            { key: 'study_name', label: 'tên nghiên cứu' },
+                            { key: 'study_type', label: 'loại hình nghiên cứu' },
+                            { key: 'synopsis', label: 'Tóm tắt' },
+                            { key: 'description', label: 'miêu tả' },
+                            { key: 'genotypes', label: 'kiểu gen' },
                         ]}
                         data={studies}
                     />

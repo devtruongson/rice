@@ -9,6 +9,8 @@ import { formatDate } from '../../../helpers/formatDate';
 
 const PostDetail = () => {
     const { id } = useParams();
+
+    // Lấy thông tin bài viết 
     const { data } = useGetPost({ id: id || '' });
     const post = useMemo(() => data?.data as PostType, [data]);
     return (

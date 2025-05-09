@@ -34,10 +34,12 @@ const New = () => {
     const [searchParams] = useSearchParams();
     const isEditPage = useMemo(() => pathname.includes('/edit'), [pathname]);
 
+    // Lấy thông tin study 
     const { data } = useGetStudy({
         id: searchParams.get('id') || '',
     });
 
+    // Lấy danh sách species 
     const { data: speciesData } = useGetSpecies({});
     const speciesOptions = useMemo(
         () =>
@@ -48,6 +50,7 @@ const New = () => {
         [speciesData],
     );
 
+    // Tạo study 
     const create = useCreateStudy({
         mutationConfig: {
             onSuccess() {
@@ -68,6 +71,7 @@ const New = () => {
         },
     });
 
+    // Cập nhật study 
     const update = useUpdateStudy({
         mutationConfig: {
             onSuccess() {
@@ -88,6 +92,7 @@ const New = () => {
         },
     });
 
+    // Validate dữ liệu 
     const handleValidate = useCallback(() => {
         if (
             !value.author ||
@@ -105,6 +110,7 @@ const New = () => {
         return true;
     }, [value]);
 
+    // Tạo study 
     const handleCreate = () => {
         const isValid = handleValidate();
         if (!isValid) {
@@ -114,6 +120,7 @@ const New = () => {
         create.mutate(value);
     };
 
+    // Cập nhật study 
     const handleEdit = useCallback(() => {
         const isValid = handleValidate();
         if (!isValid || !data?.data?._id) return;
@@ -123,6 +130,7 @@ const New = () => {
         });
     }, [data, value]);
 
+    // Set value khi có dữ liệu 
     useEffect(() => {
         if (data?.data) {
             const study = data.data as StudyUpdateType;
@@ -136,14 +144,15 @@ const New = () => {
         <HStack justifyContent="center">
             <Box w="80%" rounded={4} boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" p={5}>
                 <Text textAlign="start" fontSize={20} fontWeight={500} textTransform="uppercase" mb={8}>
-                    {isEditPage ? 'Edit Species' : 'Create new Species'}
+                    {isEditPage ? 'Cập nhật' : 'Tạo nghiên cứu'}
                 </Text>
                 <Divider borderWidth={1} />
                 <Grid templateColumns="repeat(2, 1fr)" gap={10} mb={10} pt={4} px={6}>
                     <GridItem>
+                        {/* Input tên nghiên cứu */}
                         <BasicInput
-                            label="Study Name"
-                            placeholder="Enter study name"
+                            label="Tên nghiên cứu"
+                            placeholder="Nhập tên nghiên cứu"
                             value={value.study_name}
                             onChange={(event) => {
                                 setValue({ ...value, study_name: event.target.value });
@@ -151,9 +160,10 @@ const New = () => {
                         />
                     </GridItem>
                     <GridItem>
+                        {/* Input link chi tiết nghiên cứu */}
                         <BasicInput
-                            label="Link Detail Study"
-                            placeholder="Enter link detail study"
+                            label="Link chi tiết nghiên cứu"
+                            placeholder="Nhập link chi tiết nghiên cứu"
                             value={value.link_detail_study}
                             onChange={(event) => {
                                 setValue({ ...value, link_detail_study: event.target.value });
@@ -161,9 +171,10 @@ const New = () => {
                         />
                     </GridItem>
                     <GridItem>
+                        {/* Select loại hình nghiên cứu */}
                         <BasicSelect
-                            label="Study type"
-                            placeholder="Enter study type"
+                            label="Loại hình nghiên cứu"
+                            placeholder="Nhập loại hình nghiên cứu"
                             value={value.study_type}
                             onChange={(event) => {
                                 setValue({ ...value, study_type: event.target.value });
@@ -175,9 +186,10 @@ const New = () => {
                         />
                     </GridItem>
                     <GridItem>
+                        {/* Select species */}
                         <BasicSelect
                             label="Species"
-                            placeholder="Enter species"
+                            placeholder="Nhập species"
                             value={value.species}
                             onChange={(event) => {
                                 setValue({ ...value, species: event.target.value });
@@ -186,9 +198,10 @@ const New = () => {
                         />
                     </GridItem>
                     <GridItem>
+                        {/* Input Id xuất bản */}
                         <BasicInput
-                            label="Publication Id"
-                            placeholder="Enter publication id"
+                            label="Id xuất bản"
+                            placeholder="Nhập Id xuất bản"
                             value={value.publication_id}
                             onChange={(event) => {
                                 setValue({ ...value, publication_id: event.target.value });
@@ -196,9 +209,10 @@ const New = () => {
                         />
                     </GridItem>
                     <GridItem>
+                        {/* Input tác giả */}
                         <BasicInput
-                            label="Author"
-                            placeholder="Enter author"
+                            label="Tác giả"
+                            placeholder="Nhập tác giả"
                             value={value.author}
                             onChange={(event) => {
                                 setValue({ ...value, author: event.target.value });
@@ -206,9 +220,10 @@ const New = () => {
                         />
                     </GridItem>
                     <GridItem>
+                        {/* Input đặc điểm */}
                         <BasicInput
-                            label="Traits"
-                            placeholder="Enter traits"
+                            label="Đặc điểm"
+                            placeholder="Nhập đặc điểm"
                             value={value.traits}
                             onChange={(event) => {
                                 setValue({ ...value, traits: event.target.value });
@@ -216,9 +231,10 @@ const New = () => {
                         />
                     </GridItem>
                     <GridItem>
+                        {/* Input kiểu gene */}
                         <BasicInput
-                            label="Genotypes"
-                            placeholder="Enter genotypes"
+                            label="Kiểu gene"
+                            placeholder="Nhập Kiểu gene"
                             value={value.genotypes}
                             onChange={(event) => {
                                 setValue({ ...value, genotypes: event.target.value });
@@ -227,11 +243,12 @@ const New = () => {
                     </GridItem>
 
                     <GridItem>
+                        {/* Textarea mô tả */}
                         <Text fontSize="sm" fontWeight="medium" color="gray.600" mb={3}>
-                            Description
+                            Mô tả
                         </Text>
                         <Textarea
-                            placeholder="Enter your description"
+                            placeholder="Nhập mô tả"
                             value={value.description}
                             onChange={(e) => setValue({ ...value, description: e.target.value })}
                             rows={5}
@@ -239,11 +256,12 @@ const New = () => {
                         />
                     </GridItem>
                     <GridItem>
+                        {/* Textarea tóm tắt */}
                         <Text fontSize="sm" fontWeight="medium" color="gray.600" mb={3}>
-                            Synopsis
+                            Tóm tắt
                         </Text>
                         <Textarea
-                            placeholder="Enter your synopsis"
+                            placeholder="Nhập nội dung tóm tắt"
                             value={value.synopsis}
                             onChange={(e) => setValue({ ...value, synopsis: e.target.value })}
                             rows={5}
@@ -252,8 +270,9 @@ const New = () => {
                     </GridItem>
                 </Grid>
                 <Flex justifyContent="end">
+                    {/* Button lưu thay đổi hoặc tạo */}
                     <Button onClick={isEditPage ? handleEdit : handleCreate} bg={colors.brand} color="white">
-                        {isEditPage ? 'Edit' : 'Create'}
+                        {isEditPage ? 'Luuw thay đổi' : 'Tạo'}
                     </Button>
                 </Flex>
             </Box>

@@ -21,9 +21,9 @@ const SpeciesManager = () => {
             <Box>
                 <Tabs index={tabIndex} onChange={handleTabsChange}>
                     <TabList>
-                        <Tab>Manager</Tab>
-                        <Tab>New</Tab>
-                        <Tab display="none">New</Tab>
+                        <Tab>Quản lý</Tab>
+                        <Tab>Tạo mới</Tab>
+                        <Tab display="none">Cập nhật</Tab>
                     </TabList>
 
                     <TabPanels px={5}>

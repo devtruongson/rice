@@ -31,6 +31,7 @@ const New = () => {
     const [value, setValue] = useState<DscensorReqType>(defaultValue);
     const [isLoading, setIsLoading] = useState(false);
 
+    // Lấy thông tin dscensor 
     const fetchDscensor = async (id: string) => {
         try {
             const response = await axios.get(`/dscensor/${id}`);
@@ -61,6 +62,7 @@ const New = () => {
         }
     };
 
+    // Set value khi có dữ liệu 
     useEffect(() => {
         const id = searchParams.get('id');
         if (isEditPage && id) {
@@ -68,6 +70,7 @@ const New = () => {
         }
     }, [isEditPage, searchParams]);
 
+    // Validate dữ liệu 
     const handleValidate = useCallback(() => {
         if (!value.sample_name || !value.gennus || !value.specis) {
             toast({ status: 'warning', title: 'Vui lòng điền các thông tin bắt buộc' });
@@ -76,10 +79,12 @@ const New = () => {
         return true;
     }, [value]);
 
+    // Tạo dscensor 
     const handleCreate = async () => {
         const isValid = handleValidate();
         if (!isValid) return;
 
+        // Loading 
         setIsLoading(true);
         try {
             const response = await axios.post('/dscensor', value);
@@ -102,13 +107,16 @@ const New = () => {
         }
     };
 
+    // Cập nhật dscensor     
     const handleEdit = async () => {
         const isValid = handleValidate();
         if (!isValid) return;
 
+        // Id dscensor cần cập nhật 
         const id = searchParams.get('id');
         if (!id) return;
 
+        // Loading 
         setIsLoading(true);
         try {
             const response = await axios.put(`/dscensor/`, {
@@ -158,15 +166,16 @@ const New = () => {
                     borderBottomWidth="1px"
                     borderColor={borderColor}
                 >
-                    {isEditPage ? 'Edit Dscensor' : 'Create New Dscensor'}
+                    {isEditPage ? 'Cập nhật Dscensor' : 'Tạo Dscensor'}
                 </Heading>
 
                 <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
                     <GridItem>
                         <FormControl isRequired>
+                            {/* Input tên mẫu */}
                             <BasicInput
-                                label="Sample Name"
-                                placeholder="Enter sample name"
+                                label="tên mẫu"
+                                placeholder="Nhập tên mẫu"
                                 value={value.sample_name}
                                 onChange={(event) => {
                                     setValue({ ...value, sample_name: event.target.value });
@@ -177,6 +186,7 @@ const New = () => {
 
                     <GridItem>
                         <FormControl isRequired>
+                            {/* Input tên họ gen */}
                             <BasicInput
                                 label="Gennus"
                                 placeholder="Enter gennus"
@@ -190,6 +200,7 @@ const New = () => {
 
                     <GridItem>
                         <FormControl isRequired>
+                            {/* Input tên loài */}
                             <BasicInput
                                 label="Specis"
                                 placeholder="Enter specis"
@@ -203,6 +214,7 @@ const New = () => {
 
                     <GridItem>
                         <FormControl>
+                            {/* Input tên loài con */}
                             <BasicInput
                                 label="Infraspecies"
                                 placeholder="Enter infraspecies"
@@ -216,6 +228,7 @@ const New = () => {
 
                     <GridItem>
                         <FormControl>
+                            {/* Input tên scaffolds */}
                             <BasicInput
                                 label="Scaffolds"
                                 placeholder="Enter scaffolds"
@@ -229,6 +242,7 @@ const New = () => {
 
                     <GridItem>
                         <FormControl>
+                            {/* Input tên scaffolds N50 */}
                             <BasicInput
                                 label="Scaffolds N50"
                                 placeholder="Enter scaffolds N50"
@@ -242,6 +256,7 @@ const New = () => {
 
                     <GridItem>
                         <FormControl>
+                            {/* Input tên assembly bases */}
                             <BasicInput
                                 label="Assembly Bases"
                                 placeholder="Enter assembly bases"
@@ -255,6 +270,7 @@ const New = () => {
 
                     <GridItem>
                         <FormControl>
+                            {/* Input tên gap bases */}
                             <BasicInput
                                 label="Gap Bases"
                                 placeholder="Enter gap bases"
@@ -268,6 +284,7 @@ const New = () => {
 
                     <GridItem>
                         <FormControl>
+                            {/* Input tên config bases */}
                             <BasicInput
                                 label="Config Bases"
                                 placeholder="Enter config bases"
@@ -281,6 +298,7 @@ const New = () => {
 
                     <GridItem>
                         <FormControl>
+                            {/* Input tên complete BUSCOs */}
                             <BasicInput
                                 label="Complete BUSCOs"
                                 placeholder="Enter complete BUSCOs"
@@ -294,6 +312,7 @@ const New = () => {
 
                     <GridItem>
                         <FormControl>
+                            {/* Input tên missing */}
                             <BasicInput
                                 label="Missing"
                                 placeholder="Enter missing"
@@ -307,6 +326,7 @@ const New = () => {
 
                     <GridItem>
                         <FormControl>
+                            {/* Input tên URL download */}
                             <BasicInput
                                 label="URL Download"
                                 placeholder="Enter download URL"
@@ -320,10 +340,12 @@ const New = () => {
                 </Grid>
 
                 <Flex justify="space-between" pt={4} borderTopWidth="1px" borderColor={borderColor}>
+                    {/* Button hủy */}
                     <Button variant="outline" onClick={() => navigate(routesMap.Dscensor.replace('/*', '/manager'))}>
                         Hủy
                     </Button>
 
+                    {/* Button tạo hoặc cập nhật dscensor */}
                     <Button onClick={isEditPage ? handleEdit : handleCreate} isLoading={isLoading}>
                         {isEditPage ? 'Lưu thay đổi' : 'Tạo mới'}
                     </Button>

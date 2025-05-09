@@ -33,12 +33,14 @@ export const listTranstLast = [
 
 export const blogsDefault = {
     _id: '',
-    title: 'GO Enrichments',
-    sub_title: 'Cassava offers two methods for calculating GO enrichment. This post explains these approaches.',
+    title: 'GO làm giàu',
+    sub_title:
+        'Cassava cung cấp hai phương pháp để tính toán sự làm giàu GO. Bài đăng này giải thích các phương pháp này.',
     createdAt: '01 July 2024',
     path: routesMap.GoEnrichmentBlog,
     author: 'Steven Cannon',
-    description: 'Cassava offers two methods for calculating GO enrichment. This post explains these approaches.',
+    description:
+        'Cassava cung cấp hai phương pháp để tính toán độ làm giàu GO. Bài đăng này giải thích các phương pháp này.',
     type: 'blog',
 };
 
@@ -49,17 +51,17 @@ export const events = [];
 export const navbarAdmin = [
     {
         icon: '',
-        label: 'Post',
+        label: 'Bài đăng',
         url: routesMap.PostAdmin,
     },
     {
         icon: '',
-        label: 'Gene Family',
+        label: 'Họ gen',
         url: routesMap.GeneFamily,
     },
     {
         icon: '',
-        label: 'Strain',
+        label: 'huyết thống',
         url: routesMap.Strain,
     },
     {
@@ -69,7 +71,7 @@ export const navbarAdmin = [
     },
     {
         icon: '',
-        label: 'Species',
+        label: 'Giống loài',
         url: routesMap.Species,
     },
     {
@@ -79,13 +81,13 @@ export const navbarAdmin = [
     },
     {
         icon: '',
-        label: 'Study',
+        label: 'Nghiên cứu',
         url: routesMap.Study,
     },
 
     {
         icon: '',
-        label: 'Dscensors',
+        label: 'Kiểm duyệt',
         url: routesMap.Dscensor,
     },
 ];

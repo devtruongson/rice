@@ -38,7 +38,7 @@ const PostAdmin = () => {
             <Container maxW="container.xl" p={0}>
                 <Box bg={headerBg} borderBottom="1px" borderColor={borderColor} p={4} mb={4} borderRadius="md">
                     <Heading size="lg" mb={2}>
-                        Post Management
+                        Quản lý bài đăng{' '}
                     </Heading>
                     <Divider mb={4} />
 
@@ -55,7 +55,7 @@ const PostAdmin = () => {
                                 mr={2}
                                 borderRadius="md md 0 0"
                             >
-                                Manage Posts
+                                Quản lý bài đăng{' '}
                             </Tab>
                             <Tab
                                 fontWeight="semibold"
@@ -67,7 +67,7 @@ const PostAdmin = () => {
                                 }}
                                 borderRadius="md md 0 0"
                             >
-                                Create New Post
+                                Tạo bài đăng mới{' '}
                             </Tab>
                             <Tab
                                 display="none"

@@ -49,7 +49,7 @@ const StrainManager = () => {
                 >
                     <Flex bg="purple.600" color="white" p={4} alignItems="center">
                         <Icon as={FaVial} boxSize={6} mr={3} />
-                        <Heading size="lg">Strain Management</Heading>
+                        <Heading size="lg">Quản lý Strain</Heading>
                     </Flex>
 
                     <Tabs index={tabIndex} onChange={handleTabsChange} colorScheme="purple" variant="enclosed" isLazy>
@@ -68,7 +68,7 @@ const StrainManager = () => {
                                     }}
                                 >
                                     <Icon as={FaVial} mr={2} />
-                                    Strain List
+                                    Danh sách Strain
                                 </Tab>
                                 <Tab
                                     fontWeight="medium"
@@ -83,7 +83,7 @@ const StrainManager = () => {
                                     }}
                                 >
                                     <Icon as={FaPlus} mr={2} />
-                                    Add New Strain
+                                    Tạo Strain
                                 </Tab>
                                 <Tab
                                     display="none"

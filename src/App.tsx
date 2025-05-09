@@ -5,6 +5,7 @@ import { GlobalProvider } from './contexts/GlobalContext';
 import ProtectedRoute from './routes/ProtectedRoute';
 import { routes } from './routes/routes';
 
+// Tạo router 
 const router = createBrowserRouter(
     routes.map((route) => ({
         ...route,
@@ -16,6 +17,7 @@ function App() {
     return (
         <Suspense fallback={<Progress size="xs" isIndeterminate position="fixed" top={0} left={0} right={0} h={0.5} />}>
             <GlobalProvider>
+                {/* Router */}
                 <RouterProvider router={router} />
             </GlobalProvider>
         </Suspense>

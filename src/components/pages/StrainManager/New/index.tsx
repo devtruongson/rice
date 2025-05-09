@@ -40,10 +40,12 @@ const New = () => {
     const borderColor = useColorModeValue('gray.200', 'gray.700');
     const buttonColorScheme = isEditPage ? 'green' : 'purple';
 
+    // Lấy thông tin strain 
     const { data, isLoading: isLoadingStrain } = useGetStrain({
         id: searchParams.get('id') || '',
     });
 
+    // Tạo strain 
     const create = useCreateStrain({
         mutationConfig: {
             onSuccess() {
@@ -66,6 +68,7 @@ const New = () => {
         },
     });
 
+    // Cập nhật strain 
     const update = useUpdateStrain({
         mutationConfig: {
             onSuccess() {
@@ -87,6 +90,7 @@ const New = () => {
         },
     });
 
+    // Validate dữ liệu 
     const handleValidate = useCallback(() => {
         if (!value.trim()) {
             setError('Tên strain không được để trống');
@@ -96,6 +100,7 @@ const New = () => {
         return true;
     }, [value]);
 
+    // Tạo strain 
     const handleCreate = () => {
         const isValid = handleValidate();
         if (!isValid) {
@@ -105,6 +110,7 @@ const New = () => {
         create.mutate({ name: value.trim() });
     };
 
+    // Cập nhật strain 
     const handleEdit = useCallback(() => {
         const isValid = handleValidate();
         if (!isValid || !data?.data?._id) return;
@@ -114,6 +120,7 @@ const New = () => {
         });
     }, [data, value]);
 
+    // Set value khi có dữ liệu 
     useEffect(() => {
         if (data?.data) {
             const strain = data.data as StrainResType;
@@ -121,6 +128,7 @@ const New = () => {
         }
     }, [data]);
 
+    // Loading 
     const isLoading = isEditPage ? update.isPending : create.isPending;
 
     return (
@@ -166,6 +174,7 @@ const New = () => {
                     </GridItem>
 
                     <GridItem colSpan={1}>
+                        {/* Button tạo hoặc cập nhật strain */}
                         <Button
                             onClick={isEditPage ? handleEdit : handleCreate}
                             colorScheme={buttonColorScheme}

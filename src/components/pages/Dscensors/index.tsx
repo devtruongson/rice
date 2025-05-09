@@ -37,14 +37,14 @@ const Dscensors = () => {
                             fontWeight="medium"
                             _selected={{ color: activeTabColor, borderBottomColor: activeTabColor }}
                         >
-                            Manager
+                            Quản lý
                         </Tab>
                         <Tab
                             py={4}
                             fontWeight="medium"
                             _selected={{ color: activeTabColor, borderBottomColor: activeTabColor }}
                         >
-                            New
+                            Tạo mới
                         </Tab>
                         <Tab display="none" py={4} fontWeight="medium">
                             New

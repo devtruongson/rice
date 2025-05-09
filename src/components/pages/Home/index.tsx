@@ -11,9 +11,9 @@ import LinkCustom from '../../atoms/Link';
 import MainTemPlate from '../../templates/MainTemPlate';
 
 const listStransit = [
-    { label: 'Keyword Search', list: listTransitFirst, search: 'keyword' },
-    { label: 'Gene identifier search', list: listTransitSecond, search: 'identifier' },
-    { label: 'Synteny viewer', list: listTranstLast, search: 'synteny' },
+    { label: 'Tìm kiếm từ khóa', list: listTransitFirst, search: 'keyword' },
+    { label: 'Tìm kiếm định danh gen', list: listTransitSecond, search: 'identifier' },
+    { label: 'Trình xem cú pháp', list: listTranstLast, search: 'synteny' },
 ] as const;
 
 const Home = () => {
@@ -44,15 +44,15 @@ const Home = () => {
     return (
         <MainTemPlate>
             <Flex justifyContent="space-between">
-                <Box w="75%">
+                <Box w="70%">
                     <Text fontSize={36} fontWeight={300} mb={2}>
                         {personalBrand}
                     </Text>
                     <Text mb={4}>
-                        Cassava integrates genetic and genomic information to aid soybean breeders and researchers. This
-                        instance of the site has been ported to a different framework in order to accommodate the
-                        rapidly-growing genomic data available. In the meantime, you can also continue to use{' '}
-                        <LinkCustom content='"legacy Cassava"' path="https://legacy.soybase.org/" isBlank />.
+                        Cassava tích hợp thông tin di truyền và bộ gen để hỗ trợ các nhà lai tạo và nghiên cứu cây Sắn.
+                        Trường hợp này của trang web đã được chuyển sang một khuôn khổ khác để phù hợp với dữ liệu bộ
+                        gen đang phát triển nhanh chóng hiện có. Trong thời gian chờ đợi, bạn cũng có thể tiếp tục sử
+                        dụng <LinkCustom content='"legacy Cassava"' path="https://legacy.soybase.org/" isBlank />.
                     </Text>
 
                     <HStack w="full" justifyContent="space-between" mb={6}>
@@ -85,7 +85,7 @@ const Home = () => {
                                         />
                                         <ButtonCustom
                                             borderRadius={'4px'}
-                                            text="GO"
+                                            text="đi"
                                             action={() => handleSearch(index)}
                                             h={'30px'}
                                         />
@@ -113,12 +113,12 @@ const Home = () => {
                     </HStack>
 
                     <Text fontSize={28} mb={8}>
-                        Funding and Development
+                        Tài trợ và phát triển
                     </Text>
                     <Text mb={6}>
-                        Cassava is funded by the USDA-ARS. Cassava is developed and hosted by the USDA-ARS Cassava and
-                        Legume Clade Database group at Ames, IA, with development assistance from the National Center
-                        for Genome Resources (NCGR) with the help of many other researchers in the soybean community.
+                        Cassava được tài trợ bởi USDA-ARS. Cassava được phát triển và lưu trữ bởi nhóm Cơ sở dữ liệu cây
+                        Sắn và Họ sắn USDA-ARS tại Ames, IA, với sự hỗ trợ phát triển từ Trung tâm Quốc gia về Tài
+                        nguyên bộ gen (NCGR) với sự giúp đỡ của nhiều nhà nghiên cứu khác trong cộng đồng cây sắn.
                     </Text>
                     <HStack justifyContent="space-around">
                         <Image src="https://www.soybase.org/assets/img/usda.svg" w={150} />
@@ -126,11 +126,11 @@ const Home = () => {
                     </HStack>
                 </Box>
 
-                <Box w="20%">
+                <Box w="25%">
                     <VStack gap={10} w="100%">
-                        <FormPostCommon label="Blog posts" path={routesMap.Blog} isBlog type="blog" />
-                        <FormPostCommon label="New posts" path={routesMap.New} type="new" />
-                        <FormPostCommon label="Event posts" path={routesMap.Event} type="event" />
+                        <FormPostCommon label="bài đăng trên blog" path={routesMap.Blog} isBlog type="blog" />
+                        <FormPostCommon label="Bài viết mới" path={routesMap.New} type="new" />
+                        <FormPostCommon label="Bài đăng sự kiện" path={routesMap.Event} type="event" />
                     </VStack>
                 </Box>
             </Flex>
@@ -182,7 +182,7 @@ const FormPostCommon = ({ label, path, isBlog = false, type }: FormPostCommonPro
             <Divider />
             <Box p={4}>
                 <Link to={path}>
-                    <Text textTransform="uppercase">More {label}</Text>
+                    <Text textTransform="uppercase">Thêm {label}</Text>
                 </Link>
             </Box>
         </Box>

@@ -12,11 +12,14 @@ import toast from '../../../../libs/toast';
 import { isAxiosError } from 'axios';
 import { getAxiosError } from '../../../../libs/axios';
 
-const Manager = () => {
+const Manager = () => { 
     const navigate = useNavigate();
+
+    // Đóng mở modal confirm xóa species 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [idDelete, setIdDelete] = useState<string>('');
 
+    // Xóa species 
     const deleteSpecies = useDeleteSpecies({
         mutationConfig: {
             onSuccess() {
@@ -38,7 +41,10 @@ const Manager = () => {
         },
     });
 
+    // Lấy danh sách species 
     const { data, refetch } = useGetSpecies({});
+
+    // Build data table 
     const posts = useMemo(
         () =>
             data?.data?.map((item: SpeciesResType) => {
@@ -63,18 +69,21 @@ const Manager = () => {
             <Box w="80%" rounded={4} boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px" p={5}>
                 <Button display="none" />
                 <Text textAlign="start" fontSize={20} fontWeight={500} textTransform="uppercase" mb={8}>
-                    Post Manager
+                    Quản lý Species
                 </Text>
                 <Divider borderWidth={1} />
+
+                {/* Table species */}
                 <TableCusTom
                     mt={4}
                     columns={[
-                        { key: 'name', label: 'name', w: '60%' },
+                        { key: 'name', label: 'Tên', w: '60%' },
                         { key: 'action', label: '', w: '15%' },
                     ]}
                     data={posts}
                 />
 
+                {/* Modal confirm xóa species */}
                 <ConfirmDelete
                     header="Xóa Species"
                     title="Bạn chắc chắn muốn xóa specie, hành động này không thể khôi phục."

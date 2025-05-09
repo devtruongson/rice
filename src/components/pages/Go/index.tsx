@@ -8,12 +8,15 @@ import { useGetListGene } from '../../../services/gene/get-list';
 const Go = () => {
     const [isEnable, setIsEnable] = useState(false);
     const [list, setList] = useState<string>('');
+
+    // Lấy danh sách gene 
     const { data } = useGetListGene({ names: list, enabled: isEnable && Boolean(list) });
 
     const handleDowload = () => {
         setIsEnable(true);
     };
 
+    // Xử lý tải xuống file 
     useEffect(() => {
         if (data?.data?.length && isEnable) {
             let textContent = '`Gene Model\tArabidopsis hit\tGO terms\n';
@@ -41,14 +44,14 @@ const Go = () => {
         <MainTemPlate>
             <Box>
                 <Text mb={4}>
-                    GO enrichment analysis uses statistical tests to determine if a set of provided genes are
-                    statistically different than a comparison set (typically, the set of all genes in the organism), for
-                    to each of the three main gene ontology "aspects": Molecular Function, Cellular Component, and
-                    Biological Process.
+                    Phân tích làm giàu GO sử dụng các thử nghiệm thống kê để xác định xem một tập hợp các gen được cung
+                    cấp có khác biệt về mặt thống kê so với một tập hợp so sánh (thường là tập hợp tất cả các gen trong
+                    sinh vật) hay không, đối với từng "khía cạnh" chính của thuật ngữ gen: Chức năng phân tử, Thành phần
+                    tế bào và Quy trình sinh học.
                 </Text>
                 <Text mb={4}>
-                    Cassava offers two methods for calculating GO enrichment: the service at this page; and the
-                    gene-list report at
+                    Sắn cung cấp hai phương pháp để tính toán sự làm giàu GO: dịch vụ tại trang này; và báo cáo danh
+                    sách gen tại
                     <LinkCustom
                         ml={1}
                         content="GlycineMine"
@@ -59,25 +62,25 @@ const Go = () => {
                     .
                 </Text>
                 <Text mb={4}>
-                    See <LinkCustom content="this blog post" path="/" fontWeight={500} as={'span'} /> for details about
-                    doing GO enrichment analysis at GlycineMine. One advantage of using the{' '}
-                    <LinkCustom content="GlycineMine" path="/" as={'span'} /> tool is that enrichment can be calculated
-                    for genes from ANY Glycine accession and annotation in the system, rather than for Wm82.a4.v1 that
-                    is offered on the service on this page. GlycineMine also reports several other analyses, including
-                    enrichments for gene families, pathways, and chromosomal location.
+                    Xem <LinkCustom content="bài đăng trên blog này" path="/" fontWeight={500} as={'span'} /> để biết
+                    chi tiết về việc thực hiện phân tích làm giàu GO tại GlycineMine. Một lợi thế của việc sử dụng{' '}
+                    <LinkCustom content="GlycineMine" path="/" as={'span'} /> công cụ là có thể tính toán được sự làm
+                    giàu cho các gen từ BẤT KỲ sự gia nhập và chú thích Glycine nào trong hệ thống, thay vì cho
+                    Wm82.a4.v1 được cung cấp trên dịch vụ trên trang này. GlycineMine cũng báo cáo một số phân tích
+                    khác, bao gồm sự làm giàu cho các họ gen, con đường và vị trí nhiễm sắc thể.
                 </Text>
-                <Text mb={4}>GO term enrichment analysis using Wm82.a4.v1 gene model names.</Text>
+                <Text mb={4}>Phân tích làm giàu thuật ngữ GO bằng cách sử dụng tên mô hình gen Wm82.a4.v1.</Text>
                 <Text mb={4}>
-                    The underlying algorithms for this tool come from{' '}
+                    Các thuật toán cơ bản cho công cụ này đến từ{' '}
                     <LinkCustom
                         ml={1}
-                        content="Morales et al. (2013)"
+                        content="Morales và cộng sự. (2013)"
                         path="https://dx.doi.org/10.1071/FP12296"
                         isBlank
                         as={'span'}
                     />
                 </Text>
-                <Text mb={10}>Either enter a list of gene model names into this box, one name per line:</Text>
+                <Text mb={10}>Hoặc nhập danh sách tên mô hình gen vào hộp này, mỗi tên một dòng:</Text>
 
                 <Box border="1px solid black" p={4} width="350px" position="relative">
                     <Box
@@ -90,7 +93,7 @@ const Go = () => {
                         fontWeight="bold"
                         whiteSpace="nowrap"
                     >
-                        Insert Gene List: (One per line)
+                        Chèn danh sách gen: (Mỗi dòng một gen)
                     </Box>
 
                     <FormControl>
@@ -103,7 +106,7 @@ const Go = () => {
 
                         <VStack spacing={2} mt={4}>
                             <ButtonCustom text="GO ANNOTATION" action={() => handleDowload()} width="100%" />
-                            <ButtonCustom text="GO TERM ENRICHMENT ANALYSIS" action={() => {}} width="100%" />
+                            {/* <ButtonCustom text="GO TERM ENRICHMENT ANALYSIS" action={() => {}} width="100%" /> */}
                         </VStack>
                     </FormControl>
                 </Box>

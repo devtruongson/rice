@@ -42,7 +42,7 @@ const GeneFamilyManager = () => {
             <Container maxW="container.xl" py={4}>
                 <Box bg={headerBg} borderRadius="lg" boxShadow="sm" overflow="hidden">
                     <Flex bg="blue.600" color="white" p={4} alignItems="center" justifyContent="space-between">
-                        <Heading size="lg">Gene Family Management</Heading>
+                        <Heading size="lg">Quản lý họ gen</Heading>
                     </Flex>
 
                     <Tabs index={tabIndex} onChange={handleTabsChange} colorScheme="blue" variant="soft-rounded" isLazy>
@@ -60,7 +60,7 @@ const GeneFamilyManager = () => {
                                     }}
                                 >
                                     <Icon as={FaDatabase} mr={2} />
-                                    Manage Gene Families
+                                    Quản lý họ gen{' '}
                                 </Tab>
                                 <Tab
                                     fontWeight="medium"
@@ -74,7 +74,7 @@ const GeneFamilyManager = () => {
                                     }}
                                 >
                                     <Icon as={FaPlus} mr={2} />
-                                    Add New Gene Family
+                                    Tạo mưới họ gen
                                 </Tab>
                                 <Tab
                                     display="none"
@@ -85,7 +85,7 @@ const GeneFamilyManager = () => {
                                     }}
                                 >
                                     <Icon as={FaEdit} mr={2} />
-                                    Edit Gene Family
+                                    Cập nhật họ Gene
                                 </Tab>
                             </TabList>
                         </Box>

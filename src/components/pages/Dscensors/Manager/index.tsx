@@ -29,15 +29,24 @@ import { routesMap } from '../../../../routes/routes';
 import { useGetDscensor } from '../../../../services/dscensor/get-more';
 import { DscensorResType } from '../../../../type/dscensor';
 import ActionCustom from '../../../molecules/ActionCustom';
+import { JSX } from 'react/jsx-runtime';
 
 const Manager = () => {
     const navigate = useNavigate();
+
+    // Lấy danh sách dscensor 
     const { data, refetch } = useGetDscensor({});
+
+    // Đóng mở modal confirm xóa dscensor 
     const { isOpen, onOpen, onClose } = useDisclosure();
+
+    // Id dscensor cần xóa 
     const [idDel, setIdDel] = useState<string | null>(null);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const cancelRef = useRef<any>(null);
 
+    // Build data table 
     const dscensors = useMemo(
         () =>
             data?.data?.map((item: DscensorResType) => ({
@@ -60,6 +69,7 @@ const Manager = () => {
 
     return (
         <Box w={'90%'} overflow={'hidden'}>
+            {/* Modal confirm xóa dscensor */}
             <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
                 <AlertDialogOverlay>
                     <AlertDialogContent borderRadius="md" boxShadow="xl">
@@ -121,7 +131,7 @@ const Manager = () => {
                 overflow={'hidden'}
             >
                 <Flex justifyContent="space-between" alignItems="center" mb={4}>
-                    <Heading size="md">Dscensor Manager</Heading>
+                    <Heading size="md">Quản lý Dscensor</Heading>
                     <Button
                         colorScheme="blue"
                         onClick={() => navigate(routesMap.Dscensor.replace('/*', '/new'))}
@@ -132,11 +142,12 @@ const Manager = () => {
                 </Flex>
 
                 <TableContainer overflowX="auto" maxW={'95%'} overflowY={'hidden'}>
+                    {/* Table dscensor */}
                     <Table variant="simple" size="sm">
                         <Thead>
                             <Tr>
-                                <Th w="12%">Sample Name</Th>
-                                <Th w="8%">Gennus</Th>
+                                <Th w="12%">Tên mẫu</Th>
+                                <Th w="8%">chi</Th>
                                 <Th w="8%">Specis</Th>
                                 <Th w="10%">Infraspecies</Th>
                                 <Th w="8%">Scaffolds</Th>
@@ -146,7 +157,7 @@ const Manager = () => {
                                 <Th w="8%">Config Bases</Th>
                                 <Th w="10%">Complete BUSCOs</Th>
                                 <Th w="8%">Missing</Th>
-                                <Th w="8%">Download</Th>
+                                <Th w="8%">Tải</Th>
                                 <Th w="10%"></Th>
                             </Tr>
                         </Thead>

@@ -28,6 +28,8 @@ const Manager = () => {
     const [searchParams] = useSearchParams();
     const page = useMemo(() => Number(searchParams.get('page')) || 1, [searchParams]);
     const pageSize = useMemo(() => Number(searchParams.get('pageSize')) || 10, [searchParams]);
+
+    // Lấy danh sách họ gene 
     const { data, refetch } = useGetGeneFamilys({
         rest: { page: page, pageSize: pageSize },
     });
@@ -37,6 +39,7 @@ const Manager = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const cancelRef = useRef<any>(null);
 
+    // Build data table 
     const geneFamilys = useMemo(
         () =>
             data?.data?.data?.map((item: GeneFamilyResType) => {
@@ -62,7 +65,6 @@ const Manager = () => {
         [data],
     );
 
-    console.log(geneFamilys);
     return (
         <Box>
             <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
@@ -83,6 +85,7 @@ const Manager = () => {
                                 onClick={async () => {
                                     if (!idDel) return;
                                     try {
+                                        // Xóa họ gene 
                                         const res = await axios.delete(`/gene-family/${idDel}`);
 
                                         if (res.data.statusCode === HttpStatusCode.Ok) {
@@ -106,15 +109,19 @@ const Manager = () => {
                     </AlertDialogContent>
                 </AlertDialogOverlay>
             </AlertDialog>
-            <Text>GeneFamily Manager</Text>
+            <Text>Quản lý Họ Gene</Text>
+
+            {/* Table họ gene */}
             <TableCusTom
                 columns={[
-                    { key: 'name', label: 'name', w: '10%' },
-                    { key: 'path_detail', label: 'path detail', w: '20%' },
+                    { key: 'name', label: 'Tên', w: '10%' },
+                    { key: 'path_detail', label: 'chi tiết đường dẫn', w: '20%' },
                     { key: 'action', label: '', w: '15%' },
                 ]}
                 data={geneFamilys}
             />
+
+            {/* Pagination */}
             <Pagination currentPage={data?.data?.page || 1} totalPage={data?.data?.totalPages || 1} />
         </Box>
     );
